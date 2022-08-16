@@ -1,10 +1,10 @@
 import { Autocomplete, CircularProgress, InputAdornment } from "@mui/material";
-import nationalitiesService from "config/axios/nationalitiesService";
 import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setAllNats } from "redux/slices/nationalitiesSlice";
+import nationalitiesService from "src/config/axios/nationalitiesService";
+import { setAllNats } from "src/redux/slices/nationalitiesSlice";
 import InputField from "../general/InputField";
 
 const NationalityInput = ({ control, t }) => {

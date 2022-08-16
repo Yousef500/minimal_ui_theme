@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ListAltOutlined, LocationOn, MoreVert } from "@mui/icons-material";
 import { Fade, IconButton, Menu } from "@mui/material";
-import decodeShapePath from "config/decodeShapePath";
+import decodeShapePath from "src/config/decodeShapePath";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";

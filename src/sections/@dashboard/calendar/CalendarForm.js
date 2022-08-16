@@ -12,7 +12,7 @@ import { LoadingButton } from '@mui/lab';
 import { MobileDateTimePicker } from '@mui/x-date-pickers';
 // redux
 import { useDispatch } from 'react-redux';
-import { createEvent, updateEvent, deleteEvent } from '../../../redux/slices/calendar';
+import { createEvent, updateEvent, deleteEvent } from '../src//redux/slices/calendar';
 // components
 import Iconify from '../../../components/Iconify';
 import { ColorSinglePicker } from '../../../components/color-utils';

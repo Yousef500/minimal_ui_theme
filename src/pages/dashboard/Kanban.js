@@ -4,7 +4,7 @@ import { Container, Stack } from '@mui/material';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoard, persistColumn, persistCard } from '../../redux/slices/kanban';
+import { getBoard, persistColumn, persistCard } from 'src//redux/slices/kanban';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // components

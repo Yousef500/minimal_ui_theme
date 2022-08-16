@@ -37,11 +37,11 @@ const DotStyle = styled('span')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-ToggleButton.propTypes = {
-  notDefault: PropTypes.bool,
-  onToggle: PropTypes.func,
-  open: PropTypes.bool,
-};
+// ToggleButton.propTypes = {
+//   notDefault: PropTypes.bool,
+//   onToggle: PropTypes.func,
+//   open: PropTypes.bool,
+// };
 
 export default function ToggleButton({ notDefault, open, onToggle }) {
   return (

@@ -1,6 +1,6 @@
 import { ExpandLessRounded, ExpandMoreRounded, FileDownloadRounded } from "@mui/icons-material";
-import { CircularProgress, Fade, Menu } from "@mui/material";
-import MDButton from "components/MDButton";
+import { Button, CircularProgress, Fade, Menu } from "@mui/material";
+
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { useState } from "react";
@@ -131,7 +131,7 @@ const ExtractButton = ({ t, getData, module }) => {
 
     return (
         <>
-            <MDButton
+            <Button
                 variant="text"
                 color="info"
                 sx={{ fontSize: 20, width: 180 }}
@@ -139,7 +139,7 @@ const ExtractButton = ({ t, getData, module }) => {
                 onClick={(e) => setAnchorEl(e.currentTarget)}
             >
                 {t("common.extract")}
-            </MDButton>
+            </Button>
             <Menu
                 open={open}
                 anchorEl={anchorEl}

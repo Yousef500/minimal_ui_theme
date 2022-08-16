@@ -1,10 +1,10 @@
 import { Autocomplete, CircularProgress, InputAdornment } from "@mui/material";
-import gendersService from "config/axios/gendersService";
 import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setAllGenders } from "redux/slices/gendersSlice";
+import gendersService from "src/config/axios/gendersService";
+import { setAllGenders } from "src/redux/slices/gendersSlice";
 import InputField from "../general/InputField";
 
 const GenderInput = ({ control, setValue, clearErrors, t }) => {

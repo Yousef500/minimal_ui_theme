@@ -42,13 +42,13 @@ const FabButtonAnimate = forwardRef(({ color = 'primary', size = 'large', childr
   );
 });
 
-FabButtonAnimate.propTypes = {
-  children: PropTypes.node.isRequired,
-  color: PropTypes.oneOf(['inherit', 'default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  sx: PropTypes.object,
-  sxWrap: PropTypes.object
-};
+// FabButtonAnimate.propTypes = {
+//   children: PropTypes.node.isRequired,
+//   color: PropTypes.oneOf(['inherit', 'default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
+//   size: PropTypes.oneOf(['small', 'medium', 'large']),
+//   sx: PropTypes.object,
+//   sxWrap: PropTypes.object
+// };
 
 export default FabButtonAnimate;
 
@@ -69,11 +69,11 @@ const varLarge = {
   tap: { scale: 0.99 }
 };
 
-AnimateWrap.propTypes = {
-  children: PropTypes.node.isRequired,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  sxWrap: PropTypes.object
-};
+// AnimateWrap.propTypes = {
+//   children: PropTypes.node.isRequired,
+//   size: PropTypes.oneOf(['small', 'medium', 'large']),
+//   sxWrap: PropTypes.object
+// };
 
 function AnimateWrap({ size, children, sxWrap }) {
   const isSmall = size === 'small';

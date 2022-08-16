@@ -1,5 +1,5 @@
 import { Autocomplete, CircularProgress } from "@mui/material";
-import usersService from "config/axios/usersService";
+import usersService from "src/config/axios/usersService";
 import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import InputField from "../general/InputField";

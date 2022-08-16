@@ -7,6 +7,7 @@ import {
     SearchOffRounded,
 } from "@mui/icons-material";
 import {
+    Button,
     Card,
     CardContent,
     CardHeader,
@@ -19,12 +20,12 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
-import Center from "components/khadamat/general/Center";
-import LocationsDropdown from "components/khadamat/securityGuards/LocationsDropdown";
-import LocationsFilter from "components/khadamat/securityGuards/LocationsFilter";
-import MDButton from "components/MDButton";
-import locationsService from "config/axios/locationsService";
-import i18n from "config/i18n";
+import Center from "src/components/khadamat/general/Center";
+import LocationsDropdown from "src/components/khadamat/securityGuards/LocationsDropdown";
+import LocationsFilter from "src/components/khadamat/securityGuards/LocationsFilter";
+
+import locationsService from "src/config/axios/locationsService";
+import i18n from "src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,7 +37,7 @@ import {
     setLoadingLocations,
     setLocations,
     setLocationsPageNo,
-} from "redux/slices/locationsSlice";
+} from "src/redux/slices/locationsSlice";
 
 const LocationsManagement = () => {
     const [filterOpen, setFilterOpen] = useState(false);
@@ -108,7 +109,7 @@ const LocationsManagement = () => {
                         <Typography variant="h2" gutterBottom>
                             {t("securityGuards.locations.title")}
                         </Typography>
-                        <MDButton
+                        <Button
                             variant="contained"
                             color="success"
                             size="large"
@@ -118,7 +119,7 @@ const LocationsManagement = () => {
                             to="/securityGuards/locations/add"
                         >
                             {t("securityGuards.locations.add")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </Grid>
                 <Grid item xs={12}>

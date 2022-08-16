@@ -32,12 +32,10 @@ import { HashRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 // @mui
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 // redux
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { persistor, store } from './redux/store';
 // contexts
-import { CollapseDrawerProvider } from './contexts/CollapseDrawerContext';
-import { SettingsProvider } from './contexts/SettingsContext';
 
 // Check our docs
 // import { AuthProvider } from './contexts/Auth0Context';
@@ -46,6 +44,8 @@ import { SettingsProvider } from './contexts/SettingsContext';
 
 //
 import App from './App';
+import { CollapseDrawerProvider } from './contexts/CollapseDrawerContext';
+import { SettingsProvider } from './contexts/SettingsContext';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
@@ -58,7 +58,7 @@ root.render(
   <HelmetProvider>
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
           <SettingsProvider>
             <CollapseDrawerProvider>
               <HashRouter>

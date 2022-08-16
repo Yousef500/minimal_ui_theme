@@ -12,20 +12,21 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
+import shortUUID from "short-uuid";
 import { blue } from "@mui/material/colors";
 import { DatePicker, LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { GoogleMap, Marker, Polygon } from "@react-google-maps/api";
-import CemeteryInput from "components/khadamat/ekram/CemeteryInput";
-import DaysInput from "components/khadamat/ekram/DaysInput";
-import GenderInput from "components/khadamat/ekram/GenderInput";
-import MonthsInput from "components/khadamat/ekram/MonthsInput";
-import NationalityInput from "components/khadamat/ekram/NationalityInput";
-import Center from "components/khadamat/general/Center";
-import InputField from "components/khadamat/general/InputField";
-import MDButton from "components/MDButton";
-import deadService from "config/axios/deadServices";
-import filesService from "config/axios/filesService";
+import CemeteryInput from "src/components/khadamat/ekram/CemeteryInput";
+import DaysInput from "src/components/khadamat/ekram/DaysInput";
+import GenderInput from "src/components/khadamat/ekram/GenderInput";
+import MonthsInput from "src/components/khadamat/ekram/MonthsInput";
+import NationalityInput from "src/components/khadamat/ekram/NationalityInput";
+import Center from "src/components/khadamat/general/Center";
+import InputField from "src/components/khadamat/general/InputField";
+
+import deadService from "src/config/axios/deadServices";
+import filesService from "src/config/axios/filesService";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -33,8 +34,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { resetDeadFilters, setDeadPageNo } from "redux/slices/deadSlice";
-import shortUUID from "short-uuid";
+import { resetDeadFilters, setDeadPageNo } from "src/redux/slices/deadSlice";
 
 const EditDead = () => {
     const { id } = useParams();
@@ -366,9 +366,9 @@ const EditDead = () => {
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
-                        <MDButton
+                        <Button
                             startIcon={uploaded ? <CheckRounded /> : <UploadFileRounded />}
-                            variant="gradient"
+                            variant="contained"
                             color={uploaded ? "success" : "secondary"}
                             component="label"
                             size="large"
@@ -376,7 +376,7 @@ const EditDead = () => {
                         >
                             {uploaded ? t("common.fileReady") : t("ekram.dead.deathCert")}
                             <input onChange={handleFileChange} hidden type="file" />
-                        </MDButton>
+                        </Button>
                     </Grid>
 
                     {file?.length ? (
@@ -536,16 +536,16 @@ const EditDead = () => {
                                 {t("common.save")}
                             </LoadingButton>
 
-                            <MDButton
+                            <Button
                                 fullWidth
-                                variant="gradient"
+                                variant="contained"
                                 color="error"
                                 sx={{ fontSize: 18 }}
                                 startIcon={<CancelOutlined />}
                                 onClick={handleGoBack}
                             >
                                 {t("common.cancel")}
-                            </MDButton>
+                            </Button>
                         </Stack>
                     </Grid>
                 </Grid>

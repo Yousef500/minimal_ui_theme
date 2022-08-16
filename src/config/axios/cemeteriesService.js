@@ -1,6 +1,6 @@
 import axios from "axios";
-import i18n from "config/i18n";
-import { store } from "redux/store";
+import i18n from "src/locales/i18n";
+import { store } from "src/redux/store";
 
 const cemeteries = axios.create({
     baseURL: "http://iscope.asyadcapital.com:2101/api",

@@ -14,11 +14,11 @@ const IconButtonAnimate = forwardRef(({ children, size = 'medium', ...other }, r
   </AnimateWrap>
 ));
 
-IconButtonAnimate.propTypes = {
-  children: PropTypes.node.isRequired,
-  color: PropTypes.oneOf(['inherit', 'default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
-};
+// IconButtonAnimate.propTypes = {
+//   children: PropTypes.node.isRequired,
+//   color: PropTypes.oneOf(['inherit', 'default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
+//   size: PropTypes.oneOf(['small', 'medium', 'large'])
+// };
 
 export default IconButtonAnimate;
 
@@ -39,10 +39,10 @@ const varLarge = {
   tap: { scale: 0.99 }
 };
 
-AnimateWrap.propTypes = {
-  children: PropTypes.node.isRequired,
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
-};
+// AnimateWrap.propTypes = {
+//   children: PropTypes.node.isRequired,
+//   size: PropTypes.oneOf(['small', 'medium', 'large'])
+// };
 
 function AnimateWrap({ size, children }) {
   const isSmall = size === 'small';

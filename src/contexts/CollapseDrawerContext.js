@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useMemo } from 'react';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 
@@ -18,9 +18,9 @@ const CollapseDrawerContext = createContext(initialState);
 
 // ----------------------------------------------------------------------
 
-CollapseDrawerProvider.propTypes = {
-  children: PropTypes.node,
-};
+// CollapseDrawerProvider.propTypes = {
+//   children: PropTypes.node,
+// };
 
 function CollapseDrawerProvider({ children }) {
   const isDesktop = useResponsive('up', 'lg');
@@ -53,20 +53,19 @@ function CollapseDrawerProvider({ children }) {
     setCollapse({ ...collapse, hover: false });
   };
 
-  return (
-    <CollapseDrawerContext.Provider
-      value={{
-        isCollapse: collapse.click && !collapse.hover,
-        collapseClick: collapse.click,
-        collapseHover: collapse.hover,
-        onToggleCollapse: handleToggleCollapse,
-        onHoverEnter: handleHoverEnter,
-        onHoverLeave: handleHoverLeave,
-      }}
-    >
-      {children}
-    </CollapseDrawerContext.Provider>
+  const value = useMemo(
+    () => ({
+      isCollapse: collapse.click && !collapse.hover,
+      collapseClick: collapse.click,
+      collapseHover: collapse.hover,
+      onToggleCollapse: handleToggleCollapse,
+      onHoverEnter: handleHoverEnter,
+      onHoverLeave: handleHoverLeave,
+    }),
+    []
   );
+
+  return <CollapseDrawerContext.Provider value={value}>{children}</CollapseDrawerContext.Provider>;
 }
 
 export { CollapseDrawerProvider, CollapseDrawerContext };

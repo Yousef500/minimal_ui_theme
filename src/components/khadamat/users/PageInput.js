@@ -1,6 +1,6 @@
 import { FileCopyOutlined } from "@mui/icons-material";
 import { Autocomplete, CircularProgress, fabClasses, InputAdornment } from "@mui/material";
-import permissionsService from "config/axios/permissionsService";
+import permissionsService from "src/config/axios/permissionsService";
 import { Controller } from "react-hook-form";
 import InputField from "../general/InputField";
 

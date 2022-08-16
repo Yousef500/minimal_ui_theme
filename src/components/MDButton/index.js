@@ -18,19 +18,19 @@ import { forwardRef } from "react";
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
-// Custom styles for MDButton
-import MDButtonRoot from "components/MDButton/MDButtonRoot";
+// Custom styles for Button
+import ButtonRoot from "components/Button/ButtonRoot";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController } from "context";
 
-const MDButton = forwardRef(
+const Button = forwardRef(
   ({ color, variant, size, circular, iconOnly, children, ...rest }, ref) => {
     const [controller] = useMaterialUIController();
     const { darkMode } = controller;
 
     return (
-      <MDButtonRoot
+      <ButtonRoot
         {...rest}
         ref={ref}
         color="primary"
@@ -39,13 +39,13 @@ const MDButton = forwardRef(
         ownerState={{ color, variant, size, circular, iconOnly, darkMode }}
       >
         {children}
-      </MDButtonRoot>
+      </ButtonRoot>
     );
   }
 );
 
-// Setting default values for the props of MDButton
-MDButton.defaultProps = {
+// Setting default values for the props of Button
+Button.defaultProps = {
   size: "medium",
   variant: "contained",
   color: "white",
@@ -53,8 +53,8 @@ MDButton.defaultProps = {
   iconOnly: false,
 };
 
-// Typechecking props for the MDButton
-MDButton.propTypes = {
+// Typechecking props for the Button
+Button.propTypes = {
   size: PropTypes.oneOf(["small", "medium", "large"]),
   variant: PropTypes.oneOf(["text", "contained", "outlined", "gradient"]),
   color: PropTypes.oneOf([
@@ -73,4 +73,4 @@ MDButton.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default MDButton;
+export default Button;

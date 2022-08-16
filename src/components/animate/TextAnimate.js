@@ -7,11 +7,11 @@ import { varFade } from './variants';
 
 // ----------------------------------------------------------------------
 
-TextAnimate.propTypes = {
-  text: PropTypes.string.isRequired,
-  variants: PropTypes.object,
-  sx: PropTypes.object
-};
+// TextAnimate.propTypes = {
+//   text: PropTypes.string.isRequired,
+//   variants: PropTypes.object,
+//   sx: PropTypes.object
+// };
 
 export default function TextAnimate({ text, variants, sx, ...other }) {
   return (
@@ -25,11 +25,11 @@ export default function TextAnimate({ text, variants, sx, ...other }) {
       }}
       {...other}
     >
-      {text.split('').map((letter, index) => (
+      {/* {text.split('').map((letter, index) => (
         <m.span key={index} variants={variants || varFade().inUp}>
           {letter}
         </m.span>
-      ))}
+      ))} */}
     </Box>
   );
 }

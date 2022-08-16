@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Card, Container } from '@mui/material';
 // redux
 import { useDispatch } from 'react-redux';
-import { getConversations, getContacts } from '../../redux/slices/chat';
+import { getConversations, getContacts } from 'src//redux/slices/chat';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks

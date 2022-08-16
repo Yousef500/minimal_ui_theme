@@ -1,11 +1,11 @@
 import {
-    ExpandMoreRounded,
     FilterAltOffRounded,
     FilterAltRounded,
     PlaylistAddOutlined,
-    SearchOffRounded,
+    SearchOffRounded
 } from "@mui/icons-material";
 import {
+    Button,
     CircularProgress,
     Container,
     Fab,
@@ -13,22 +13,22 @@ import {
     Pagination,
     Stack,
     Tooltip,
-    Typography,
+    Typography
 } from "@mui/material";
-import DeadActiveFilters from "components/khadamat/ekram/DeadActiveFilters";
-import DeadCard from "components/khadamat/ekram/DeadCard";
-import DeadFilterDialog from "components/khadamat/ekram/DeadFilterDialog";
-import DeadSearch from "components/khadamat/ekram/DeadSearch";
-import Center from "components/khadamat/general/Center";
-import ExtractButton from "components/khadamat/general/ExtractButton";
-import MDButton from "components/MDButton";
-import deadService from "config/axios/deadServices";
+import DeadActiveFilters from "src/components/khadamat/ekram/DeadActiveFilters";
+import DeadCard from "src/components/khadamat/ekram/DeadCard";
+import DeadFilterDialog from "src/components/khadamat/ekram/DeadFilterDialog";
+import DeadSearch from "src/components/khadamat/ekram/DeadSearch";
+import Center from "src/components/khadamat/general/Center";
+import ExtractButton from "src/components/khadamat/general/ExtractButton";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { resetDeadFilters, setDead, setDeadLoading, setDeadPageNo } from "redux/slices/deadSlice";
+import deadService from "src/config/axios/deadServices";
+import { resetDeadFilters, setDead, setDeadLoading, setDeadPageNo } from "src/redux/slices/deadSlice";
+
 
 const DeadManagement = () => {
     const [filterOpen, setFilterOpen] = useState(false);
@@ -115,8 +115,8 @@ const DeadManagement = () => {
                         <Typography gutterBottom variant="h1">
                             {t("ekram.dead.title")}
                         </Typography>
-                        <MDButton
-                            variant="gradient"
+                        <Button
+                            variant="contained"
                             color="secondary"
                             sx={{ fontSize: 25 }}
                             startIcon={<PlaylistAddOutlined />}
@@ -125,7 +125,7 @@ const DeadManagement = () => {
                             size="large"
                         >
                             {t("ekram.dead.add")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </Grid>
 

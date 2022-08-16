@@ -15,17 +15,17 @@ import {
     Tooltip
 } from "@mui/material";
 import { GoogleMap, Polygon } from "@react-google-maps/api";
-import Center from "components/khadamat/general/Center";
-import DetailView from "components/khadamat/general/DetailView";
-import cemeteriesService from "config/axios/cemeteriesService";
-import decodeShapePath from "config/decodeShapePath";
-import i18n from "config/i18n";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setCemeteriesPageNo } from "redux/slices/cemeteriesSlice";
+import Center from "src/components/khadamat/general/Center";
+import DetailView from "src/components/khadamat/general/DetailView";
+import cemeteriesService from "src/config/axios/cemeteriesService";
+import decodeShapePath from "src/config/decodeShapePath";
+import i18n from "src/locales/i18n";
+import { setCemeteriesPageNo } from "src/redux/slices/cemeteriesSlice";
 
 const CemeteryDetails = () => {
     const { id } = useParams();

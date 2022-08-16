@@ -1,17 +1,17 @@
-import PermissionsCard from "components/khadamat/users/PermissionsCard";
+import PermissionsCard from "src/components/khadamat/users/PermissionsCard";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Container, Grid, Stack } from "@mui/material";
-import MainRoleInput from "components/khadamat/users/MainRoleInput";
-import ModuleInput from "components/khadamat/users/ModuleInput";
-import PageInput from "components/khadamat/users/PageInput";
-import SubRoleInput from "components/khadamat/users/SubRoleInput";
+import MainRoleInput from "src/components/khadamat/users/MainRoleInput";
+import ModuleInput from "src/components/khadamat/users/ModuleInput";
+import PageInput from "src/components/khadamat/users/PageInput";
+import SubRoleInput from "src/components/khadamat/users/SubRoleInput";
 import { useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 import { CancelRounded, Save, SaveRounded } from "@mui/icons-material";
-import MDButton from "components/MDButton";
-import permissionsService from "config/axios/permissionsService";
+
+import permissionsService from "src/config/axios/permissionsService";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -244,16 +244,16 @@ const UsersPermissions = () => {
                         >
                             {t("common.save")}
                         </LoadingButton>
-                        <MDButton
+                        <Button
                             component={Link}
                             to="/users"
-                            variant="gradient"
+                            variant="contained"
                             startIcon={<CancelRounded />}
                             color="warning"
                             sx={{ fontSize: 20 }}
                         >
                             {t("common.cancel")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </Grid>
 

@@ -1,6 +1,6 @@
 import { MenuOpen, ViewSidebar } from "@mui/icons-material";
 import { Fab, Grid, Tooltip } from "@mui/material";
-import i18n from "config/i18n";
+import i18n from "src/locales/i18n";
 import { setDirection, setOpenSidenav, useMaterialUIController } from "context";
 import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router-dom";

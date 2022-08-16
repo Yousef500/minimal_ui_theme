@@ -13,15 +13,16 @@ import {
     Typography,
 } from "@mui/material";
 import { GoogleMap, Polygon } from "@react-google-maps/api";
-import InputField from "components/khadamat/general/InputField";
-import MDButton from "components/MDButton";
-import cemeteriesService from "config/axios/cemeteriesService";
+import InputField from "src/components/khadamat/general/InputField";
+// 
+import cemeteriesService from "src/config/axios/cemeteriesService";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 
 const cardStyle = {
     background: `
@@ -277,16 +278,16 @@ const AddCemetery = () => {
                             {t("common.save")}
                         </LoadingButton>
 
-                        <MDButton
+                        <Button
                             fullWidth
-                            variant="gradient"
+                            variant="contained"
                             color="error"
                             startIcon={<CancelRounded />}
                             sx={{ fontSize: 20 }}
                             onClick={handleGoBack}
                         >
                             {t("common.cancel")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </CardActions>
             </Card>

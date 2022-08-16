@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // config
-import { NAVBAR } from '../../../config';
+import { NAVBAR } from 'src/config';
 // components
 import Iconify from '../../../components/Iconify';
 import Scrollbar from '../../../components/Scrollbar';

@@ -1,5 +1,5 @@
-import { Container, Fade, Grid, Grow, Stack, Typography } from "@mui/material";
-import MDButton from "components/MDButton";
+import { Button, Container, Fade, Grid, Grow, Stack, Typography } from "@mui/material";
+
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -15,28 +15,28 @@ const DeadDashboard = () => {
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                     <Fade in timeout={500}>
-                        <MDButton
-                            variant="gradient"
+                        <Button
+                            variant="contained"
                             color="info"
                             component={Link}
                             to="/dead/management"
                             sx={{ fontSize: 25 }}
                         >
                             {t("ekram.dead.hds")}
-                        </MDButton>
+                        </Button>
                     </Fade>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                     <Fade in timeout={500}>
-                        <MDButton
+                        <Button
                             component={Link}
                             to="/dead/cemeteries"
-                            variant="gradient"
+                            variant="contained"
                             color="info"
                             sx={{ fontSize: 25 }}
                         >
                             {t("ekram.cemeteries.title")}
-                        </MDButton>
+                        </Button>
                     </Fade>
                 </Grid>
             </Grid>

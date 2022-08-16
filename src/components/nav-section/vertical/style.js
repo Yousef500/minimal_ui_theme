@@ -4,7 +4,7 @@ import { ListItemText, ListItemIcon, ListSubheader, ListItemButton } from '@mui/
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // config
-import { ICON, NAVBAR } from '../../../config';
+import { ICON, NAVBAR } from 'src/config';
 
 // ----------------------------------------------------------------------
 

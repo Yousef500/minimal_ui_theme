@@ -1,5 +1,5 @@
 import { Autocomplete, CircularProgress, InputAdornment } from "@mui/material";
-import permissionsService from "config/axios/permissionsService";
+import permissionsService from "src/config/axios/permissionsService";
 import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import InputField from "../general/InputField";

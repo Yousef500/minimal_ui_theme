@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Card } from '@mui/material';
 // redux
 import { useDispatch } from 'react-redux';
-import { getLabels } from '../../redux/slices/mail';
+import { getLabels } from 'src//redux/slices/mail';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks

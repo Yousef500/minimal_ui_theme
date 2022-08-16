@@ -1,13 +1,13 @@
 import { CancelOutlined, SaveOutlined } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from "@mui/material";
-import MDButton from "components/MDButton";
-import shiftsService from "config/axios/shiftsService";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from "@mui/material";
+
+import shiftsService from "src/config/axios/shiftsService";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setShifts } from "redux/slices/shiftsSlice";
+import { setShifts } from "src/redux/slices/shiftsSlice";
 import ShiftTimeAutoComplete from "./ShiftTimeAutoComplete";
 import WorkingDaysInput from "./WorkingDaysInput";
 
@@ -98,7 +98,7 @@ const EditLocationShift = ({ t, open, onClose, site, shift }) => {
                     {t("common.save")}
                 </LoadingButton>
 
-                <MDButton
+                <Button
                     variant="outlined"
                     color="error"
                     startIcon={<CancelOutlined />}
@@ -106,7 +106,7 @@ const EditLocationShift = ({ t, open, onClose, site, shift }) => {
                     onClick={onClose}
                 >
                     {t("common.cancel")}
-                </MDButton>
+                </Button>
             </DialogActions>
         </Dialog>
     );

@@ -1,9 +1,9 @@
 import { SearchRounded } from "@mui/icons-material";
 import { IconButton, InputBase, Paper, Stack } from "@mui/material";
-import nationalitiesService from "config/axios/nationalitiesService";
+import nationalitiesService from "src/config/axios/nationalitiesService";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setNationalities, setNatsFilterBy, setNatsLoading } from "redux/slices/nationalitiesSlice";
+import { setNationalities, setNatsFilterBy, setNatsLoading } from "src/redux/slices/nationalitiesSlice";
 
 const NatSearch = ({ t }) => {
     const { register, handleSubmit } = useForm();

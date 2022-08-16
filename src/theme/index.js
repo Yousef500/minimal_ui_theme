@@ -14,9 +14,9 @@ import shadows, { customShadows } from './shadows';
 
 // ----------------------------------------------------------------------
 
-ThemeProvider.propTypes = {
-  children: PropTypes.node,
-};
+// ThemeProvider.propTypes = {
+//   children: PropTypes.node,
+// };
 
 export default function ThemeProvider({ children }) {
   const { themeMode, themeDirection } = useSettings();

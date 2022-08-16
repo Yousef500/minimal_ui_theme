@@ -1,12 +1,12 @@
 import { Autocomplete, CircularProgress, InputAdornment } from "@mui/material";
-import shiftsService from "config/axios/shiftsService";
-import shiftTimesService from "config/axios/shiftTimesService";
-import i18n from "config/i18n";
+import shiftsService from "src/config/axios/shiftsService";
+import shiftTimesService from "src/config/axios/shiftTimesService";
+import i18n from "src/locales/i18n";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { setLoadingShifts, setShifts } from "redux/slices/shiftsSlice";
+import { setLoadingShifts, setShifts } from "src/redux/slices/shiftsSlice";
 import InputField from "../general/InputField";
 
 const ShiftsManagementDay = ({ t }) => {

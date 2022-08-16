@@ -11,7 +11,7 @@ import {
   getParticipants,
   markConversationAsRead,
   resetActiveConversation,
-} from '../../../redux/slices/chat';
+} from '../src//redux/slices/chat';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 //

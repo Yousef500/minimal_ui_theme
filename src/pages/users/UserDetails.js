@@ -18,15 +18,15 @@ import {
     Typography,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import Center from "components/khadamat/general/Center";
-import DetailView from "components/khadamat/general/DetailView";
-import usersService from "config/axios/usersService";
-import i18n from "config/i18n";
+import Center from "src/components/khadamat/general/Center";
+import DetailView from "src/components/khadamat/general/DetailView";
+import usersService from "src/config/axios/usersService";
+import i18n from "src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { resetUsersFilters, setUsersPageNo } from "redux/slices/usersSlice";
+import { resetUsersFilters, setUsersPageNo } from "src/redux/slices/usersSlice";
 
 const UserDetails = () => {
     const { id } = useParams();

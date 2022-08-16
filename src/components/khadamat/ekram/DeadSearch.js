@@ -1,33 +1,33 @@
-import { SearchRounded } from "@mui/icons-material";
-import { IconButton, InputBase, Paper, Stack } from "@mui/material";
-import deadService from "config/axios/deadServices";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { setDead, setDeadFilterBy, setDeadLoading } from "redux/slices/deadSlice";
+import { SearchRounded } from '@mui/icons-material';
+import { IconButton, InputBase, Paper, Stack } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { setDead, setDeadFilterBy, setDeadLoading } from 'src/redux/slices/deadSlice';
+import deadService from 'src/config/axios/deadServices';
 
 const DeadSearch = ({ t }) => {
-    const { register, handleSubmit } = useForm();
-    const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
 
-    const handleSearch = async ({ filterBy }) => {
-        try {
-            dispatch(setDeadLoading(true));
-            dispatch(setDeadFilterBy(filterBy));
-            const { data: foundDead } = await deadService.searchDead();
-            console.log({ foundDead });
-            dispatch(setDead(foundDead));
-        } catch (err) {
-            console.log({ err });
-            dispatch(setDeadLoading(false));
-        }
-    };
+  const handleSearch = async ({ filterBy }) => {
+    try {
+      dispatch(setDeadLoading(true));
+      dispatch(setDeadFilterBy(filterBy));
+      const { data: foundDead } = await deadService.searchDead();
+      console.log({ foundDead });
+      dispatch(setDead(foundDead));
+    } catch (err) {
+      console.log({ err });
+      dispatch(setDeadLoading(false));
+    }
+  };
 
-    return (
-        <Paper
-            sx={{
-                borderRadius: 7,
-                px: 3,
-                background: `
+  return (
+    <Paper
+      sx={{
+        borderRadius: 7,
+        px: 3,
+        background: `
                             linear-gradient(
                                 45deg,
                                 hsl(208deg 71% 92%) 0%,
@@ -54,30 +54,25 @@ const DeadSearch = ({ t }) => {
                                 hsl(207deg 75% 94%) 100%
                             )
         `,
-            }}
-            elevation={6}
-        >
-            <Stack
-                component={"form"}
-                onSubmit={handleSubmit(handleSearch)}
-                height={60}
-                direction="row"
-                justifyContent="space-between"
-                width="100%"
-                spacing={3}
-            >
-                <InputBase
-                    {...register("filterBy")}
-                    fullWidth
-                    placeholder={t("accounts.users.search")}
-                    size={"large"}
-                />
-                <IconButton color="info" type="submit">
-                    <SearchRounded />
-                </IconButton>
-            </Stack>
-        </Paper>
-    );
+      }}
+      elevation={6}
+    >
+      <Stack
+        component={'form'}
+        onSubmit={handleSubmit(handleSearch)}
+        height={60}
+        direction="row"
+        justifyContent="space-between"
+        width="100%"
+        spacing={3}
+      >
+        <InputBase {...register('filterBy')} fullWidth placeholder={t('accounts.users.search')} size={'large'} />
+        <IconButton color="info" type="submit">
+          <SearchRounded />
+        </IconButton>
+      </Stack>
+    </Paper>
+  );
 };
 
 export default DeadSearch;

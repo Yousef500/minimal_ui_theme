@@ -1,6 +1,7 @@
 import { CancelRounded, SaveRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import {
+    Button,
     Card,
     CardActions,
     CardContent,
@@ -11,17 +12,17 @@ import {
     Typography,
 } from "@mui/material";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import Center from "components/khadamat/general/Center";
-import InputField from "components/khadamat/general/InputField";
-import MDButton from "components/MDButton";
-import locationsService from "config/axios/locationsService";
+import Center from "src/components/khadamat/general/Center";
+import InputField from "src/components/khadamat/general/InputField";
+
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setLocationsPageNo } from "redux/slices/locationsSlice";
+import { setLocationsPageNo } from "src/redux/slices/locationsSlice";
+import locationsService from "src/config/axios/locationsService";
 
 const EditLocation = () => {
     const { id } = useParams();
@@ -228,7 +229,7 @@ const EditLocation = () => {
                                 {t("common.save")}
                             </LoadingButton>
 
-                            <MDButton
+                            <Button
                                 fullWidth
                                 variant="contained"
                                 color="error"
@@ -237,7 +238,7 @@ const EditLocation = () => {
                                 onClick={handleGoBack}
                             >
                                 {t("common.cancel")}
-                            </MDButton>
+                            </Button>
                         </CardActions>
                     </>
                 )}

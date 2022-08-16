@@ -7,13 +7,13 @@ import {
     RotateLeftRounded
 } from "@mui/icons-material";
 import { CircularProgress, Dialog, Fade, IconButton, Menu } from "@mui/material";
-import usersService from "config/axios/usersService";
+import usersService from "src/config/axios/usersService";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setUsers } from "redux/slices/usersSlice";
+import { setUsers } from "src/redux/slices/usersSlice";
 import DropdownItem from "../general/DropdownItem";
 import PasswordResetDialog from "./PasswordResetDialog";
 

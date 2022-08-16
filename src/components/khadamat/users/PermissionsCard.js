@@ -12,7 +12,7 @@ import {
     ListItemText,
     Typography,
 } from "@mui/material";
-import MDButton from "components/MDButton";
+
 import Center from "../general/Center";
 
 const PermissionsCard = ({
@@ -105,16 +105,16 @@ const PermissionsCard = ({
                 </CardContent>
             )}
             <CardActions>
-                <MDButton
+                <Button
                     fullWidth
-                    variant="gradient"
+                    variant="contained"
                     color={actionColor}
                     onClick={handleSubmit}
                     sx={{ fontSize: 20 }}
                     disabled={!checked.length}
                 >
                     {actionLabel}
-                </MDButton>
+                </Button>
             </CardActions>
         </Card>
     );

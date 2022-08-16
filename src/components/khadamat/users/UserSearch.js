@@ -1,6 +1,6 @@
 import { Search } from "@mui/icons-material";
 import { Divider, IconButton, InputBase, Paper, Stack } from "@mui/material";
-import usersService from "config/axios/usersService";
+import usersService from "src/config/axios/usersService";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -9,7 +9,7 @@ import {
     setUsersFilterBy,
     setUsersLoading,
     setUsersPageNo,
-} from "redux/slices/usersSlice";
+} from "src/redux/slices/usersSlice";
 
 const UserSearch = () => {
     const { register, handleSubmit } = useForm();

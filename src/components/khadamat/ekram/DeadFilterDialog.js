@@ -2,6 +2,7 @@ import { CloseRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import {
     Autocomplete,
+    Button,
     Checkbox,
     CircularProgress,
     Dialog,
@@ -22,17 +23,17 @@ import {
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import MDButton from "components/MDButton";
-import deadService from "config/axios/deadServices";
-import nationalitiesService from "config/axios/nationalitiesService";
-import i18n from "config/i18n";
+
+import nationalitiesService from "src/config/axios/nationalitiesService";
+import deadService from "src/config/axios/deadServices";
+import i18n from "src/locales/i18n";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setDead, setDeadFilters } from "redux/slices/deadSlice";
-import { setAllNats } from "redux/slices/nationalitiesSlice";
+import { setDead, setDeadFilters } from "src/redux/slices/deadSlice";
+import { setAllNats } from "src/redux/slices/nationalitiesSlice";
 import Center from "../general/Center";
 import InputField from "../general/InputField";
 
@@ -332,9 +333,9 @@ const DeadFilterDialog = ({ open, onClose }) => {
                         >
                             {t("common.filter")}
                         </LoadingButton>
-                        <MDButton fullWidth color="error" variant="gradient" onClick={onClose}>
+                        <Button fullWidth color="error" variant="contained" onClick={onClose}>
                             {t("common.cancel")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </DialogActions>
             </Dialog>

@@ -1,6 +1,7 @@
 import { CancelRounded, SaveRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import {
+    Button,
     Card,
     CardActions,
     CardContent,
@@ -10,9 +11,9 @@ import {
     Typography,
 } from "@mui/material";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import InputField from "components/khadamat/general/InputField";
-import MDButton from "components/MDButton";
-import locationsService from "config/axios/locationsService";
+import InputField from "src/components/khadamat/general/InputField";
+
+import locationsService from "src/config/axios/locationsService";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -179,7 +180,7 @@ const AddLocation = () => {
                         {t("common.save")}
                     </LoadingButton>
 
-                    <MDButton
+                    <Button
                         fullWidth
                         variant="contained"
                         color="error"
@@ -188,7 +189,7 @@ const AddLocation = () => {
                         onClick={handleGoBack}
                     >
                         {t("common.cancel")}
-                    </MDButton>
+                    </Button>
                 </CardActions>
             </Card>
         </Container>

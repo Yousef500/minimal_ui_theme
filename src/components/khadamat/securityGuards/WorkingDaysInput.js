@@ -1,8 +1,8 @@
 import { Autocomplete, CircularProgress, InputAdornment } from "@mui/material";
-import shiftTimesService from "config/axios/shiftTimesService";
-import i18n from "config/i18n";
+import shiftTimesService from "src/config/axios/shiftTimesService";
 import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
+import i18n from "src/locales/i18n";
 import InputField from "../general/InputField";
 
 const WorkingDaysInput = ({ t, control, defaultDay = null, setValue = null, ...dayProps }) => {

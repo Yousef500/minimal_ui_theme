@@ -145,7 +145,7 @@ export default styled(Button)(({ theme, ownerState }) => {
     };
   };
 
-  // styles for the button with variant="gradient"
+  // styles for the button with variant="contained"
   const gradientStyles = () => {
     // background value
     const backgroundValue =

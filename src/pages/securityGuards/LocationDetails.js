@@ -1,4 +1,4 @@
-import { getLocationAndShifts } from "config/axios/locationsService";
+import { getLocationAndShifts } from "src/config/axios/locationsService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setCurrentUser } from "redux/slices/currentUserSlice";
+import { setCurrentUser } from "src/redux/slices/currentUserSlice";
 
 const SignOut = () => {
     const dispatch = useDispatch();

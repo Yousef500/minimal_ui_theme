@@ -4,7 +4,7 @@ import { Popover, ListItemButton } from '@mui/material';
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // config
-import { NAVBAR } from '../../../config';
+import { NAVBAR } from 'src/config';
 
 // ----------------------------------------------------------------------
 

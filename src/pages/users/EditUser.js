@@ -10,21 +10,21 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
-import Center from "components/khadamat/general/Center";
-import InputField from "components/khadamat/general/InputField";
-import JobsAutoComplete from "components/khadamat/users/JobsAutoComplete";
-import ManagerAutoComplete from "components/khadamat/users/ManagerAutoComplete";
-import RolesAutoComplete from "components/khadamat/users/RolesAutoComplete";
-import MDButton from "components/MDButton";
-import usersService from "config/axios/usersService";
-import i18n from "config/i18n";
+import Center from "src/components/khadamat/general/Center";
+import InputField from "src/components/khadamat/general/InputField";
+import JobsAutoComplete from "src/components/khadamat/users/JobsAutoComplete";
+import ManagerAutoComplete from "src/components/khadamat/users/ManagerAutoComplete";
+import RolesAutoComplete from "src/components/khadamat/users/RolesAutoComplete";
+
+import usersService from "src/config/axios/usersService";
+import i18n from "src/locales/i18n";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setUsersFilterBy, setUsersPageNo } from "redux/slices/usersSlice";
+import { setUsersFilterBy, setUsersPageNo } from "src/redux/slices/usersSlice";
 
 const EditUser = () => {
     // const [defaults, setDefaults] = useState({});
@@ -356,14 +356,14 @@ const EditUser = () => {
                                     {t("common.save")}
                                 </LoadingButton>
 
-                                <MDButton
+                                <Button
                                     fullWidth
-                                    variant="gradient"
+                                    variant="contained"
                                     color="error"
                                     onClick={handleCancel}
                                 >
                                     {t("common.cancel")}
-                                </MDButton>
+                                </Button>
                             </Stack>
                         </Grid>
                     </>

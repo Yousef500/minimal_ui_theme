@@ -1,9 +1,9 @@
 import { PlaylistAddRounded, SearchOffRounded } from "@mui/icons-material";
 import { CircularProgress, Container, Grid, Stack, Typography } from "@mui/material";
-import Center from "components/khadamat/general/Center";
-import ShiftsManagementDay from "components/khadamat/securityGuards/ShiftsManagementDay";
-import ShiftsAccordion from "components/khadamat/securityGuards/ShiftsAccordion";
-import MDButton from "components/MDButton";
+import Center from "src/components/khadamat/general/Center";
+import ShiftsManagementDay from "src/components/khadamat/securityGuards/ShiftsManagementDay";
+import ShiftsAccordion from "src/components/khadamat/securityGuards/ShiftsAccordion";
+
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -23,17 +23,17 @@ const ShiftsManagement = () => {
                         <Typography variant="h2" gutterBottom>
                             {t("securityGuards.shifts.title")}
                         </Typography>
-                        <MDButton
+                        <Button
                             component={Link}
                             to="/securityGuards/shifts/add"
-                            variant="gradient"
+                            variant="contained"
                             color="info"
                             size="large"
                             startIcon={<PlaylistAddRounded />}
                             sx={{ fontSize: 22 }}
                         >
                             {t("securityGuards.shifts.add")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </Grid>
                 <Grid item xs={10}>

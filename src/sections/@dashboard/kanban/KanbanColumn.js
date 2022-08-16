@@ -7,7 +7,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { Paper, Stack, Button } from '@mui/material';
 // redux
 import { useDispatch } from 'react-redux';
-import { deleteColumn, updateColumn, addTask, deleteTask } from '../../../redux/slices/kanban';
+import { deleteColumn, updateColumn, addTask, deleteTask } from '../src//redux/slices/kanban';
 // components
 import Iconify from '../../../components/Iconify';
 //

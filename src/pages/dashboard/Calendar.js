@@ -11,7 +11,7 @@ import { Card, Button, Container, DialogTitle } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
-import { getEvents, openModal, closeModal, updateEvent, selectEvent, selectRange } from '../../redux/slices/calendar';
+import { getEvents, openModal, closeModal, updateEvent, selectEvent, selectRange } from 'src//redux/slices/calendar';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks

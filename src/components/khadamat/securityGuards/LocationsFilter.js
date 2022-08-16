@@ -1,12 +1,12 @@
 import { CancelRounded, FilterAltRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from "@mui/material";
-import MDButton from "components/MDButton";
-import locationsService from "config/axios/locationsService";
+
+import locationsService from "src/config/axios/locationsService";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setLocations, setLocationsFilters } from "redux/slices/locationsSlice";
+import { setLocations, setLocationsFilters } from "src/redux/slices/locationsSlice";
 import InputField from "../general/InputField";
 
 const LocationsFilter = ({ t, open, onClose }) => {
@@ -78,15 +78,15 @@ const LocationsFilter = ({ t, open, onClose }) => {
                 >
                     {t("common.filter")}
                 </LoadingButton>
-                <MDButton
-                    variant="gradient"
+                <Button
+                    variant="contained"
                     color="error"
                     startIcon={<CancelRounded />}
                     sx={{ fontSize: 18 }}
                     onClick={onClose}
                 >
                     {t("common.cancel")}
-                </MDButton>
+                </Button>
             </DialogActions>
         </Dialog>
     );

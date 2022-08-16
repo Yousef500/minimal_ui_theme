@@ -6,12 +6,12 @@ import {
     Fade, IconButton,
     Menu
 } from "@mui/material";
-import shiftsService from "config/axios/shiftsService";
+import shiftsService from "src/config/axios/shiftsService";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setShifts } from "redux/slices/shiftsSlice";
+import { setShifts } from "src/redux/slices/shiftsSlice";
 import DeleteDialog from "../general/DeleteDialog";
 import DropdownItem from "../general/DropdownItem";
 import EditLocationShift from "./EditLocationShift";

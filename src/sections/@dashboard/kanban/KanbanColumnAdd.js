@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { OutlinedInput, Paper, Button, ClickAwayListener } from '@mui/material';
 // redux
 import { useDispatch } from 'react-redux';
-import { createColumn } from '../../../redux/slices/kanban';
+import { createColumn } from '../src//redux/slices/kanban';
 // components
 import Iconify from '../../../components/Iconify';
 

@@ -7,7 +7,7 @@ import useLocales from '../../../hooks/useLocales';
 // guards
 import RoleBasedGuard from '../../../guards/RoleBasedGuard';
 // config
-import { ICON } from '../../../config';
+import { ICON } from 'src/config';
 //
 import Iconify from '../../Iconify';
 import { ListItemStyle } from './style';

@@ -10,15 +10,15 @@ import {
     Grid,
     Stack,
 } from "@mui/material";
-import Center from "components/khadamat/general/Center";
-import InputField from "components/khadamat/general/InputField";
-import MDButton from "components/MDButton";
-import nationalitiesService from "config/axios/nationalitiesService";
+import Center from "src/components/khadamat/general/Center";
+import InputField from "src/components/khadamat/general/InputField";
+
+import { toast } from "react-toastify";
+import nationalitiesService from "src/config/axios/nationalitiesService";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const EditNationality = () => {
     const [saving, setSaving] = useState(false);
@@ -143,16 +143,16 @@ const EditNationality = () => {
                             {t("common.save")}
                         </LoadingButton>
 
-                        <MDButton
+                        <Button
                             fullWidth
                             onClick={goBack}
-                            variant="gradient"
+                            variant="contained"
                             color="error"
                             startIcon={<CancelOutlined />}
                             sx={{ fontSize: 18, borderRadius: 0 }}
                         >
                             {t("common.cancel")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </CardActions>
             </Card>

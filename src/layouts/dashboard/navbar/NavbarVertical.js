@@ -10,7 +10,7 @@ import useCollapseDrawer from '../../../hooks/useCollapseDrawer';
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // config
-import { NAVBAR } from '../../../config';
+import { NAVBAR } from 'src/config';
 // components
 import Logo from '../../../components/Logo';
 import Scrollbar from '../../../components/Scrollbar';

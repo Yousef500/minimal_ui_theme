@@ -1,75 +1,57 @@
 {
-  "root": true,
   "env": {
     "browser": true,
-    "node": true
+    "es2021": true
   },
-  "extends": [
-    "airbnb",
-    "plugin:jsx-a11y/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier"
-  ],
-  "plugins": [
-    "react",
-    "react-hooks",
-    "prettier"
-  ],
-  "parser": "@babel/eslint-parser",
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
   "parserOptions": {
-    "ecmaVersion": 8,
-    "requireConfigFile": false,
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "impliedStrict": true
-    }
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
   },
+  "plugins": ["react", "prettier"],
   "rules": {
-    "no-new": 0,
-    "no-shadow": 0,
-    "no-console": 0,
-    "react/jsx-key": 1,
-    "import/no-cycle": 0,
-    "arrow-body-style": 1,
-    "react/prop-types": 1,
-    "consistent-return": 1,
-    "no-param-reassign": 0,
-    "no-use-before-define": 0,
-    "no-underscore-dangle": 0,
-    "react/button-has-type": 1,
-    "react/no-children-prop": 0,
-    "react/forbid-prop-types": 0,
-    "jsx-a11y/anchor-is-valid": 0,
-    "react/react-in-jsx-scope": 0,
-    "react/no-array-index-key": 0,
-    "react/no-unused-prop-types": 1,
-    "react-hooks/rules-of-hooks": 2,
-    "no-promise-executor-return": 0,
-    "no-unsafe-optional-chaining": 0,
-    "react/require-default-props": 0,
-    "react/no-unescaped-entities": 0,
-    "import/prefer-default-export": 0,
-    "react/jsx-props-no-spreading": 0,
-    "react/jsx-filename-extension": 0,
-    "react/jsx-no-useless-fragment": 0,
-    "react/jsx-curly-brace-presence": 0,
-    "react/destructuring-assignment": 0,
-    "import/no-extraneous-dependencies": 0,
-    "react/no-unstable-nested-components": 0,
-    "react/function-component-definition": 0,
-    "react/jsx-no-constructed-context-values": 0,
-    "no-unused-vars": [
-      1,
+    "prettier/prettier": [
+      "off",
       {
-        "ignoreRestSiblings": false
+        "endOfLine": "auto"
       }
     ],
-    "prefer-destructuring": [
-      1,
-      {
-        "object": true,
-        "array": false
-      }
-    ]
-  }
+    "default-param-last": "off",
+    "no-unused-expressions": "off",
+    "prefer-destructuring": "off",
+
+    "treact/jsx-no-constructed-context-values": "off",
+    "no-new": "off",
+    "no-shadow": "off",
+    "no-restricted-syntax": "off",
+    "no-await-in-loop": "off",
+    "no-empty-pattern": "off",
+    "no-unneeded-ternary": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "no-else-return": "off",
+    "camelcase": "off",
+    "react/jsx-boolean-value": "off",
+    "no-nested-ternary": "off",
+    "prefer-const": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "dot-notation": "off",
+    "no-unused-vars": "off",
+    "arrow-body-style": "off",
+    "no-param-reassign": "off",
+    "react/function-component-definition": "off",
+    "react/prop-types": "off",
+    "react/jsx-curly-brace-presence": "off",
+    "import/prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-props-no-spreading": "off",
+    // "import/order": "off",
+    "import/no-unresolved": "off",
+    "react/jsx-curly-spacing": [2, "never"]
+  },
+  "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
 }

@@ -1,12 +1,12 @@
 import { CancelOutlined, Save } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { Box, DialogActions, DialogContent, DialogTitle, Stack } from "@mui/material";
-import usersService from "config/axios/usersService";
+import usersService from "src/config/axios/usersService";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import MDButton from "../../MDButton";
+
 import Center from "../general/Center";
 import InputField from "../general/InputField";
 
@@ -87,15 +87,15 @@ const PasswordResetDialog = ({ username, setDialogStatus }) => {
                     >
                         حفظ
                     </LoadingButton>
-                    <MDButton
+                    <Button
                         fullWidth
-                        variant="gradient"
+                        variant="contained"
                         color="error"
                         startIcon={<CancelOutlined />}
                         onClick={() => setDialogStatus(false)}
                     >
                         الغاء
-                    </MDButton>
+                    </Button>
                 </Stack>
             </DialogActions>
         </Box>

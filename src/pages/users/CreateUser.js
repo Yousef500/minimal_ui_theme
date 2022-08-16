@@ -9,17 +9,17 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
-import InputField from "components/khadamat/general/InputField";
-import JobsAutoComplete from "components/khadamat/users/JobsAutoComplete";
-import ManagerAutoComplete from "components/khadamat/users/ManagerAutoComplete";
-import RolesAutoComplete from "components/khadamat/users/RolesAutoComplete";
-import MDButton from "components/MDButton";
-import usersService from "config/axios/usersService";
+import InputField from "src/components/khadamat/general/InputField";
+import JobsAutoComplete from "src/components/khadamat/users/JobsAutoComplete";
+import ManagerAutoComplete from "src/components/khadamat/users/ManagerAutoComplete";
+import RolesAutoComplete from "src/components/khadamat/users/RolesAutoComplete";
+
+import { toast } from "react-toastify";
+import usersService from "src/config/axios/usersService";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const CreateUser = () => {
     const [managers, setManagers] = useState([]);
@@ -323,15 +323,15 @@ const CreateUser = () => {
                             {t("common.save")}
                         </LoadingButton>
 
-                        <MDButton
+                        <Button
                             component={Link}
                             to="/users/management"
-                            variant="gradient"
+                            variant="contained"
                             fullWidth
                             color="error"
                         >
                             {t("common.cancel")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </Grid>
             </Grid>

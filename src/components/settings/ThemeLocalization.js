@@ -6,9 +6,9 @@ import useLocales from '../../hooks/useLocales';
 
 // ----------------------------------------------------------------------
 
-ThemeLocalization.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+// ThemeLocalization.propTypes = {
+//   children: PropTypes.node.isRequired,
+// };
 
 export default function ThemeLocalization({ children }) {
   const defaultTheme = useTheme();

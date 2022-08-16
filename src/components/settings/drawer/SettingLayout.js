@@ -53,9 +53,9 @@ export default function SettingLayout() {
 
 // ----------------------------------------------------------------------
 
-VerticalBox.propTypes = {
-  isSelected: PropTypes.bool,
-};
+// VerticalBox.propTypes = {
+//   isSelected: PropTypes.bool,
+// };
 
 const style = {
   width: 1,
@@ -92,9 +92,9 @@ function VerticalBox({ isSelected }) {
   );
 }
 
-HorizontalBox.propTypes = {
-  isSelected: PropTypes.bool,
-};
+// HorizontalBox.propTypes = {
+//   isSelected: PropTypes.bool,
+// };
 
 function HorizontalBox({ isSelected }) {
   return (

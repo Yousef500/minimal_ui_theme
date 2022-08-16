@@ -12,11 +12,11 @@ import {
     Tooltip,
     Typography,
 } from "@mui/material";
-import deadService from "config/axios/deadServices";
+import deadService from "src/config/axios/deadServices";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
-import { setDead, setDeadLoading } from "redux/slices/deadSlice";
+import { setDead, setDeadLoading } from "src/redux/slices/deadSlice";
 import Center from "./general/Center";
 import DeadDropdown from "./DeadDropdown";
 

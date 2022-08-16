@@ -1,5 +1,5 @@
 import { Container, Fade, Grid, Typography } from "@mui/material";
-import MDButton from "components/MDButton";
+
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const SecurityGuardsDashboard = () => {
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                     <Fade in timeout={500}>
-                        <MDButton
+                        <Button
                             component={Link}
                             to="/securityGuards/locations"
                             size="large"
@@ -24,13 +24,13 @@ const SecurityGuardsDashboard = () => {
                             sx={{ fontSize: 25 }}
                         >
                             {t("securityGuards.locations.title")}
-                        </MDButton>
+                        </Button>
                     </Fade>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                     <Fade in timeout={500}>
-                        <MDButton
+                        <Button
                             component={Link}
                             to="/securityGuards/shifts"
                             size="large"
@@ -39,7 +39,7 @@ const SecurityGuardsDashboard = () => {
                             sx={{ fontSize: 25 }}
                         >
                             {t("securityGuards.shifts.title")}
-                        </MDButton>
+                        </Button>
                     </Fade>
                 </Grid>
             </Grid>

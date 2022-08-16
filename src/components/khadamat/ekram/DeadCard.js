@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, Link, Tooltip, Typography } from "@mui/material";
-import i18n from "config/i18n";
+import { Link as RouterLink } from "react-router-dom";
+import i18n from "src/locales/i18n";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Link as RouterLink } from "react-router-dom";
 import CardData from "../general/CardData";
 import DeadDropdown from "./DeadDropdown";
 

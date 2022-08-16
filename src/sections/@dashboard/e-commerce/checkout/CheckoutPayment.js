@@ -7,7 +7,7 @@ import { Grid, Button } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { onGotoStep, onBackStep, onNextStep, applyShipping } from '../../../../redux/slices/product';
+import { onGotoStep, onBackStep, onNextStep, applyShipping } from 'src//redux/slices/product';
 // components
 import Iconify from '../../../../components/Iconify';
 import { FormProvider } from '../../../../components/hook-form';

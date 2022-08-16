@@ -15,18 +15,18 @@ import {
     Typography,
 } from "@mui/material";
 import { GoogleMap, Polygon } from "@react-google-maps/api";
-import Center from "components/khadamat/general/Center";
-import InputField from "components/khadamat/general/InputField";
-import MDButton from "components/MDButton";
-import cemeteriesService from "config/axios/cemeteriesService";
-import decodeShapePath from "config/decodeShapePath";
+import Center from "src/components/khadamat/general/Center";
+import InputField from "src/components/khadamat/general/InputField";
+
+import cemeteriesService from "src/config/axios/cemeteriesService";
+import decodeShapePath from "src/config/decodeShapePath";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setCemeteriesPageNo } from "redux/slices/cemeteriesSlice";
+import { setCemeteriesPageNo } from "src/redux/slices/cemeteriesSlice";
 
 const EditCemetery = () => {
     const [loadingDefaults, setLoadingDefaults] = useState(true);
@@ -307,15 +307,15 @@ const EditCemetery = () => {
                             >
                                 {t("common.save")}
                             </LoadingButton>
-                            <MDButton
+                            <Button
                                 fullWidth
-                                variant="gradient"
+                                variant="contained"
                                 color="error"
                                 startIcon={<CancelOutlined />}
                                 onClick={handleGoBack}
                             >
                                 {t("common.cancel")}
-                            </MDButton>
+                            </Button>
                         </Stack>
                     </CardActions>
                 </Card>

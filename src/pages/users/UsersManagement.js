@@ -3,12 +3,12 @@ import { CircularProgress, Container, Grid, Pagination, Stack, Typography } from
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setUsers, setUsersLoading, setUsersPageNo } from "redux/slices/usersSlice";
-import Center from "components/khadamat/general/Center";
-import UserCard from "components/khadamat/users/UserCard";
-import UserSearch from "components/khadamat/users/UserSearch";
-import MDButton from "components/MDButton";
-import usersService from "config/axios/usersService";
+import { setUsers, setUsersLoading, setUsersPageNo } from "src/redux/slices/usersSlice";
+import Center from "src/components/khadamat/general/Center";
+import UserCard from "src/components/khadamat/users/UserCard";
+import UserSearch from "src/components/khadamat/users/UserSearch";
+
+import usersService from "src/config/axios/usersService";
 import { useTranslation } from "react-i18next";
 
 const UsersManagement = () => {
@@ -49,17 +49,17 @@ const UsersManagement = () => {
                         <Typography variant="h2" gutterBottom>
                             {t("accounts.users.title")}
                         </Typography>
-                        <MDButton
+                        <Button
                             component={Link}
                             to="/users/create"
                             size="large"
-                            variant="gradient"
+                            variant="contained"
                             color="success"
                             startIcon={<PersonAddOutlined />}
                             sx={{ fontSize: 20 }}
                         >
                             {t("accounts.users.add")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </Grid>
                 <Grid item xs={12}>

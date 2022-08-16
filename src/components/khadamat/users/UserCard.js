@@ -1,14 +1,14 @@
 import { EditOutlined, PictureAsPdfOutlined } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { Card, CardActions, CardContent, CardHeader, Divider, Stack } from "@mui/material";
-import usersService from "config/axios/usersService";
-import i18n from "config/i18n";
+import usersService from "src/config/axios/usersService";
+import i18n from "src/locales/i18n";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import MDButton from "../../MDButton";
+
 import CardData from "../general/CardData";
 import CardStatus from "../general/CardStatus";
 import UserCardDropdown from "./UserCardDropdown";
@@ -112,16 +112,16 @@ const UserCard = ({ user }) => {
                     >
                         {t("common.extract")}
                     </LoadingButton>
-                    <MDButton
+                    <Button
                         component={Link}
                         to={`/users/edit/${user.Id}`}
-                        variant="gradient"
+                        variant="contained"
                         sx={{ fontSize: 18 }}
                         color="success"
                         startIcon={<EditOutlined />}
                     >
                         {t("common.edit")}
-                    </MDButton>
+                    </Button>
                 </Stack>
             </CardActions>
         </Card>

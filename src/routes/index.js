@@ -15,7 +15,8 @@
 
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router';
-import ProtectedRoute from '../components/khadamat/general/ProtectedRoute';
+import ProtectedRoute from 'src/components/khadamat/general/ProtectedRoute';
+import DeadDashboard from 'src/pages/ekram/DeadDashboard';
 import AddCemetery from '../pages/ekram/AddCemetery';
 import AddDead from '../pages/ekram/AddDead';
 import CemeteriesManagement from '../pages/ekram/CemeteriesManagement';
@@ -31,13 +32,13 @@ import LocationDetails from '../pages/securityGuards/LocationDetails';
 import LocationsManagement from '../pages/securityGuards/LocationsManagement';
 import ShiftsManagement from '../pages/securityGuards/ShiftsManagement';
 import AddNationality from '../pages/users/AddNationality';
+import CreateUser from '../pages/users/CreateUser';
 import EditNationality from '../pages/users/EditNationality';
 import EditUser from '../pages/users/EditUser';
 import Nationalities from '../pages/users/Nationalities';
 import UserDetails from '../pages/users/UserDetails';
 import UsersManagement from '../pages/users/UsersManagement';
 import UsersPermissions from '../pages/users/UsersPermissions';
-import CreateUser from '../pages/users/CreateUser';
 
 // ----------------------------------------------------------------------
 
@@ -59,29 +60,30 @@ export default function Router() {
       <Route element={<ProtectedRoute allowed={!!userInfo?.Token} />}>
         {/* <Route path="/" element={<SidenavToggle />}> */}
         {/* {getRoutes(routes)} */}
-        <Route path="dead/management" element={<DeadManagement />} />
-        <Route path="dead/cemeteries" element={<CemeteriesManagement />} />
-        <Route path="dead/cemeteries/:id" element={<CemeteryDetails />} />
-        <Route path="dead/cemeteries/edit/:id" element={<EditCemetery />} />
-        <Route path="dead/cemeteries/add" element={<AddCemetery />} />
+        <Route path="/dead/management" element={<DeadManagement />} />
+        <Route path="/dead" element={<DeadDashboard />} />
+        <Route path="/dead/cemeteries" element={<CemeteriesManagement />} />
+        <Route path="/dead/cemeteries/:id" element={<CemeteryDetails />} />
+        <Route path="/dead/cemeteries/edit/:id" element={<EditCemetery />} />
+        <Route path="/dead/cemeteries/add" element={<AddCemetery />} />
 
-        <Route path="dead/:id" element={<DeadDetails />} />
-        <Route path="dead/edit/:id" element={<EditDead />} />
-        <Route path="dead/add" element={<AddDead />} />
-        <Route path="users/management" element={<UsersManagement />} />
-        <Route path="users/:id" element={<UserDetails />} />
-        <Route path="users/permissions" element={<UsersPermissions />} />
-        <Route path="users/nationalities" element={<Nationalities />} />
-        <Route path="users/nationalities/add" element={<AddNationality />} />
-        <Route path="users/nationalities/edit/:id" element={<EditNationality />} />
-        <Route path="users/create" element={<CreateUser />} />
-        <Route path="users/edit/:id" element={<EditUser />} />
-        <Route path="securityGuards/locations" element={<LocationsManagement />} />
-        <Route path="securityGuards/locations/add" element={<AddLocation />} />
-        <Route path="securityGuards/locations/:id" element={<LocationDetails />} />
-        <Route path="securityGuards/locations/edit/:id" element={<EditLocation />} />
-        <Route path="securityGuards/shifts" element={<ShiftsManagement />} />
-        <Route path="securityGuards/shifts/add" element={<AddLocationShift />} />
+        <Route path="/dead/:id" element={<DeadDetails />} />
+        <Route path="/dead/edit/:id" element={<EditDead />} />
+        <Route path="/dead/add" element={<AddDead />} />
+        <Route path="/users/management" element={<UsersManagement />} />
+        <Route path="/users/:id" element={<UserDetails />} />
+        <Route path="/users/permissions" element={<UsersPermissions />} />
+        <Route path="/users/nationalities" element={<Nationalities />} />
+        <Route path="/users/nationalities/add" element={<AddNationality />} />
+        <Route path="/users/nationalities/edit/:id" element={<EditNationality />} />
+        <Route path="/users/create" element={<CreateUser />} />
+        <Route path="/users/edit/:id" element={<EditUser />} />
+        <Route path="/securityGuards/locations" element={<LocationsManagement />} />
+        <Route path="/securityGuards/locations/add" element={<AddLocation />} />
+        <Route path="/securityGuards/locations/:id" element={<LocationDetails />} />
+        <Route path="/securityGuards/locations/edit/:id" element={<EditLocation />} />
+        <Route path="/securityGuards/shifts" element={<ShiftsManagement />} />
+        <Route path="/securityGuards/shifts/add" element={<AddLocationShift />} />
         <Route path="*" element={<Navigate to="/dead" />} />
         {/* </Route> */}
       </Route>

@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import { Box, Divider, Typography } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getMail } from '../../../redux/slices/mail';
+import { getMail } from '../src//redux/slices/mail';
 //
 import Markdown from '../../../components/Markdown';
 import Scrollbar from '../../../components/Scrollbar';

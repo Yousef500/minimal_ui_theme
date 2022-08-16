@@ -1,5 +1,5 @@
 import { Autocomplete, CircularProgress, InputAdornment } from "@mui/material";
-import shiftTimesService from "config/axios/shiftTimesService";
+import shiftTimesService from "src/config/axios/shiftTimesService";
 import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import InputField from "../general/InputField";

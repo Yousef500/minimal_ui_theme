@@ -14,15 +14,15 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
-import MDButton from "components/MDButton";
-import nationalitiesService from "config/axios/nationalitiesService";
-import i18n from "config/i18n";
+
+import nationalitiesService from "src/config/axios/nationalitiesService";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import i18n from "src/locales/i18n";
 import { toast } from "react-toastify";
-import { setNationalities } from "redux/slices/nationalitiesSlice";
+import { setNationalities } from "src/redux/slices/nationalitiesSlice";
 import DropdownItem from "../general/DropdownItem";
 
 const NatDropdown = styled(Menu)(() => ({
@@ -177,15 +177,15 @@ const NatCard = ({ nat }) => {
                                 {t("common.yes")}
                             </LoadingButton>
 
-                            <MDButton
-                                variant="gradient"
+                            <Button
+                                variant="contained"
                                 color="info"
                                 startIcon={<CheckRounded />}
                                 sx={{ fontSize: 18, borderRadius: 0 }}
                                 onClick={() => setDeleteDialogOpen(false)}
                             >
                                 {t("common.no")}
-                            </MDButton>
+                            </Button>
                         </Stack>
                     </DialogActions>
                 </Dialog>

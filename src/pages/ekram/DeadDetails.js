@@ -1,6 +1,6 @@
 import {
     KeyboardDoubleArrowLeftRounded,
-    KeyboardDoubleArrowRightRounded,
+    KeyboardDoubleArrowRightRounded
 } from "@mui/icons-material";
 import {
     Card,
@@ -13,20 +13,20 @@ import {
     Fab,
     Grid,
     Tooltip,
-    Typography,
+    Typography
 } from "@mui/material";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import Center from "components/khadamat/general/Center";
-import DetailView from "components/khadamat/general/DetailView";
-import FormatDate from "components/khadamat/general/FormatDate";
-import deadService from "config/axios/deadServices";
-import i18n from "config/i18n";
+import Center from "src/components/khadamat/general/Center";
+import DetailView from "src/components/khadamat/general/DetailView";
+import FormatDate from "src/components/khadamat/general/FormatDate";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setDeadPageNo } from "redux/slices/deadSlice";
+import { setDeadPageNo } from "src/redux/slices/deadSlice"; 
+import deadService from "src/config/axios/deadServices";
+import i18n from "src/locales/i18n";
 
 const cardStyles = {
     width: "100%",

@@ -10,9 +10,9 @@ import componentsOverride from '../../theme/overrides';
 
 // ----------------------------------------------------------------------
 
-ThemeContrast.propTypes = {
-  children: PropTypes.node,
-};
+// ThemeContrast.propTypes = {
+//   children: PropTypes.node,
+// };
 
 export default function ThemeContrast({ children }) {
   const defaultTheme = useTheme();

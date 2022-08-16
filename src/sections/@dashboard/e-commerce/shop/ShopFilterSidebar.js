@@ -18,7 +18,7 @@ import {
   FormControlLabel,
 } from '@mui/material';
 // config
-import { NAVBAR } from '../../../../config';
+import { NAVBAR } from '../src/config';
 // components
 import Iconify from '../../../../components/Iconify';
 import Scrollbar from '../../../../components/Scrollbar';

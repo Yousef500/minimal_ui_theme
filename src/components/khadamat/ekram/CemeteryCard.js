@@ -1,26 +1,23 @@
-import { CancelOutlined, DeleteOutlineRounded, EditOutlined } from "@mui/icons-material";
-import { LoadingButton } from "@mui/lab";
+import { DeleteOutlineRounded, EditOutlined } from "@mui/icons-material";
 import {
+    Button,
     Card,
     CardActions,
     CardContent,
-    CardHeader,
-    Dialog,
-    DialogActions,
-    DialogTitle,
-    Divider,
-    Stack,
-    Typography,
+    CardHeader, Divider,
+    Stack
 } from "@mui/material";
-import MDButton from "components/MDButton";
-import cemeteriesService from "config/axios/cemeteriesService";
-import i18n from "config/i18n";
+// 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setCemeteries } from "redux/slices/cemeteriesSlice";
+
+import cemeteriesService from "src/config/axios/cemeteriesService";
+import i18n from "src/locales/i18n";
+import { setCemeteries } from "src/redux/slices/cemeteriesSlice";
+
 import CardData from "../general/CardData";
 import CardStatus from "../general/CardStatus";
 import DeleteDialog from "../general/DeleteDialog";
@@ -108,26 +105,26 @@ const CemeteryCard = ({ cemetery }) => {
                 </CardContent>
                 <CardActions>
                     <Stack direction="row" justifyContent="center" width={"100%"} spacing={3}>
-                        <MDButton
+                        <Button
                             startIcon={<EditOutlined />}
-                            variant="gradient"
+                            variant="contained"
                             color="success"
                             sx={{ fontSize: 18 }}
                             component={Link}
                             to={`/dead/cemeteries/edit/${cemetery.Id}?page=${page}`}
                         >
                             {t("common.edit")}
-                        </MDButton>
+                        </Button>
 
-                        <MDButton
+                        <Button
                             startIcon={<DeleteOutlineRounded />}
-                            variant="gradient"
+                            variant="contained"
                             color="error"
                             sx={{ fontSize: 18 }}
                             onClick={() => setDeleteDialogState(true)}
                         >
                             {t("common.delete")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </CardActions>
             </Card>

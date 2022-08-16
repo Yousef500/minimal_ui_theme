@@ -6,12 +6,12 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import LocationInput from "src/components/khadamat/securityGuards/LocationInput";
+import ShiftsInput from "src/components/khadamat/securityGuards/ShiftsInput";
+import WorkingDaysInput from "src/components/khadamat/securityGuards/WorkingDaysInput";
+// import Button from "../../components/Button";
+import shiftsService from "src/config/axios/shiftsService";
 import Button from "../../theme/overrides/Button";
-import LocationInput from "../../components/khadamat/securityGuards/LocationInput";
-import ShiftsInput from "../../components/khadamat/securityGuards/ShiftsInput";
-import WorkingDaysInput from "../../components/khadamat/securityGuards/WorkingDaysInput";
-// import MDButton from "../../components/MDButton";
-import shiftsService from "../../config/axios/shiftsService";
 
 const AddLocationShift = () => {
     const [loading, setLoading] = useState(false);

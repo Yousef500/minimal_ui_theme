@@ -10,9 +10,9 @@ import { useTheme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
-ThemeRtlLayout.propTypes = {
-  children: PropTypes.node,
-};
+// ThemeRtlLayout.propTypes = {
+//   children: PropTypes.node,
+// };
 
 export default function ThemeRtlLayout({ children }) {
   const theme = useTheme();

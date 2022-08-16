@@ -1,7 +1,8 @@
 import { CancelOutlined, DeleteOutlineRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { Dialog, DialogActions, DialogTitle, Stack, Typography } from "@mui/material";
-import MDButton from "components/MDButton";
+
+// 
 
 const DeleteDialog = ({
     t,
@@ -33,14 +34,14 @@ const DeleteDialog = ({
                         {deleteText || t("common.delete")}
                     </LoadingButton>
 
-                    <MDButton
-                        variant="gradient"
+                    <Button
+                        variant="contained"
                         color="info"
                         onClick={onClose}
                         startIcon={<CancelOutlined />}
                     >
                         {t("common.cancel")}
-                    </MDButton>
+                    </Button>
                 </Stack>
             </DialogActions>
         </Dialog>

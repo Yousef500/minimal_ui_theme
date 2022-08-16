@@ -1,16 +1,16 @@
 import { AddCardRounded, SearchOffRounded } from "@mui/icons-material";
 import { CircularProgress, Container, Grid, Pagination, Stack, Typography } from "@mui/material";
-import Center from "components/khadamat/general/Center";
-import NatCard from "components/khadamat/users/NatCard";
-import NatSearch from "components/khadamat/users/NatSearch";
-import MDButton from "components/MDButton";
-import nationalitiesService from "config/axios/nationalitiesService";
+import Center from "src/components/khadamat/general/Center";
+import NatCard from "src/components/khadamat/users/NatCard";
+import NatSearch from "src/components/khadamat/users/NatSearch";
+
+import { setNationalities, setNatsLoading, setNatsPageNo } from "src/redux/slices/nationalitiesSlice";
+import nationalitiesService from "src/config/axios/nationalitiesService";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setNationalities, setNatsLoading, setNatsPageNo } from "redux/slices/nationalitiesSlice";
 
 const Nationalities = () => {
     const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const Nationalities = () => {
                         <Typography gutterBottom variant="h1">
                             {t("accounts.nationalities.title")}
                         </Typography>
-                        <MDButton
+                        <Button
                             variant="outlined"
                             color="info"
                             size="large"
@@ -65,7 +65,7 @@ const Nationalities = () => {
                             to="/users/nationalities/add"
                         >
                             {t("accounts.nationalities.add")}
-                        </MDButton>
+                        </Button>
                     </Stack>
                 </Grid>
 

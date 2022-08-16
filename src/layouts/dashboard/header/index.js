@@ -8,7 +8,7 @@ import useResponsive from '../../../hooks/useResponsive';
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // config
-import { HEADER, NAVBAR } from '../../../config';
+import { HEADER, NAVBAR } from 'src/config';
 // components
 import Logo from '../../../components/Logo';
 import Iconify from '../../../components/Iconify';

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, createContext } from 'react';
+import { useEffect, createContext, useMemo } from 'react';
 // hooks
 import useLocalStorage from '../hooks/useLocalStorage';
 // utils
@@ -44,9 +44,9 @@ const SettingsContext = createContext(initialState);
 
 // ----------------------------------------------------------------------
 
-SettingsProvider.propTypes = {
-  children: PropTypes.node,
-};
+// SettingsProvider.propTypes = {
+//   children: PropTypes.node,
+// };
 
 function SettingsProvider({ children }) {
   const [settings, setSettings] = useLocalStorage('settings', {
@@ -59,13 +59,6 @@ function SettingsProvider({ children }) {
   });
 
   const isArabic = localStorage.getItem('i18nextLng') === 'ar';
-
-  useEffect(() => {
-    if (isArabic) {
-      onChangeDirectionByLang('ar');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isArabic]);
 
   // Mode
 
@@ -169,46 +162,51 @@ function SettingsProvider({ children }) {
     });
   };
 
-  return (
-    <SettingsContext.Provider
-      value={{
-        ...settings,
+  useEffect(() => {
+    if (isArabic) {
+      onChangeDirectionByLang('ar');
+    }
+  }, [isArabic]);
 
-        // Mode
-        onToggleMode,
-        onChangeMode,
+  const value = useMemo(
+    () => ({
+      ...settings,
 
-        // Direction
-        onToggleDirection,
-        onChangeDirection,
-        onChangeDirectionByLang,
+      // Mode
+      onToggleMode,
+      onChangeMode,
 
-        // Layout
-        onToggleLayout,
-        onChangeLayout,
+      // Direction
+      onToggleDirection,
+      onChangeDirection,
+      onChangeDirectionByLang,
 
-        // Contrast
-        onChangeContrast,
-        onToggleContrast,
+      // Layout
+      onToggleLayout,
+      onChangeLayout,
 
-        // Stretch
-        onToggleStretch,
+      // Contrast
+      onChangeContrast,
+      onToggleContrast,
 
-        // Color
-        onChangeColor,
-        setColor: getColorPresets(settings.themeColorPresets),
-        colorOption: colorPresets.map((color) => ({
-          name: color.name,
-          value: color.main,
-        })),
+      // Stretch
+      onToggleStretch,
 
-        // Reset
-        onResetSetting,
-      }}
-    >
-      {children}
-    </SettingsContext.Provider>
+      // Color
+      onChangeColor,
+      setColor: getColorPresets(settings.themeColorPresets),
+      colorOption: colorPresets.map((color) => ({
+        name: color.name,
+        value: color.main,
+      })),
+
+      // Reset
+      onResetSetting,
+    }),
+    []
   );
+
+  return <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>;
 }
 
 export { SettingsProvider, SettingsContext };

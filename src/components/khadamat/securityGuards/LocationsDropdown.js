@@ -15,14 +15,14 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
-import MDButton from "components/MDButton";
-import locationsService from "config/axios/locationsService";
-import i18n from "config/i18n";
+
+import locationsService from "src/config/axios/locationsService";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { setLocations } from "redux/slices/locationsSlice";
+import { setLocations } from "src/redux/slices/locationsSlice";
+import i18n from "src/locales/i18n";
 import MapsDialog from "../ekram/MapsDialog";
 import DeleteDialog from "../general/DeleteDialog";
 import DropdownItem from "../general/DropdownItem";
