@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>user</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="../js/es6-promise.auto.min.js"></script>
+        <script src="../js/jspdf.min.js"></script>
+        <script src="../js/html2canvas.min.js"></script>
+        <script src="../js/html2pdf.min.js"></script>
+        <script src="../js/handlebars.min.js"></script>
+        <script src="../js/templateScript.js"></script>
+    </head>
+
+    <body dir="rtl">
+        <div id="template" style="font-family: dejavusans">
+            <div
+                class="shadow-xl m-5 p-5 text-center bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg"
+            >
+                <h1 class="p-3 text-5xl">{{name}}</h1>
+                <div class="grid grid-cols-1 my-10 bg-slate-50 p-5 rounded-2xl">
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">اسم المستخدم:</p>
+                        <p class="text-2xl">{{username}}</p>
+                    </div>
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">البريد الالكتروني:</p>
+                        <p class="text-2xl">{{email}}</p>
+                    </div>
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">رقم الهوية:</p>
+                        <p class="text-2xl">{{id}}</p>
+                    </div>
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">رقم الجوال:</p>
+                        <p class="text-2xl">{{phone}}</p>
+                    </div>
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">الرقم الوظيفي:</p>
+                        <p class="text-2xl">{{jobNo}}</p>
+                    </div>
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">الوظيفة:</p>
+                        <p class="text-2xl">{{job}}</p>
+                    </div>
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">حساب شركة:</p>
+                        {{#if isCompany}}
+                        <p class="text-2xl text-blue-600">نعم</p>
+                        {{else}}
+                        <p class="text-2xl">لا</p>
+                        {{/if}}
+                    </div>
+                    {{#if isCompany}}
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">اسم الشركة:</p>
+                        <p class="text-2xl">{{companyName}}</p>
+                    </div>
+                    {{/if}}
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">فعال:</p>
+                        {{#if isActive}}
+                        <p class="text-2xl text-green-600">نعم</p>
+                        {{else}}
+                        <p class="text-2xl">لا</p>
+                        {{/if}}
+                    </div>
+                    {{#if manager}}
+                    <div class="grid grid-cols-2 my-2">
+                        <p class="text-2xl">المدير المباشر:</p>
+                        <p class="text-2xl">{{manager}}</p>
+                    </div>
+                    {{/if}}
+                    <h5 class="text-5xl text-blue-800 my-5">الأدوار الوظيفية</h5>
+                    <div class="grid grid-cols-2 my-2">
+                        {{#each roles}} {{#with this}}
+                        <p class="text-2xl m-3">{{this.Name}}</p>
+                        {{/with}} {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <div id="elementH"></div>
+        </div>
+    </body>
+</html>
