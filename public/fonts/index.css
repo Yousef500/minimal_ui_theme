@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: 'CircularStd';
   font-weight: 400;
   font-style: normal;
@@ -9,10 +9,20 @@
   font-weight: 500;
   font-style: normal;
   src: local('CircularStd'), url('CircularStd-Medium.otf') format('opentype');
-}
-@font-face {
+} */
+/* @font-face {
   font-family: 'CircularStd';
   font-weight: 700;
   font-style: normal;
   src: local('CircularStd'), url('CircularStd-Bold.otf') format('opentype');
+} */
+@font-face {
+  font-family: 'Cocon';
+  font-style: normal;
+  src: local('Cocon'), url('Cocon-Regular-Font.otf') format('opentype');
+}
+@font-face {
+  font-family: 'CoconNextArabic-Light';
+  font-style: normal;
+  src: local('CoconNextArabic-Light'), url('COCON.OTF') format('opentype');
 }

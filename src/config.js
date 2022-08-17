@@ -1,5 +1,5 @@
 // @mui
-import { enUS, frFR, zhCN, viVN, arSD } from '@mui/material/locale';
+import { enUS, frFR, zhCN, viVN, arSD, arEG } from '@mui/material/locale';
 // routes
 import { PATH_DASHBOARD } from './routes/paths';
 
@@ -80,7 +80,7 @@ export const allLangs = [
   {
     label: 'Arabic',
     value: 'ar',
-    systemValue: arSD,
+    systemValue: arEG,
     icon: '/assets/icons/flags/ic_flag_sa.svg',
   },
   {

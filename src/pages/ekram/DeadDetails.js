@@ -1,7 +1,7 @@
 import {
     KeyboardDoubleArrowLeftRounded,
-    KeyboardDoubleArrowRightRounded
-} from "@mui/icons-material";
+    KeyboardDoubleArrowRightRounded,
+} from '@mui/icons-material';
 import {
     Card,
     CardContent,
@@ -13,25 +13,24 @@ import {
     Fab,
     Grid,
     Tooltip,
-    Typography
-} from "@mui/material";
-import { GoogleMap, Marker } from "@react-google-maps/api";
-import Center from "src/components/khadamat/general/Center";
-import DetailView from "src/components/khadamat/general/DetailView";
-import FormatDate from "src/components/khadamat/general/FormatDate";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { setDeadPageNo } from "src/redux/slices/deadSlice"; 
-import deadService from "src/config/axios/deadServices";
-import i18n from "src/locales/i18n";
+    Typography,
+} from '@mui/material';
+import { GoogleMap, Marker } from '@react-google-maps/api';
+import Center from 'src/components/khadamat/general/Center';
+import DetailView from 'src/components/khadamat/general/DetailView';
+import FormatDate from 'src/components/khadamat/general/FormatDate';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { setDeadPageNo } from 'src/redux/slices/deadSlice';
+import deadService from 'src/config/axios/deadServices';
+import i18n from 'src/locales/i18n';
 
 const cardStyles = {
-    width: "100%",
+    width: '100%',
     mb: 10,
-    borderRadius: 10,
     background: `linear-gradient(
                     30deg,
                     hsl(160deg 19% 94%) 0%,
@@ -62,7 +61,7 @@ const cardStyles = {
 
 const DeadDetails = () => {
     const { id } = useParams();
-    const page = useLocation().search.split("page=")[1];
+    const page = useLocation().search.split('page=')[1];
     const [person, setPerson] = useState({});
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -79,7 +78,7 @@ const DeadDetails = () => {
                     setLoading(false);
                 } catch (err) {
                     console.log({ err });
-                    toast.error(t("common.error.unknown"));
+                    toast.error(t('common.error.unknown'));
                     setLoading(false);
                 }
             })();
@@ -91,28 +90,28 @@ const DeadDetails = () => {
             <CircularProgress size={100} colo="info" />
         </Center>
     ) : (
-        <Container sx={{ position: "relative" }}>
+        <Container maxWidth={'xl'}>
             <Card elevation={10} sx={cardStyles}>
                 <CardHeader
                     titleTypographyProps={{
-                        variant: "h1",
-                        align: "center",
+                        variant: 'h1',
+                        align: 'center',
                         gutterBottom: true,
                     }}
-                    title={i18n.language === "en" ? person.NameSl : person.NameFl}
+                    title={i18n.language === 'en' ? person.NameSl : person.NameFl}
                     action={
-                        <Tooltip title={t("common.return")}>
+                        <Tooltip title={t('common.return')}>
                             <Fab
                                 onClick={() => {
                                     dispatch(setDeadPageNo(Number(page)));
-                                    navigate("/dead/management");
+                                    navigate('/dead/management');
                                 }}
                                 color="info"
                                 sx={{
                                     fontSize: 20,
                                 }}
                             >
-                                {i18n.language === "en" ? (
+                                {i18n.language === 'en' ? (
                                     <KeyboardDoubleArrowRightRounded />
                                 ) : (
                                     <KeyboardDoubleArrowLeftRounded />
@@ -127,45 +126,45 @@ const DeadDetails = () => {
                         my={5}
                         spacing={3}
                         alignItems="center"
-                        justifyContent={"center"}
+                        justifyContent={'center'}
                     >
                         <Grid item xs={12} sm={12} md={6} lg={6}>
                             <DetailView
-                                title={`${t("common.age")}:`}
-                                data={`${person.AgeYears} ${t("common.years")} / 
-                                ${person.AgeMonths} ${t("common.months")} / 
-                                ${person.AgeDays} ${t("common.days")}`}
+                                title={`${t('common.age')}:`}
+                                data={`${person.AgeYears} ${t('common.years')} / 
+                                ${person.AgeMonths} ${t('common.months')} / 
+                                ${person.AgeDays} ${t('common.days')}`}
                             />
                             <DetailView
-                                title={`${t("common.nat")}:`}
+                                title={`${t('common.nat')}:`}
                                 data={person.NationalityName}
                             />
                             <DetailView
-                                title={`${t("common.type")}:`}
+                                title={`${t('common.type')}:`}
                                 data={person.GenderTypeName}
                             />
                             <DetailView
-                                title={`${t("ekram.dead.deathDate")}:`}
+                                title={`${t('ekram.dead.deathDate')}:`}
                                 data={<FormatDate date={person.DateOfDeath} />}
                             />
                             <DetailView
-                                title={`${t("ekram.dead.deathTime")}:`}
+                                title={`${t('ekram.dead.deathTime')}:`}
                                 data={person.DeathTime}
                             />
                             <DetailView
-                                title={`${t("ekram.dead.deathReason")}:`}
+                                title={`${t('ekram.dead.deathReason')}:`}
                                 data={person.DeathReason}
                             />
                             <DetailView
-                                title={`${t("common.deleted")}:`}
-                                data={person.IsDeleted ? t("common.yes") : t("common.no")}
+                                title={`${t('common.deleted')}:`}
+                                data={person.IsDeleted ? t('common.yes') : t('common.no')}
                             />
                             <DetailView
-                                title={`${t("common.citizen")}:`}
+                                title={`${t('common.citizen')}:`}
                                 data={
                                     <Chip
-                                        label={person.IsCitizen ? t("common.yes") : t("common.no")}
-                                        color={"success"}
+                                        label={person.IsCitizen ? t('common.yes') : t('common.no')}
+                                        color={'success'}
                                         disabled={!person.IsCitizen}
                                         sx={{ width: 60, fontSize: 21 }}
                                     />
@@ -175,46 +174,46 @@ const DeadDetails = () => {
                         <Grid item xs={0} md={0} lg={1} />
                         <Grid item xs={12} sm={12} md={6} lg={5}>
                             <DetailView
-                                title={`${t("ekram.cemeteries.name")}:`}
+                                title={`${t('ekram.cemeteries.name')}:`}
                                 data={person.CemeteryName}
                             />
                             <DetailView
-                                title={`${t("ekram.cemeteries.address")}:`}
+                                title={`${t('ekram.cemeteries.address')}:`}
                                 data={person.CemeteryAddress}
                             />
                             <DetailView
-                                title={`${t("ekram.dead.square")}:`}
+                                title={`${t('ekram.dead.square')}:`}
                                 data={person.SquareNumber}
                             />
-                            <DetailView title={`${t("ekram.dead.row")}:`} data={person.RowNumber} />
+                            <DetailView title={`${t('ekram.dead.row')}:`} data={person.RowNumber} />
                             <DetailView
-                                title={`${t("ekram.dead.column")}:`}
+                                title={`${t('ekram.dead.column')}:`}
                                 data={person.ColumnNumber}
                             />
                             <DetailView
-                                title={`${t("ekram.dead.regNo")}:`}
+                                title={`${t('ekram.dead.regNo')}:`}
                                 data={person.RegistrationNumber}
                             />
                             <DetailView
-                                title={`${t("common.active")}:`}
+                                title={`${t('common.active')}:`}
                                 data={
                                     <Chip
-                                        label={person.IsActive ? t("common.yes") : t("common.no")}
-                                        color={"info"}
+                                        label={person.IsActive ? t('common.yes') : t('common.no')}
+                                        color={'info'}
                                         disabled={!person.IsActive}
                                         sx={{
                                             width: 60,
-                                            color: "#FFFFFF",
+                                            color: '#FFFFFF',
                                             fontSize: 21,
                                         }}
                                     />
                                 }
                             />
-                            <DetailView title={`${t("common.id")}:`} data={person.NationalNumber} />
+                            <DetailView title={`${t('common.id')}:`} data={person.NationalNumber} />
                         </Grid>
                         <Grid item xs={12} mt={5}>
                             <Typography variant="h4" align="center">
-                                {t("ekram.cemeteries.location")}
+                                {t('ekram.cemeteries.location')}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -227,7 +226,7 @@ const DeadDetails = () => {
                             lng: person.CemeteryLocationLong,
                         }}
                         mapContainerStyle={{
-                            width: "100%",
+                            width: '100%',
                             height: 500,
                             borderRadius: 20,
                         }}

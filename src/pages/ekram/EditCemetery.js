@@ -1,7 +1,8 @@
-import { encode } from "@googlemaps/polyline-codec";
-import { CancelOutlined, SaveOutlined } from "@mui/icons-material";
-import { LoadingButton } from "@mui/lab";
+import { encode } from '@googlemaps/polyline-codec';
+import { CancelOutlined, SaveOutlined } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import {
+    Button,
     Card,
     CardActions,
     CardContent,
@@ -13,20 +14,20 @@ import {
     Grid,
     Stack,
     Typography,
-} from "@mui/material";
-import { GoogleMap, Polygon } from "@react-google-maps/api";
-import Center from "src/components/khadamat/general/Center";
-import InputField from "src/components/khadamat/general/InputField";
+} from '@mui/material';
+import { GoogleMap, Polygon } from '@react-google-maps/api';
+import Center from 'src/components/khadamat/general/Center';
+import InputField from 'src/components/khadamat/general/InputField';
 
-import cemeteriesService from "src/config/axios/cemeteriesService";
-import decodeShapePath from "src/config/decodeShapePath";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { setCemeteriesPageNo } from "src/redux/slices/cemeteriesSlice";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import cemeteriesService from 'src/config/axios/cemeteriesService';
+import decodeShapePath from 'src/config/decodeShapePath';
+import { setCemeteriesPageNo } from 'src/redux/slices/cemeteriesSlice';
 
 const EditCemetery = () => {
     const [loadingDefaults, setLoadingDefaults] = useState(true);
@@ -39,7 +40,7 @@ const EditCemetery = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
-    const page = useLocation().search.split("page=")[1];
+    const page = useLocation().search.split('page=')[1];
     const { t } = useTranslation();
     const {
         register,
@@ -50,8 +51,8 @@ const EditCemetery = () => {
     } = useForm();
 
     const options = {
-        strokeColor: "#55DE7C",
-        fillColor: "#55DE7C",
+        strokeColor: '#55DE7C',
+        fillColor: '#55DE7C',
         fillOpacity: 0.1,
         editable: true,
         draggable: true,
@@ -74,7 +75,7 @@ const EditCemetery = () => {
                 setLoadingDefaults(false);
             } catch (err) {
                 console.log({ err });
-                toast.error(t("common.error.unknown"));
+                toast.error(t('common.error.unknown'));
                 setLoadingDefaults(false);
             }
         })();
@@ -99,9 +100,9 @@ const EditCemetery = () => {
             polygonRef.current = polygon;
             const path = polygon.getPath();
             listeners.current.push(
-                path.addListener("set_at", onEdit),
-                path.addListener("insert_at", onEdit),
-                path.addListener("remove_at", onEdit)
+                path.addListener('set_at', onEdit),
+                path.addListener('insert_at', onEdit),
+                path.addListener('remove_at', onEdit)
             );
         },
         [onEdit]
@@ -116,7 +117,7 @@ const EditCemetery = () => {
             setPaths([...paths, { lat: e.latLng.lat(), lng: e.latLng.lng() }]);
         }
         if (paths.length === 3) {
-            setMapError("");
+            setMapError('');
         }
     };
 
@@ -129,7 +130,7 @@ const EditCemetery = () => {
         if (Number(page) > 1) {
             dispatch(setCemeteriesPageNo(Number(page)));
         }
-        navigate("/dead/cemeteries");
+        navigate('/dead/cemeteries');
     };
 
     const handleEditCemetery = async (data) => {
@@ -153,16 +154,16 @@ const EditCemetery = () => {
                 });
 
                 console.log({ editRes });
-                toast.success(t("common.success.edit"));
+                toast.success(t('common.success.edit'));
                 setSaving(false);
                 handleGoBack();
             } catch (err) {
                 console.log({ err });
-                toast.error(t("common.error.unknown"));
+                toast.error(t('common.error.unknown'));
                 setSaving(false);
             }
         } else {
-            setMapError(t("ekram.cemeteries.locationErr"));
+            setMapError(t('ekram.cemeteries.locationErr'));
         }
     };
 
@@ -179,11 +180,11 @@ const EditCemetery = () => {
                     onSubmit={handleSubmit(handleEditCemetery)}
                 >
                     <CardHeader
-                        title={t("ekram.cemeteries.edit")}
+                        title={t('ekram.cemeteries.edit')}
                         titleTypographyProps={{
-                            variant: "h2",
+                            variant: 'h2',
                             gutterBottom: true,
-                            align: "center",
+                            align: 'center',
                         }}
                     />
                     <CardContent>
@@ -191,8 +192,8 @@ const EditCemetery = () => {
                             <Grid item xs={12} md={6}>
                                 <InputField
                                     fullWidth
-                                    label={t("common.arName")}
-                                    {...register("nameFl", { required: true })}
+                                    label={t('common.arName')}
+                                    {...register('nameFl', { required: true })}
                                     type="text"
                                     error={!!errors.NameFl}
                                     helperText={errors.nameFl?.Message}
@@ -202,8 +203,8 @@ const EditCemetery = () => {
                             <Grid item xs={12} md={6}>
                                 <InputField
                                     fullWidth
-                                    label={t("common.enName")}
-                                    {...register("nameSl", { required: true })}
+                                    label={t('common.enName')}
+                                    {...register('nameSl', { required: true })}
                                     type="text"
                                     error={!!errors.nameSl}
                                     helperText={errors.nameSl?.Message}
@@ -213,8 +214,8 @@ const EditCemetery = () => {
                             <Grid item xs={12} md={6}>
                                 <InputField
                                     fullWidth
-                                    label={t("ekram.cemeteries.address")}
-                                    {...register("address", { required: true })}
+                                    label={t('ekram.cemeteries.address')}
+                                    {...register('address', { required: true })}
                                     type="text"
                                     error={!!errors.address}
                                     helperText={errors.address?.Message}
@@ -222,12 +223,12 @@ const EditCemetery = () => {
                             </Grid>
 
                             <Grid item xs={12}>
-                                <Divider sx={{ background: "black" }} />
+                                <Divider />
                             </Grid>
 
                             <Grid item xs={12}>
                                 <Typography variant="h4" gutterBottom>
-                                    {t("ekram.cemeteries.location")}
+                                    {t('ekram.cemeteries.location')}
                                 </Typography>
                             </Grid>
 
@@ -259,7 +260,7 @@ const EditCemetery = () => {
                             onLoad={onMapLoad}
                             mapContainerStyle={{
                                 height: 600,
-                                width: "100%",
+                                width: '100%',
                             }}
                             center={center}
                             zoom={10}
@@ -276,20 +277,20 @@ const EditCemetery = () => {
                                     onRightClick={() => setPaths([])}
                                 />
                             ) : (
-                                ""
+                                ''
                             )}
                         </GoogleMap>
                     </CardMedia>
                     {mapError ? (
-                        <Typography color={"error"} align="center">
+                        <Typography color={'error'} align="center">
                             {mapError}
                         </Typography>
                     ) : (
-                        ""
+                        ''
                     )}
                     <CardActions>
                         <Stack
-                            width={"100%"}
+                            width={'100%'}
                             direction="row"
                             spacing={3}
                             justifyContent="space-between"
@@ -305,7 +306,7 @@ const EditCemetery = () => {
                                 type="submit"
                                 disabled={!isValid || paths?.length < 4}
                             >
-                                {t("common.save")}
+                                {t('common.save')}
                             </LoadingButton>
                             <Button
                                 fullWidth
@@ -314,7 +315,7 @@ const EditCemetery = () => {
                                 startIcon={<CancelOutlined />}
                                 onClick={handleGoBack}
                             >
-                                {t("common.cancel")}
+                                {t('common.cancel')}
                             </Button>
                         </Stack>
                     </CardActions>

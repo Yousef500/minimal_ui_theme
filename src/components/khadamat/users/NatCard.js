@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { CheckRounded, DeleteRounded, EditRounded, MoreVert } from "@mui/icons-material";
-import { LoadingButton } from "@mui/lab";
+import styled from '@emotion/styled';
+import { CheckRounded, DeleteRounded, EditRounded, MoreVert } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import {
     Card,
     CardHeader,
@@ -13,20 +13,22 @@ import {
     Menu,
     Stack,
     Typography,
-} from "@mui/material";
+    Button,
+    Paper,
+} from '@mui/material';
 
-import nationalitiesService from "src/config/axios/nationalitiesService";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import i18n from "src/locales/i18n";
-import { toast } from "react-toastify";
-import { setNationalities } from "src/redux/slices/nationalitiesSlice";
-import DropdownItem from "../general/DropdownItem";
+import nationalitiesService from 'src/config/axios/nationalitiesService';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import i18n from 'src/locales/i18n';
+import { toast } from 'react-toastify';
+import { setNationalities } from 'src/redux/slices/nationalitiesSlice';
+import DropdownItem from '../general/DropdownItem';
 
 const NatDropdown = styled(Menu)(() => ({
-    "& .MuiPaper-root": {
+    '& .MuiPaper-root': {
         backgroundImage: `
         linear-gradient(
             45deg,
@@ -55,21 +57,21 @@ const NatDropdown = styled(Menu)(() => ({
           )
           `,
     },
-    "& .MuiMenuItem-root": {
-        "& .MuiListItemIcon-root": {
-            color: "#E4FAF1",
+    '& .MuiMenuItem-root': {
+        '& .MuiListItemIcon-root': {
+            color: '#E4FAF1',
         },
-        "& .MuiListItemText-root": {
-            color: "#E4FAF1",
+        '& .MuiListItemText-root': {
+            color: '#E4FAF1',
         },
 
-        "&:hover": {
-            backgroundColor: "#E4FAF1",
-            "& .MuiListItemIcon-root": {
-                color: "black",
+        '&:hover': {
+            backgroundColor: '#E4FAF1',
+            '& .MuiListItemIcon-root': {
+                color: 'black',
             },
-            "& .MuiListItemText-root": {
-                color: "black",
+            '& .MuiListItemText-root': {
+                color: 'black',
             },
         },
     },
@@ -99,28 +101,29 @@ const NatCard = ({ nat }) => {
             const { data: deleteRes } = await nationalitiesService.deleteNat(nat.Id);
             const { data: updatedNats } = await nationalitiesService.searchNats();
             dispatch(setNationalities(updatedNats));
-            toast.success(t("common.success.delete"));
+            toast.success(t('common.success.delete'));
             setDeleteDialogOpen(false);
             setDeleting(false);
         } catch (err) {
             console.log({ err });
-            toast.error(t("common.error.unknown"));
+            toast.error(t('common.error.unknown'));
             setDeleting(false);
         }
     };
 
     return (
         <>
-            <Card>
+            <Card component={Paper} elevation={24}>
                 <CardHeader
-                    title={i18n.language === "ar" ? nat.NameFl : nat.NameSl}
+                    title={i18n.language === 'ar' ? nat.NameFl : nat.NameSl}
                     titleTypographyProps={{ gutterBottom: true }}
+                    subheaderTypographyProps={{ gutterBottom: true }}
                     subheader={
                         <Chip
-                            color={nat.IsActive ? "info" : "default"}
-                            variant={"filled"}
+                            color={nat.IsActive ? 'info' : 'default'}
+                            variant={'filled'}
                             sx={{ fontSize: 18 }}
-                            label={nat.IsActive ? t("common.active") : t("common.inactive")}
+                            label={nat.IsActive ? t('common.active') : t('common.inactive')}
                         />
                     }
                     action={
@@ -138,14 +141,14 @@ const NatCard = ({ nat }) => {
                 disableScrollLock
             >
                 <DropdownItem
-                    label={t("common.edit")}
+                    label={t('common.edit')}
                     icon={<EditRounded />}
                     onClick={handleMenuClose}
                     component={Link}
                     to={`/users/nationalities/edit/${nat.Id}?page=${page}`}
                 />
                 <DropdownItem
-                    label={t("common.delete")}
+                    label={t('common.delete')}
                     icon={<DeleteRounded />}
                     onClick={handleOpenDeleteDialog}
                 />
@@ -158,8 +161,8 @@ const NatCard = ({ nat }) => {
                 >
                     <DialogTitle>
                         <Typography align="center" variant="inherit">
-                            {t("accounts.nationalities.deleteConfirm", {
-                                data: i18n.language === "ar" ? nat.NameFl : nat.NameSl,
+                            {t('accounts.nationalities.deleteConfirm', {
+                                data: i18n.language === 'ar' ? nat.NameFl : nat.NameSl,
                             })}
                         </Typography>
                     </DialogTitle>
@@ -174,7 +177,7 @@ const NatCard = ({ nat }) => {
                                 sx={{ fontSize: 18, borderRadius: 0 }}
                                 onClick={handleDeleteNat}
                             >
-                                {t("common.yes")}
+                                {t('common.yes')}
                             </LoadingButton>
 
                             <Button
@@ -184,13 +187,13 @@ const NatCard = ({ nat }) => {
                                 sx={{ fontSize: 18, borderRadius: 0 }}
                                 onClick={() => setDeleteDialogOpen(false)}
                             >
-                                {t("common.no")}
+                                {t('common.no')}
                             </Button>
                         </Stack>
                     </DialogActions>
                 </Dialog>
             ) : (
-                ""
+                ''
             )}
         </>
     );

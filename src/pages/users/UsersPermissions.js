@@ -1,19 +1,19 @@
-import PermissionsCard from "src/components/khadamat/users/PermissionsCard";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import PermissionsCard from 'src/components/khadamat/users/PermissionsCard';
 
-import { Container, Grid, Stack } from "@mui/material";
-import MainRoleInput from "src/components/khadamat/users/MainRoleInput";
-import ModuleInput from "src/components/khadamat/users/ModuleInput";
-import PageInput from "src/components/khadamat/users/PageInput";
-import SubRoleInput from "src/components/khadamat/users/SubRoleInput";
-import { useForm } from "react-hook-form";
-import { LoadingButton } from "@mui/lab";
-import { CancelRounded, Save, SaveRounded } from "@mui/icons-material";
+import { CancelRounded, SaveRounded } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
+import { Button, Container, Grid, Stack } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import MainRoleInput from 'src/components/khadamat/users/MainRoleInput';
+import ModuleInput from 'src/components/khadamat/users/ModuleInput';
+import PageInput from 'src/components/khadamat/users/PageInput';
+import SubRoleInput from 'src/components/khadamat/users/SubRoleInput';
 
-import permissionsService from "src/config/axios/permissionsService";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import permissionsService from 'src/config/axios/permissionsService';
 
 const UsersPermissions = () => {
     const [loadingSubRoles, setLoadingSubRoles] = useState(false);
@@ -124,11 +124,11 @@ const UsersPermissions = () => {
                     addedPageActionsIdsList: addedPermissions.map((perm) => perm.Key),
                 });
                 console.log({ saveRes });
-                toast.success(t("common.success.general"));
+                toast.success(t('common.success.general'));
                 setSaving(false);
             } catch (err) {
                 console.log({ err });
-                toast.error(t("common.error.unknown"));
+                toast.error(t('common.error.unknown'));
                 setSaving(false);
             }
         }
@@ -140,7 +140,7 @@ const UsersPermissions = () => {
                 container
                 spacing={3}
                 justifyContent="center"
-                alignItems={"center"}
+                alignItems={'center'}
                 mb={10}
                 component="form"
                 onSubmit={handleSubmit(handleFormSubmit)}
@@ -198,10 +198,10 @@ const UsersPermissions = () => {
                     <PermissionsCard
                         list={permissionsToAdd}
                         handleToggle={handleTogglePermissionsToAdd}
-                        title={t("accounts.permissions.permissionsToAdd")}
+                        title={t('accounts.permissions.permissionsToAdd')}
                         checked={permissionsToAddChecked}
                         handleSubmit={handleAddPermissions}
-                        actionLabel={t("common.add")}
+                        actionLabel={t('common.add')}
                         actionColor="success"
                         toggleAll={handleToggleAllPermissionsToAdd}
                         t={t}
@@ -213,10 +213,10 @@ const UsersPermissions = () => {
                     <PermissionsCard
                         list={addedPermissions}
                         handleToggle={handleToggleAddedPermissions}
-                        title={t("accounts.permissions.addedPermissions")}
+                        title={t('accounts.permissions.addedPermissions')}
                         checked={addedPermissionsChecked}
                         handleSubmit={handleRemovePermissions}
-                        actionLabel={t("common.delete")}
+                        actionLabel={t('common.delete')}
                         actionColor="error"
                         toggleAll={handleToggleAllAddedPermissions}
                         t={t}
@@ -234,7 +234,7 @@ const UsersPermissions = () => {
                         <LoadingButton
                             loading={saving}
                             variant="contained"
-                            color="inherit"
+                            color="primary"
                             sx={{ fontSize: 20 }}
                             startIcon={<SaveRounded />}
                             loadingPosition="start"
@@ -242,7 +242,7 @@ const UsersPermissions = () => {
                             type="submit"
                             disabled={!isDirty}
                         >
-                            {t("common.save")}
+                            {t('common.save')}
                         </LoadingButton>
                         <Button
                             component={Link}
@@ -252,7 +252,7 @@ const UsersPermissions = () => {
                             color="warning"
                             sx={{ fontSize: 20 }}
                         >
-                            {t("common.cancel")}
+                            {t('common.cancel')}
                         </Button>
                     </Stack>
                 </Grid>

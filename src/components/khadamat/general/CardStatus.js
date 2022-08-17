@@ -27,7 +27,7 @@ const CardStatus = ({
                     />
                 )}
             </Stack>
-            {!noDivider && <Divider sx={{ background: "black" }} />}
+            {!noDivider && <Divider />}
         </>
     );
 };

@@ -10,98 +10,106 @@ import { getActive, isExternalLink } from '..';
 
 // ----------------------------------------------------------------------
 
-NavList.propTypes = {
-  data: PropTypes.object,
-  depth: PropTypes.number,
-  hasChildren: PropTypes.bool,
-};
+// NavList.propTypes = {
+//   data: PropTypes.object,
+//   depth: PropTypes.number,
+//   hasChildren: PropTypes.bool,
+// };
 
 export default function NavList({ data, depth, hasChildren }) {
-  const menuRef = useRef(null);
+    const menuRef = useRef(null);
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const { pathname } = useLocation();
+    const { pathname } = useLocation();
 
-  const active = getActive(data.path, pathname);
+    const active = getActive(data.path, pathname);
 
-  const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    if (open) {
-      handleClose();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+    useEffect(() => {
+        if (open) {
+            handleClose();
+        }
+    }, [pathname]);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
-  const handleClickItem = () => {
-    if (!hasChildren) {
-      navigate(data.path);
-    }
-  };
+    const handleClickItem = () => {
+        if (!hasChildren) {
+            navigate(data.path);
+        }
+    };
 
-  return (
-    <>
-      {isExternalLink(data.path) ? (
-        <Link href={data.path} target="_blank" rel="noopener" underline="none">
-          <NavItem item={data} depth={depth} open={open} active={active} />
-        </Link>
-      ) : (
-        <NavItem
-          item={data}
-          depth={depth}
-          open={open}
-          active={active}
-          ref={menuRef}
-          onClick={handleClickItem}
-          onMouseEnter={handleOpen}
-          onMouseLeave={handleClose}
-        />
-      )}
+    return (
+        <>
+            {isExternalLink(data.path) ? (
+                <Link href={data.path} target="_blank" rel="noopener" underline="none">
+                    <NavItem item={data} depth={depth} open={open} active={active} />
+                </Link>
+            ) : (
+                <NavItem
+                    item={data}
+                    depth={depth}
+                    open={open}
+                    active={active}
+                    ref={menuRef}
+                    onClick={handleClickItem}
+                    onMouseEnter={handleOpen}
+                    onMouseLeave={handleClose}
+                />
+            )}
 
-      {hasChildren && (
-        <PaperStyle
-          open={open}
-          anchorEl={menuRef.current}
-          anchorOrigin={
-            depth === 1 ? { vertical: 'bottom', horizontal: 'left' } : { vertical: 'center', horizontal: 'right' }
-          }
-          transformOrigin={
-            depth === 1 ? { vertical: 'top', horizontal: 'left' } : { vertical: 'center', horizontal: 'left' }
-          }
-          PaperProps={{
-            onMouseEnter: handleOpen,
-            onMouseLeave: handleClose,
-          }}
-        >
-          <NavSubList data={data.children} depth={depth} />
-        </PaperStyle>
-      )}
-    </>
-  );
+            {hasChildren && (
+                <PaperStyle
+                    open={open}
+                    anchorEl={menuRef.current}
+                    anchorOrigin={
+                        depth === 1
+                            ? { vertical: 'bottom', horizontal: 'left' }
+                            : { vertical: 'center', horizontal: 'right' }
+                    }
+                    transformOrigin={
+                        depth === 1
+                            ? { vertical: 'top', horizontal: 'left' }
+                            : { vertical: 'center', horizontal: 'left' }
+                    }
+                    PaperProps={{
+                        onMouseEnter: handleOpen,
+                        onMouseLeave: handleClose,
+                    }}
+                >
+                    <NavSubList data={data.children} depth={depth} />
+                </PaperStyle>
+            )}
+        </>
+    );
 }
 
 // ----------------------------------------------------------------------
 
-NavSubList.propTypes = {
-  data: PropTypes.array,
-  depth: PropTypes.number,
-};
+// NavSubList.propTypes = {
+//     data: PropTypes.array,
+//     depth: PropTypes.number,
+// };
 
 function NavSubList({ data, depth }) {
-  return (
-    <>
-      {data.map((list) => (
-        <NavList key={list.title + list.path} data={list} depth={depth + 1} hasChildren={!!list.children} />
-      ))}
-    </>
-  );
+    return (
+        <>
+            {data.map((list) => (
+                <NavList
+                    key={list.title + list.path}
+                    data={list}
+                    depth={depth + 1}
+                    hasChildren={!!list.children}
+                />
+            ))}
+        </>
+    );
 }

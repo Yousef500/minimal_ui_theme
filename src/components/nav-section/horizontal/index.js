@@ -16,9 +16,9 @@ const hideScrollbar = {
   },
 };
 
-NavSectionHorizontal.propTypes = {
-  navConfig: PropTypes.array,
-};
+// NavSectionHorizontal.propTypes = {
+//   navConfig: PropTypes.array,
+// };
 
 function NavSectionHorizontal({ navConfig }) {
   return (

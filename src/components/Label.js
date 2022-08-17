@@ -64,14 +64,14 @@ const RootStyle = styled('span')(({ theme, ownerState }) => {
 
 // ----------------------------------------------------------------------
 
-Label.propTypes = {
-  children: PropTypes.node,
-  startIcon: PropTypes.node,
-  endIcon: PropTypes.node,
-  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
-  variant: PropTypes.oneOf(['filled', 'outlined', 'ghost']),
-  sx: PropTypes.object,
-};
+// Label.propTypes = {
+//   children: PropTypes.node,
+//   startIcon: PropTypes.node,
+//   endIcon: PropTypes.node,
+//   color: PropTypes.oneOf(['default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
+//   variant: PropTypes.oneOf(['filled', 'outlined', 'ghost']),
+//   sx: PropTypes.object,
+// };
 
 export default function Label({ children, color = 'default', variant = 'ghost', startIcon, endIcon, sx }) {
   const style = {

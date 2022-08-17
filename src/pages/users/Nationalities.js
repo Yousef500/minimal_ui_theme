@@ -1,16 +1,28 @@
-import { AddCardRounded, SearchOffRounded } from "@mui/icons-material";
-import { CircularProgress, Container, Grid, Pagination, Stack, Typography } from "@mui/material";
-import Center from "src/components/khadamat/general/Center";
-import NatCard from "src/components/khadamat/users/NatCard";
-import NatSearch from "src/components/khadamat/users/NatSearch";
+import { AddCardRounded, SearchOffRounded } from '@mui/icons-material';
+import {
+    Button,
+    CircularProgress,
+    Container,
+    Grid,
+    Pagination,
+    Stack,
+    Typography,
+} from '@mui/material';
+import Center from 'src/components/khadamat/general/Center';
+import NatCard from 'src/components/khadamat/users/NatCard';
+import NatSearch from 'src/components/khadamat/users/NatSearch';
 
-import { setNationalities, setNatsLoading, setNatsPageNo } from "src/redux/slices/nationalitiesSlice";
-import nationalitiesService from "src/config/axios/nationalitiesService";
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import nationalitiesService from 'src/config/axios/nationalitiesService';
+import {
+    setNationalities,
+    setNatsLoading,
+    setNatsPageNo,
+} from 'src/redux/slices/nationalitiesSlice';
 
 const Nationalities = () => {
     const dispatch = useDispatch();
@@ -28,7 +40,7 @@ const Nationalities = () => {
             } catch (err) {
                 console.log({ err });
                 dispatch(setNatsLoading(false));
-                toast.error(t("common.error.unknown"));
+                toast.error(t('common.error.unknown'));
             }
         })();
     }, []);
@@ -53,7 +65,7 @@ const Nationalities = () => {
                 <Grid item xs={12}>
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                         <Typography gutterBottom variant="h1">
-                            {t("accounts.nationalities.title")}
+                            {t('accounts.nationalities.title')}
                         </Typography>
                         <Button
                             variant="outlined"
@@ -64,7 +76,7 @@ const Nationalities = () => {
                             component={Link}
                             to="/users/nationalities/add"
                         >
-                            {t("accounts.nationalities.add")}
+                            {t('accounts.nationalities.add')}
                         </Button>
                     </Stack>
                 </Grid>
@@ -88,7 +100,7 @@ const Nationalities = () => {
                 ) : (
                     <Grid item xs={12}>
                         <Stack direction=" row" justifyContent="center" spacing={5}>
-                            <Typography variant="h3">{t("common.notFound")}</Typography>
+                            <Typography variant="h3">{t('common.notFound')}</Typography>
                             <SearchOffRounded />
                         </Stack>
                     </Grid>
@@ -99,7 +111,7 @@ const Nationalities = () => {
                             page={page}
                             onChange={handlePageChange}
                             count={pageCount}
-                            shape={"rounded"}
+                            shape={'rounded'}
                             color="info"
                             size="large"
                             showFirstButton

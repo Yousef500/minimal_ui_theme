@@ -1,100 +1,137 @@
-import * as Yup from 'yup';
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 // form
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Link, Stack, Alert, IconButton, InputAdornment } from '@mui/material';
+import { Login } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
+import { IconButton, InputAdornment, Stack } from '@mui/material';
 // routes
-import { PATH_AUTH } from '../../../routes/paths';
 // hooks
-import useAuth from '../../../hooks/useAuth';
-import useIsMountedRef from '../../../hooks/useIsMountedRef';
+import InputField from 'src/components/khadamat/general/InputField';
 // components
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import usersService from 'src/config/axios/usersService';
+import { setCurrentUser } from 'src/redux/slices/currentUserSlice';
 import Iconify from '../../../components/Iconify';
-import { FormProvider, RHFTextField, RHFCheckbox } from '../../../components/hook-form';
 
 // ----------------------------------------------------------------------
 
-export default function LoginForm() {
-  const { login } = useAuth();
+export default function LoginForm({ t }) {
+    // const { login } = useAuth();
 
-  const isMountedRef = useIsMountedRef();
+    // const isMountedRef = useIsMountedRef();
+    const {
+        register,
+        formState: { errors, isValid },
+        handleSubmit,
+    } = useForm({
+        mode: 'onTouched',
+    });
+    const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] = useState(false);
+    // const LoginSchema = Yup.object().shape({
+    //     email: Yup.string()
+    //         .email('Email must be a valid email address')
+    //         .required('Email is required'),
+    //     password: Yup.string().required('Password is required'),
+    // });
 
-  const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required'),
-  });
+    // const defaultValues = {
+    //     email: 'demo@minimals.cc',
+    //     password: 'demo1234',
+    //     remember: true,
+    // };
 
-  const defaultValues = {
-    email: 'demo@minimals.cc',
-    password: 'demo1234',
-    remember: true,
-  };
+    // const methods = useForm({
+    //     resolver: yupResolver(LoginSchema),
+    //     defaultValues,
+    // });
 
-  const methods = useForm({
-    resolver: yupResolver(LoginSchema),
-    defaultValues,
-  });
+    // const {
+    //     reset,
+    //     setError,
+    //     handleSubmit,
+    //     formState: { errors, isSubmitting },
+    // } = methods;
 
-  const {
-    reset,
-    setError,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = methods;
+    const onSubmit = async (data) => {
+        setLoading(true);
+        try {
+            // await login(data.email, data.password);
+            console.log(data);
+            const { data: user } = await usersService.login(data);
+            dispatch(setCurrentUser(user));
+            setLoading(false);
+            navigate('/dead');
+        } catch (error) {
+            console.error(error);
+            toast.error(error.response?.data?.Message || t('common.error.wrongCreds'));
+            setLoading(false);
 
-  const onSubmit = async (data) => {
-    try {
-      await login(data.email, data.password);
-    } catch (error) {
-      console.error(error);
+            // reset();
 
-      reset();
+            // if (isMountedRef.current) {
+            //     setError('afterSubmit', { ...error, message: error.message });
+            // }
+        }
+    };
 
-      if (isMountedRef.current) {
-        setError('afterSubmit', { ...error, message: error.message });
-      }
-    }
-  };
+    return (
+        // <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={3} direction="column" component="form" onSubmit={handleSubmit(onSubmit)}>
+            {/* {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>} */}
 
-  return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={3}>
-        {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
+            <InputField
+                label={t('accounts.users.username')}
+                {...register('username', { required: true })}
+                error={!!errors.username}
+                helperText={errors.username?.message}
+            />
 
-        <RHFTextField name="email" label="Email address" />
+            <InputField
+                label={t('accounts.users.password')}
+                type={showPassword ? 'text' : 'password'}
+                {...register('password', { required: true })}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="start">
+                            <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                                <Iconify
+                                    icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
+                                />
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+            />
+            <LoadingButton
+                fullWidth
+                size="large"
+                variant="contained"
+                type="submit"
+                loading={loading}
+                startIcon={<Login />}
+                loadingPosition="start"
+                disabled={!isValid}
+            >
+                {t('accounts.signIn')}
+            </LoadingButton>
 
-        <RHFTextField
-          name="password"
-          label="Password"
-          type={showPassword ? 'text' : 'password'}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Stack>
-
-      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
+            {/* <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
         <RHFCheckbox name="remember" label="Remember me" />
         <Link component={RouterLink} variant="subtitle2" to={PATH_AUTH.resetPassword}>
           Forgot password?
         </Link>
-      </Stack>
+      </Stack> */}
+        </Stack>
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
-        Login
-      </LoadingButton>
-    </FormProvider>
-  );
+        // </FormProvider>
+    );
 }

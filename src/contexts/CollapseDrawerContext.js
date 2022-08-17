@@ -6,12 +6,12 @@ import useResponsive from '../hooks/useResponsive';
 // ----------------------------------------------------------------------
 
 const initialState = {
-  isCollapse: false,
-  collapseClick: false,
-  collapseHover: false,
-  onToggleCollapse: () => {},
-  onHoverEnter: () => {},
-  onHoverLeave: () => {},
+    isCollapse: false,
+    collapseClick: false,
+    collapseHover: false,
+    onToggleCollapse: () => {},
+    onHoverEnter: () => {},
+    onHoverLeave: () => {},
 };
 
 const CollapseDrawerContext = createContext(initialState);
@@ -23,49 +23,48 @@ const CollapseDrawerContext = createContext(initialState);
 // };
 
 function CollapseDrawerProvider({ children }) {
-  const isDesktop = useResponsive('up', 'lg');
+    const isDesktop = useResponsive('up', 'lg');
 
-  const [collapse, setCollapse] = useState({
-    click: false,
-    hover: false,
-  });
-
-  useEffect(() => {
-    if (!isDesktop) {
-      setCollapse({
+    const [collapse, setCollapse] = useState({
         click: false,
         hover: false,
-      });
-    }
-  }, [isDesktop]);
+    });
 
-  const handleToggleCollapse = () => {
-    setCollapse({ ...collapse, click: !collapse.click });
-  };
+    useEffect(() => {
+        if (!isDesktop) {
+            setCollapse({
+                click: false,
+                hover: false,
+            });
+        }
+    }, [isDesktop]);
 
-  const handleHoverEnter = () => {
-    if (collapse.click) {
-      setCollapse({ ...collapse, hover: true });
-    }
-  };
+    const handleToggleCollapse = () => {
+        setCollapse({ ...collapse, click: !collapse.click });
+    };
 
-  const handleHoverLeave = () => {
-    setCollapse({ ...collapse, hover: false });
-  };
+    const handleHoverEnter = () => {
+        if (collapse.click) {
+            setCollapse({ ...collapse, hover: true });
+        }
+    };
 
-  const value = useMemo(
-    () => ({
-      isCollapse: collapse.click && !collapse.hover,
-      collapseClick: collapse.click,
-      collapseHover: collapse.hover,
-      onToggleCollapse: handleToggleCollapse,
-      onHoverEnter: handleHoverEnter,
-      onHoverLeave: handleHoverLeave,
-    }),
-    []
-  );
+    const handleHoverLeave = () => {
+        setCollapse({ ...collapse, hover: false });
+    };
 
-  return <CollapseDrawerContext.Provider value={value}>{children}</CollapseDrawerContext.Provider>;
+    const value = useMemo(() => ({
+        isCollapse: collapse.click && !collapse.hover,
+        collapseClick: collapse.click,
+        collapseHover: collapse.hover,
+        onToggleCollapse: handleToggleCollapse,
+        onHoverEnter: handleHoverEnter,
+        onHoverLeave: handleHoverLeave,
+    }));
+
+    return (
+        <CollapseDrawerContext.Provider value={value}>{children}</CollapseDrawerContext.Provider>
+    );
 }
 
 export { CollapseDrawerProvider, CollapseDrawerContext };

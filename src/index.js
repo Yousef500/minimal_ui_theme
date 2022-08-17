@@ -54,23 +54,23 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  // <AuthProvider>
-  <HelmetProvider>
-    <ReduxProvider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <SettingsProvider>
-            <CollapseDrawerProvider>
-              <HashRouter>
-                <App />
-              </HashRouter>
-            </CollapseDrawerProvider>
-          </SettingsProvider>
-        </LocalizationProvider>
-      </PersistGate>
-    </ReduxProvider>
-  </HelmetProvider>
-  // </AuthProvider>
+    // <AuthProvider>
+    <HelmetProvider>
+        <ReduxProvider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <SettingsProvider>
+                        <CollapseDrawerProvider>
+                            <HashRouter>
+                                <App />
+                            </HashRouter>
+                        </CollapseDrawerProvider>
+                    </SettingsProvider>
+                </LocalizationProvider>
+            </PersistGate>
+        </ReduxProvider>
+    </HelmetProvider>
+    // </AuthProvider>
 );
 
 // If you want your app to work offline and load faster, you can change

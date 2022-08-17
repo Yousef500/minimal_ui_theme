@@ -10,7 +10,7 @@ const CardData = ({ label, data, labelProps, dataProps, noDivider }) => (
                 {data}
             </Typography>
         </Stack>
-        {!noDivider && <Divider sx={{ background: "black" }} />}
+        {!noDivider && <Divider />}
     </>
 );
 

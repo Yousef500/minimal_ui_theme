@@ -1,15 +1,23 @@
-import { PersonAddOutlined } from "@mui/icons-material";
-import { CircularProgress, Container, Grid, Pagination, Stack, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { setUsers, setUsersLoading, setUsersPageNo } from "src/redux/slices/usersSlice";
-import Center from "src/components/khadamat/general/Center";
-import UserCard from "src/components/khadamat/users/UserCard";
-import UserSearch from "src/components/khadamat/users/UserSearch";
+import { PersonAddOutlined } from '@mui/icons-material';
+import {
+    Button,
+    CircularProgress,
+    Container,
+    Grid,
+    Pagination,
+    Stack,
+    Typography,
+} from '@mui/material';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Center from 'src/components/khadamat/general/Center';
+import UserCard from 'src/components/khadamat/users/UserCard';
+import UserSearch from 'src/components/khadamat/users/UserSearch';
+import { setUsers, setUsersLoading, setUsersPageNo } from 'src/redux/slices/usersSlice';
 
-import usersService from "src/config/axios/usersService";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
+import usersService from 'src/config/axios/usersService';
 
 const UsersManagement = () => {
     const dispatch = useDispatch();
@@ -42,12 +50,12 @@ const UsersManagement = () => {
     };
 
     return (
-        <Container maxWidth={"xl"} sx={{ mb: 10 }}>
-            <Grid container spacing={3} justifyContent="center" alignItems={"center"}>
+        <Container maxWidth={'xl'} sx={{ mb: 10 }}>
+            <Grid container spacing={3} justifyContent="center" alignItems={'center'}>
                 <Grid item xs={12}>
                     <Stack direction="row" justifyContent="space-between" mb={5}>
                         <Typography variant="h2" gutterBottom>
-                            {t("accounts.users.title")}
+                            {t('accounts.users.title')}
                         </Typography>
                         <Button
                             component={Link}
@@ -58,7 +66,7 @@ const UsersManagement = () => {
                             startIcon={<PersonAddOutlined />}
                             sx={{ fontSize: 20 }}
                         >
-                            {t("accounts.users.add")}
+                            {t('accounts.users.add')}
                         </Button>
                     </Stack>
                 </Grid>

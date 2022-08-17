@@ -55,7 +55,7 @@ const DeadSearch = ({ t }) => {
                             )
         `,
       }}
-      elevation={6}
+      elevation={24}
     >
       <Stack
         component={'form'}

@@ -32,10 +32,10 @@ const Avatar = forwardRef(({ color = 'default', children, sx, ...other }, ref) =
   );
 });
 
-Avatar.propTypes = {
-  children: PropTypes.node,
-  sx: PropTypes.object,
-  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
-};
+// Avatar.propTypes = {
+//   children: PropTypes.node,
+//   sx: PropTypes.object,
+//   color: PropTypes.oneOf(['default', 'primary', 'secondary', 'info', 'success', 'warning', 'error']),
+// };
 
 export default Avatar;

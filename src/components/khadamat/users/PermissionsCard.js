@@ -1,4 +1,5 @@
 import {
+    Button,
     Card,
     CardActions,
     CardContent,
@@ -11,9 +12,9 @@ import {
     ListItemIcon,
     ListItemText,
     Typography,
-} from "@mui/material";
+} from '@mui/material';
 
-import Center from "../general/Center";
+import Center from '../general/Center';
 
 const PermissionsCard = ({
     list,
@@ -71,15 +72,15 @@ const PermissionsCard = ({
                     />
                 }
                 title={<Typography variant="h5">{title}</Typography>}
-                subheader={`${t("accounts.permissions.selected")} ${checked.length}/${list.length}`}
+                subheader={`${t('accounts.permissions.selected')} ${checked.length}/${list.length}`}
             />
-            <Divider sx={{ background: "black" }} />
+            <Divider />
             {loading ? (
                 <Center my={17}>
                     <CircularProgress size={60} color="info" />
                 </Center>
             ) : (
-                <CardContent sx={{ overflowY: "auto", height: 330 }}>
+                <CardContent sx={{ overflowY: 'auto', height: 330 }}>
                     <List>
                         {list.map((perm) => (
                             <ListItem

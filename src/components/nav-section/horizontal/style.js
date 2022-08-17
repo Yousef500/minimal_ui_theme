@@ -2,9 +2,9 @@
 import { alpha, styled } from '@mui/material/styles';
 import { Popover, ListItemButton } from '@mui/material';
 // utils
+import { NAVBAR } from 'src/config';
 import cssStyles from '../../../utils/cssStyles';
 // config
-import { NAVBAR } from 'src/config';
 
 // ----------------------------------------------------------------------
 

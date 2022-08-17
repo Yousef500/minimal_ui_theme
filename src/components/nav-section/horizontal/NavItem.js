@@ -3,11 +3,11 @@ import { forwardRef } from 'react';
 // @mui
 import { Box, Tooltip, ListItemText, ListItemIcon } from '@mui/material';
 // hooks
+import { ICON } from 'src/config';
 import useLocales from '../../../hooks/useLocales';
 // guards
 import RoleBasedGuard from '../../../guards/RoleBasedGuard';
 // config
-import { ICON } from 'src/config';
 //
 import Iconify from '../../Iconify';
 import { ListItemStyle } from './style';
@@ -81,18 +81,18 @@ const NavItem = forwardRef(({ item, depth, active, open, ...other }, ref) => {
 
 export default NavItem;
 
-NavItem.propTypes = {
-  active: PropTypes.bool,
-  open: PropTypes.bool,
-  depth: PropTypes.number,
-  item: PropTypes.shape({
-    children: PropTypes.array,
-    icon: PropTypes.any,
-    info: PropTypes.any,
-    caption: PropTypes.string,
-    path: PropTypes.string,
-    title: PropTypes.string,
-    disabled: PropTypes.bool,
-    roles: PropTypes.arrayOf(PropTypes.string),
-  }),
-};
+// NavItem.propTypes = {
+//   active: PropTypes.bool,
+//   open: PropTypes.bool,
+//   depth: PropTypes.number,
+//   item: PropTypes.shape({
+//     children: PropTypes.array,
+//     icon: PropTypes.any,
+//     info: PropTypes.any,
+//     caption: PropTypes.string,
+//     path: PropTypes.string,
+//     title: PropTypes.string,
+//     disabled: PropTypes.bool,
+//     roles: PropTypes.arrayOf(PropTypes.string),
+//   }),
+// };

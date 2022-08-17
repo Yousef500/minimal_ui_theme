@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import omit from 'lodash/omit';
 // utils
+import { useDispatch as dispatch } from 'react-redux';
 import axios from '../../utils/axios';
 //
-import { useDispatch as dispatch } from 'react-redux';
 
 // ----------------------------------------------------------------------
 

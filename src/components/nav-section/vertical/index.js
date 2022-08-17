@@ -9,10 +9,10 @@ import NavList from './NavList';
 
 // ----------------------------------------------------------------------
 
-NavSectionVertical.propTypes = {
-  isCollapse: PropTypes.bool,
-  navConfig: PropTypes.array,
-};
+// NavSectionVertical.propTypes = {
+//   isCollapse: PropTypes.bool,
+//   navConfig: PropTypes.array,
+// };
 
 export default function NavSectionVertical({ navConfig, isCollapse, ...other }) {
   const { translate } = useLocales();

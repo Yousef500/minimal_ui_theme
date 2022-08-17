@@ -1,7 +1,7 @@
-import { Container, Fade, Grid, Typography } from "@mui/material";
+import { Button, Container, Fade, Grid, Typography } from '@mui/material';
 
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const SecurityGuardsDashboard = () => {
     const { t } = useTranslation();
@@ -10,7 +10,7 @@ const SecurityGuardsDashboard = () => {
             <Grid container spacing={3} m="auto" alignItems="center" justifyContent="center">
                 <Grid item xs={12}>
                     <Typography align="center" variant="h1" gutterBottom>
-                        {t("securityGuards.title")}
+                        {t('securityGuards.title')}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -21,9 +21,9 @@ const SecurityGuardsDashboard = () => {
                             size="large"
                             variant="contained"
                             color="info"
-                            sx={{ fontSize: 25 }}
+                            sx={{ fontSize: 25, height: 'max-content' }}
                         >
-                            {t("securityGuards.locations.title")}
+                            {t('securityGuards.locations.title')}
                         </Button>
                     </Fade>
                 </Grid>
@@ -38,7 +38,7 @@ const SecurityGuardsDashboard = () => {
                             color="info"
                             sx={{ fontSize: 25 }}
                         >
-                            {t("securityGuards.shifts.title")}
+                            {t('securityGuards.shifts.title')}
                         </Button>
                     </Fade>
                 </Grid>

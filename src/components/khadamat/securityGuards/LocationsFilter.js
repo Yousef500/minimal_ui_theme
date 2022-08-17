@@ -1,6 +1,6 @@
 import { CancelRounded, FilterAltRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from "@mui/material";
 
 import locationsService from "src/config/axios/locationsService";
 import { useState } from "react";

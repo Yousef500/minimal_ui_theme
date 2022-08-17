@@ -11,22 +11,22 @@ import { ListItemStyle, ListItemTextStyle, ListItemIconStyle } from './style';
 
 // ----------------------------------------------------------------------
 
-NavItem.propTypes = {
-  active: PropTypes.bool,
-  open: PropTypes.bool,
-  isCollapse: PropTypes.bool,
-  depth: PropTypes.number,
-  item: PropTypes.shape({
-    children: PropTypes.array,
-    icon: PropTypes.any,
-    info: PropTypes.any,
-    path: PropTypes.string,
-    title: PropTypes.string,
-    disabled: PropTypes.bool,
-    caption: PropTypes.string,
-    roles: PropTypes.arrayOf(PropTypes.string),
-  }),
-};
+// NavItem.propTypes = {
+//   active: PropTypes.bool,
+//   open: PropTypes.bool,
+//   isCollapse: PropTypes.bool,
+//   depth: PropTypes.number,
+//   item: PropTypes.shape({
+//     children: PropTypes.array,
+//     icon: PropTypes.any,
+//     info: PropTypes.any,
+//     path: PropTypes.string,
+//     title: PropTypes.string,
+//     disabled: PropTypes.bool,
+//     caption: PropTypes.string,
+//     roles: PropTypes.arrayOf(PropTypes.string),
+//   }),
+// };
 
 export default function NavItem({ item, depth, active, open, isCollapse, ...other }) {
   const { translate } = useLocales();
@@ -83,9 +83,9 @@ export default function NavItem({ item, depth, active, open, isCollapse, ...othe
 
 // ----------------------------------------------------------------------
 
-DotIcon.propTypes = {
-  active: PropTypes.bool,
-};
+// DotIcon.propTypes = {
+//   active: PropTypes.bool,
+// };
 
 export function DotIcon({ active }) {
   return (

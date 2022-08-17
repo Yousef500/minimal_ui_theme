@@ -1,5 +1,6 @@
-import { LoadingButton } from "@mui/lab";
+import { LoadingButton } from '@mui/lab';
 import {
+    Button,
     Checkbox,
     CircularProgress,
     Container,
@@ -9,27 +10,27 @@ import {
     Paper,
     Stack,
     Typography,
-} from "@mui/material";
-import Center from "src/components/khadamat/general/Center";
-import InputField from "src/components/khadamat/general/InputField";
-import JobsAutoComplete from "src/components/khadamat/users/JobsAutoComplete";
-import ManagerAutoComplete from "src/components/khadamat/users/ManagerAutoComplete";
-import RolesAutoComplete from "src/components/khadamat/users/RolesAutoComplete";
+} from '@mui/material';
+import Center from 'src/components/khadamat/general/Center';
+import InputField from 'src/components/khadamat/general/InputField';
+import JobsAutoComplete from 'src/components/khadamat/users/JobsAutoComplete';
+import ManagerAutoComplete from 'src/components/khadamat/users/ManagerAutoComplete';
+import RolesAutoComplete from 'src/components/khadamat/users/RolesAutoComplete';
 
-import usersService from "src/config/axios/usersService";
-import i18n from "src/locales/i18n";
-import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { setUsersFilterBy, setUsersPageNo } from "src/redux/slices/usersSlice";
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import usersService from 'src/config/axios/usersService';
+import i18n from 'src/locales/i18n';
+import { setUsersFilterBy, setUsersPageNo } from 'src/redux/slices/usersSlice';
 
 const EditUser = () => {
     // const [defaults, setDefaults] = useState({});
     const { id } = useParams();
-    const page = useLocation().search.split("page=")[1];
+    const page = useLocation().search.split('page=')[1];
     const [managers, setManagers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [defaultsLoading, setDefaultsLoading] = useState(true);
@@ -47,16 +48,16 @@ const EditUser = () => {
         reset,
         getValues,
     } = useForm({
-        mode: "onTouched",
+        mode: 'onTouched',
     });
 
-    const watchIsCompany = watch("IsCompany");
+    const watchIsCompany = watch('IsCompany');
 
     useEffect(() => {
         (async () => {
             try {
                 dispatch(setUsersPageNo(1));
-                dispatch(setUsersFilterBy(""));
+                dispatch(setUsersFilterBy(''));
                 const { data } = await usersService.searchUsers({ id });
                 const userData = data.PagedList[0];
                 const { data: managerData } = await usersService.searchUsers({
@@ -72,7 +73,7 @@ const EditUser = () => {
                     manager: {
                         Key: managerData.PagedList[0].Id,
                         StringValue:
-                            i18n.language === "ar"
+                            i18n.language === 'ar'
                                 ? managerData.PagedList[0].NameFl
                                 : managerData.PagedList[0].NameSl,
                     },
@@ -94,7 +95,7 @@ const EditUser = () => {
             dispatch(setUsersPageNo(Number(page)));
         }
         // dispatch(setUsersLoading(false));
-        navigate("/users/management");
+        navigate('/users/management');
     };
 
     const handleEditUser = async (data) => {
@@ -112,9 +113,9 @@ const EditUser = () => {
                 nameFl: userData.NameFl,
                 nameSl: userData.NameSl,
                 isActive: userData.IsActive,
-                companyName: userData.IsCompany ? userData.CompanyName : "",
+                companyName: userData.IsCompany ? userData.CompanyName : '',
                 isCompany: userData.IsCompany,
-                managerId: managers.length ? manager.Key : "",
+                managerId: managers.length ? manager.Key : '',
                 securityUserJobId: job.Key,
                 securityRolesList,
             });
@@ -123,11 +124,11 @@ const EditUser = () => {
             // const { data: updatedUsers } = await usersService.searchUsers();
             // dispatch(setUsers(updatedUsers));
             setLoading(false);
-            toast.success(t("common.success.edit"));
+            toast.success(t('common.success.edit'));
             handleCancel();
         } catch (err) {
             console.log({ err });
-            toast.error(err.response.data.Message ?? t("common.error.unknown"));
+            toast.error(err.response.data.Message ?? t('common.error.unknown'));
             setLoading(false);
         }
     };
@@ -137,7 +138,7 @@ const EditUser = () => {
             component={Paper}
             elevation={10}
             maxWidth="xl"
-            sx={{ py: 10, mb: 5, mx: "auto", borderRadius: 10 }}
+            sx={{ py: 10, mb: 5, mx: 'auto', borderRadius: 10 }}
         >
             <Grid
                 container
@@ -148,7 +149,7 @@ const EditUser = () => {
             >
                 <Grid item xs={12}>
                     <Typography variant="h1" gutterBottom align="center">
-                        {t("accounts.users.edit")}
+                        {t('accounts.users.edit')}
                     </Typography>
                 </Grid>
 
@@ -161,9 +162,9 @@ const EditUser = () => {
                         <Grid item xs={12} sm={6}>
                             <InputField
                                 fullWidth
-                                label={`${t("common.arName")} *`}
+                                label={`${t('common.arName')} *`}
                                 type="text"
-                                {...register("NameFl", {
+                                {...register('NameFl', {
                                     required: true,
                                 })}
                                 error={!!errors.NameFl}
@@ -174,9 +175,9 @@ const EditUser = () => {
                         <Grid item xs={12} sm={6}>
                             <InputField
                                 fullWidth
-                                label={`${t("common.enName")} *`}
+                                label={`${t('common.enName')} *`}
                                 type="text"
-                                {...register("NameSl")}
+                                {...register('NameSl')}
                                 error={!!errors.NameSl}
                                 helperText={errors.NameSl?.message}
                             />
@@ -185,17 +186,17 @@ const EditUser = () => {
                         <Grid item xs={12} sm={6}>
                             <InputField
                                 fullWidth
-                                label={`${t("common.phone")} *`}
+                                label={`${t('common.phone')} *`}
                                 type="number"
-                                {...register("Mobile", {
+                                {...register('Mobile', {
                                     required: true,
                                     maxLength: {
                                         value: 12,
-                                        message: t("accounts.users.phoneLen"),
+                                        message: t('accounts.users.phoneLen'),
                                     },
                                     minLength: {
                                         value: 12,
-                                        message: t("accounts.users.phoneLen"),
+                                        message: t('accounts.users.phoneLen'),
                                     },
                                 })}
                                 error={!!errors.Mobile}
@@ -206,20 +207,20 @@ const EditUser = () => {
                         <Grid item xs={12} sm={6}>
                             <InputField
                                 fullWidth
-                                label={`${t("common.id")} *`}
+                                label={`${t('common.id')} *`}
                                 type="number"
-                                {...register("NationalNumber", {
+                                {...register('NationalNumber', {
                                     required: true,
                                     maxLength: {
-                                        message: t("accounts.users.idLen"),
+                                        message: t('accounts.users.idLen'),
                                         value: 10,
                                     },
                                     minLength: {
-                                        message: t("accounts.users.idLen"),
+                                        message: t('accounts.users.idLen'),
                                         value: 10,
                                     },
                                     pattern: {
-                                        message: t("accounts.users.idPattern"),
+                                        message: t('accounts.users.idPattern'),
                                         value: /^1|^2\d*/,
                                     },
                                 })}
@@ -231,9 +232,9 @@ const EditUser = () => {
                         <Grid item xs={12} sm={6}>
                             <InputField
                                 fullWidth
-                                label={`${t("common.email")} *`}
+                                label={`${t('common.email')} *`}
                                 type="email"
-                                {...register("Email", {
+                                {...register('Email', {
                                     required: true,
                                 })}
                                 error={!!errors.Email}
@@ -244,15 +245,15 @@ const EditUser = () => {
                         <Grid item xs={12} sm={6}>
                             <InputField
                                 fullWidth
-                                label={t("accounts.users.jobNo")}
+                                label={t('accounts.users.jobNo')}
                                 type="number"
-                                {...register("JobNumber", {
+                                {...register('JobNumber', {
                                     maxLength: {
-                                        message: t("accounts.users.jobNoLen"),
+                                        message: t('accounts.users.jobNoLen'),
                                         value: 8,
                                     },
                                     minLength: {
-                                        message: t("accounts.users.jobNoLen"),
+                                        message: t('accounts.users.jobNoLen'),
                                         value: 8,
                                     },
                                 })}
@@ -264,23 +265,23 @@ const EditUser = () => {
                         <Grid item xs={6}>
                             <JobsAutoComplete
                                 control={control}
-                                label={`${t("accounts.users.job")} *`}
+                                label={`${t('accounts.users.job')} *`}
                                 setManagers={setManagers}
-                                job={getValues("job")}
+                                job={getValues('job')}
                                 setValue={setValue}
                             />
                         </Grid>
 
                         <Grid item xs={6}>
                             <RolesAutoComplete
-                                label={`${t("accounts.users.role")} *`}
+                                label={`${t('accounts.users.role')} *`}
                                 control={control}
                             />
                         </Grid>
 
-                        <Grid item xs={6} display={!managers.length ? "none" : ""}>
+                        <Grid item xs={6} display={!managers.length ? 'none' : ''}>
                             <ManagerAutoComplete
-                                label={`${t("accounts.users.manager")} *`}
+                                label={`${t('accounts.users.manager')} *`}
                                 managers={managers}
                                 control={control}
                             />
@@ -289,8 +290,8 @@ const EditUser = () => {
                         <Grid item xs={4} sm={2} md={2} lg={1}>
                             <FormControlLabel
                                 label={
-                                    <Typography display={"inline"} variant="subtitle1">
-                                        {t("common.active")}
+                                    <Typography display={'inline'} variant="subtitle1">
+                                        {t('common.active')}
                                     </Typography>
                                 }
                                 control={
@@ -311,7 +312,7 @@ const EditUser = () => {
                             <FormControlLabel
                                 label={
                                     <Typography display="inline" variant="subtitle1">
-                                        {t("accounts.users.companyAcc")}
+                                        {t('accounts.users.companyAcc')}
                                     </Typography>
                                 }
                                 control={
@@ -326,13 +327,13 @@ const EditUser = () => {
                             />
                         </Grid>
 
-                        <Grid item xs={6} display={!watchIsCompany && "none"}>
+                        <Grid item xs={6} display={!watchIsCompany && 'none'}>
                             <InputField
                                 fullWidth
-                                label={t("accounts.users.companyName")}
+                                label={t('accounts.users.companyName')}
                                 type="text"
-                                {...register("CompanyName", {
-                                    required: getValues("IsCompany"),
+                                {...register('CompanyName', {
+                                    required: getValues('IsCompany'),
                                 })}
                                 error={!!errors.CompanyName}
                                 helperText={errors.CompanyName?.message}
@@ -340,7 +341,7 @@ const EditUser = () => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Divider sx={{ background: "black" }} />
+                            <Divider />
                         </Grid>
 
                         <Grid item xs={12}>
@@ -353,7 +354,7 @@ const EditUser = () => {
                                     fullWidth
                                     disabled={!isValid || !isDirty}
                                 >
-                                    {t("common.save")}
+                                    {t('common.save')}
                                 </LoadingButton>
 
                                 <Button
@@ -362,7 +363,7 @@ const EditUser = () => {
                                     color="error"
                                     onClick={handleCancel}
                                 >
-                                    {t("common.cancel")}
+                                    {t('common.cancel')}
                                 </Button>
                             </Stack>
                         </Grid>

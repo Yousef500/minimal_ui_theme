@@ -1,5 +1,5 @@
-import { CloseRounded } from "@mui/icons-material";
-import { LoadingButton } from "@mui/lab";
+import { CloseRounded } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import {
     Autocomplete,
     Button,
@@ -10,6 +10,7 @@ import {
     DialogContent,
     DialogTitle,
     Fab,
+    Fade,
     FormControl,
     FormControlLabel,
     FormLabel,
@@ -19,23 +20,22 @@ import {
     RadioGroup,
     Stack,
     TextField,
-    Typography,
-} from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+    Typography
+} from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
 
-import nationalitiesService from "src/config/axios/nationalitiesService";
-import deadService from "src/config/axios/deadServices";
-import i18n from "src/locales/i18n";
-import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { setDead, setDeadFilters } from "src/redux/slices/deadSlice";
-import { setAllNats } from "src/redux/slices/nationalitiesSlice";
-import Center from "../general/Center";
-import InputField from "../general/InputField";
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import deadService from 'src/config/axios/deadServices';
+import nationalitiesService from 'src/config/axios/nationalitiesService';
+import i18n from 'src/locales/i18n';
+import { setDead, setDeadFilters } from 'src/redux/slices/deadSlice';
+import { setAllNats } from 'src/redux/slices/nationalitiesSlice';
+import Center from '../general/Center';
+import InputField from '../general/InputField';
 
 const DeadFilterDialog = ({ open, onClose }) => {
     const { register, handleSubmit, control } = useForm();
@@ -47,20 +47,20 @@ const DeadFilterDialog = ({ open, onClose }) => {
 
     const sortOptions = [
         {
-            label: t("common.name"),
-            value: i18n.language === "en" ? "NameSl" : "NameFl",
+            label: t('common.name'),
+            value: i18n.language === 'en' ? 'NameSl' : 'NameFl',
         },
         {
-            label: t("common.id"),
-            value: "NationalNumber",
+            label: t('common.id'),
+            value: 'NationalNumber',
         },
         {
-            label: t("common.nat"),
-            value: "NationalityName",
+            label: t('common.nat'),
+            value: 'NationalityName',
         },
         {
-            label: t("ekram.dead.deathDate"),
-            value: "DateOfDeath",
+            label: t('ekram.dead.deathDate'),
+            value: 'DateOfDeath',
         },
     ];
 
@@ -72,7 +72,7 @@ const DeadFilterDialog = ({ open, onClose }) => {
                 setNatsLoading(false);
             } catch (err) {
                 console.log({ err });
-                toast.error(t("common.error.unknown"));
+                toast.error(t('common.error.unknown'));
                 setNatsLoading(false);
             }
         })();
@@ -109,237 +109,234 @@ const DeadFilterDialog = ({ open, onClose }) => {
             onClose();
         } catch (err) {
             console.log({ err });
-            toast.error(t("common.error.unknown"));
+            toast.error(t('common.error.unknown'));
             setLoading(false);
         }
     };
 
     return (
-        open && (
-            <Dialog
-                open={open}
-                onClose={onClose}
-                fullScreen
-                component="form"
-                onSubmit={handleSubmit(handleFilterSubmit)}
-            >
-                <DialogTitle>
-                    <Center mb={2}>
-                        <Fab
-                            color="error"
-                            onClick={onClose}
-                            sx={{ fontSize: 20, ml: "auto" }}
-                            size={"small"}
-                        >
-                            <CloseRounded />
-                        </Fab>
-                        <Typography align="center" width={"100%"}>
-                            {t("common.filter")}
-                        </Typography>
-                    </Center>
-                </DialogTitle>
-
-                <DialogContent>
-                    <Grid container spacing={3} justifyContent="center" mt={2}>
-                        <Grid item xs={12} md={6}>
-                            <InputField
-                                fullWidth
-                                {...register("name")}
-                                type="text"
-                                label={t("common.name")}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <InputField
-                                fullWidth
-                                {...register("nationalNumber")}
-                                type="number"
-                                label={t("common.id")}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <Controller
-                                control={control}
-                                name="nationality"
-                                render={({ field }) => (
-                                    <Autocomplete
-                                        {...field}
-                                        value={field.value || null}
-                                        onChange={(e, val) => field.onChange(val)}
-                                        options={allNats}
-                                        getOptionLabel={(opt) => opt.StringValue}
-                                        isOptionEqualToValue={(opt, val) => opt.Key === val.Key}
-                                        renderInput={(params) => (
-                                            <InputField
-                                                {...params}
-                                                fullWidth
-                                                type="text"
-                                                label={t("common.nat")}
-                                                InputProps={{
-                                                    ...params.InputProps,
-                                                    endAdornment: natsLoading ? (
-                                                        <InputAdornment position="end">
-                                                            <CircularProgress />
-                                                        </InputAdornment>
-                                                    ) : (
-                                                        params.InputProps.endAdornment
-                                                    ),
-                                                }}
-                                            />
-                                        )}
-                                    />
-                                )}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <Controller
-                                    render={({ field }) => (
-                                        <DatePicker
-                                            color="info"
-                                            disableFuture
-                                            views={["year", "month", "day"]}
-                                            {...field}
-                                            label={t("ekram.dead.deathDate")}
-                                            renderInput={(params) => (
-                                                <TextField fullWidth {...params} />
-                                            )}
-                                        />
-                                    )}
-                                    name="dateOfDeath"
-                                    control={control}
-                                />
-                            </LocalizationProvider>
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <Controller
-                                    render={({ field }) => (
-                                        <DatePicker
-                                            color="info"
-                                            disableFuture
-                                            views={["year", "month", "day"]}
-                                            {...field}
-                                            label={t("ekram.dead.deathDateFrom")}
-                                            renderInput={(params) => (
-                                                <TextField fullWidth {...params} />
-                                            )}
-                                        />
-                                    )}
-                                    name="dateOfDeathFrom"
-                                    control={control}
-                                />
-                            </LocalizationProvider>
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <Controller
-                                    render={({ field }) => (
-                                        <DatePicker
-                                            color="info"
-                                            disableFuture
-                                            views={["year", "month", "day"]}
-                                            {...field}
-                                            label={t("ekram.dead.deathDateTo")}
-                                            renderInput={(params) => (
-                                                <TextField fullWidth {...params} />
-                                            )}
-                                        />
-                                    )}
-                                    name="dateOfDeathTO"
-                                    control={control}
-                                />
-                            </LocalizationProvider>
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <Controller
-                                render={({ field }) => (
-                                    <Autocomplete
-                                        {...field}
-                                        value={field.value || null}
-                                        onChange={(e, val) => field.onChange(val)}
-                                        options={sortOptions}
-                                        isOptionEqualToValue={(opt, val) => opt.label === val.label}
-                                        renderInput={(params) => (
-                                            <InputField {...params} label={t("common.sortBy")} />
-                                        )}
-                                    />
-                                )}
-                                control={control}
-                                name="sortBy"
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} md={6}>
-                            <FormControl>
-                                <FormLabel>{t("common.order")}</FormLabel>
-                                <Controller
-                                    defaultValue={""}
-                                    render={({ field }) => (
-                                        <RadioGroup row {...field}>
-                                            <FormControlLabel
-                                                label={t("common.asc")}
-                                                value={0}
-                                                control={<Radio />}
-                                            />
-
-                                            <FormControlLabel
-                                                label={t("common.desc")}
-                                                value={1}
-                                                control={<Radio />}
-                                            />
-                                        </RadioGroup>
-                                    )}
-                                    name="orderby"
-                                    control={control}
-                                />
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12} md={3} lg={1}>
-                            <FormControlLabel
-                                label={t("common.active")}
-                                control={
-                                    <Controller
-                                        render={({ field }) => <Checkbox {...field} />}
-                                        name="isActive"
-                                        control={control}
-                                    />
-                                }
-                            />
-                        </Grid>
-                    </Grid>
-                </DialogContent>
-                <DialogActions>
-                    <Stack
-                        direction="row"
-                        spacing={3}
-                        width="100%"
-                        justifyContent={"space-between"}
-                        mb={2}
+        <Dialog
+            maxWidth={'lg'}
+            open={open}
+            onClose={onClose}
+            component="form"
+            onSubmit={handleSubmit(handleFilterSubmit)}
+            TransitionComponent={Fade}
+            TransitionProps={{
+                unmountOnExit: true,
+            }}
+            disableScrollLock
+        >
+            <DialogTitle>
+                <Center mb={2}>
+                    <Fab
+                        color="error"
+                        onClick={onClose}
+                        sx={{ fontSize: 20, ml: 'auto' }}
+                        size={'small'}
                     >
-                        <LoadingButton
+                        <CloseRounded />
+                    </Fab>
+                    <Typography align="center" width={'100%'}>
+                        {t('common.filter')}
+                    </Typography>
+                </Center>
+            </DialogTitle>
+
+            <DialogContent>
+                <Grid container spacing={3} justifyContent="center" mt={2}>
+                    <Grid item xs={12} md={6}>
+                        <InputField
                             fullWidth
-                            loading={loading}
-                            variant="contained"
-                            color="success"
-                            type={"submit"}
-                        >
-                            {t("common.filter")}
-                        </LoadingButton>
-                        <Button fullWidth color="error" variant="contained" onClick={onClose}>
-                            {t("common.cancel")}
-                        </Button>
-                    </Stack>
-                </DialogActions>
-            </Dialog>
-        )
+                            {...register('name')}
+                            type="text"
+                            label={t('common.name')}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        <InputField
+                            fullWidth
+                            {...register('nationalNumber')}
+                            type="number"
+                            label={t('common.id')}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        <Controller
+                            control={control}
+                            name="nationality"
+                            render={({ field }) => (
+                                <Autocomplete
+                                    {...field}
+                                    value={field.value || null}
+                                    onChange={(e, val) => field.onChange(val)}
+                                    options={allNats}
+                                    getOptionLabel={(opt) => opt.StringValue}
+                                    isOptionEqualToValue={(opt, val) => opt.Key === val.Key}
+                                    renderInput={(params) => (
+                                        <InputField
+                                            {...params}
+                                            fullWidth
+                                            type="text"
+                                            label={t('common.nat')}
+                                            InputProps={{
+                                                ...params.InputProps,
+                                                endAdornment: natsLoading ? (
+                                                    <InputAdornment position="end">
+                                                        <CircularProgress />
+                                                    </InputAdornment>
+                                                ) : (
+                                                    params.InputProps.endAdornment
+                                                ),
+                                            }}
+                                        />
+                                    )}
+                                />
+                            )}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
+                        <Controller
+                            render={({ field }) => (
+                                <DatePicker
+                                    color="info"
+                                    disableFuture
+                                    views={['year', 'month', 'day']}
+                                    {...field}
+                                    label={t('ekram.dead.deathDate')}
+                                    renderInput={(params) => <TextField fullWidth {...params} />}
+                                />
+                            )}
+                            name="dateOfDeath"
+                            control={control}
+                        />
+                        {/* </LocalizationProvider> */}
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
+                        <Controller
+                            render={({ field }) => (
+                                <DatePicker
+                                    color="info"
+                                    disableFuture
+                                    views={['year', 'month', 'day']}
+                                    {...field}
+                                    label={t('ekram.dead.deathDateFrom')}
+                                    renderInput={(params) => <TextField fullWidth {...params} />}
+                                />
+                            )}
+                            name="dateOfDeathFrom"
+                            control={control}
+                        />
+                        {/* </LocalizationProvider> */}
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
+                        <Controller
+                            render={({ field }) => (
+                                <DatePicker
+                                    color="info"
+                                    disableFuture
+                                    views={['year', 'month', 'day']}
+                                    {...field}
+                                    label={t('ekram.dead.deathDateTo')}
+                                    renderInput={(params) => <TextField fullWidth {...params} />}
+                                />
+                            )}
+                            name="dateOfDeathTO"
+                            control={control}
+                        />
+                        {/* </LocalizationProvider> */}
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        <Controller
+                            render={({ field }) => (
+                                <Autocomplete
+                                    {...field}
+                                    value={field.value || null}
+                                    onChange={(e, val) => field.onChange(val)}
+                                    options={sortOptions}
+                                    isOptionEqualToValue={(opt, val) => opt.label === val.label}
+                                    renderInput={(params) => (
+                                        <InputField {...params} label={t('common.sortBy')} />
+                                    )}
+                                />
+                            )}
+                            control={control}
+                            name="sortBy"
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        <FormControl>
+                            <FormLabel>{t('common.order')}</FormLabel>
+                            <Controller
+                                defaultValue={''}
+                                render={({ field }) => (
+                                    <RadioGroup row {...field}>
+                                        <FormControlLabel
+                                            label={t('common.asc')}
+                                            value={0}
+                                            control={<Radio />}
+                                        />
+
+                                        <FormControlLabel
+                                            label={t('common.desc')}
+                                            value={1}
+                                            control={<Radio />}
+                                        />
+                                    </RadioGroup>
+                                )}
+                                name="orderby"
+                                control={control}
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} md={3} lg={1}>
+                        <FormControlLabel
+                            label={t('common.active')}
+                            control={
+                                <Controller
+                                    render={({ field }) => <Checkbox {...field} />}
+                                    name="isActive"
+                                    control={control}
+                                />
+                            }
+                        />
+                    </Grid>
+                </Grid>
+            </DialogContent>
+            <DialogActions>
+                <Stack
+                    direction="row"
+                    spacing={3}
+                    width="100%"
+                    justifyContent={'space-between'}
+                    mb={2}
+                >
+                    <LoadingButton
+                        fullWidth
+                        loading={loading}
+                        variant="contained"
+                        color="success"
+                        type={'submit'}
+                    >
+                        {t('common.filter')}
+                    </LoadingButton>
+                    <Button fullWidth color="error" variant="contained" onClick={onClose}>
+                        {t('common.cancel')}
+                    </Button>
+                </Stack>
+            </DialogActions>
+        </Dialog>
     );
 };
 

@@ -1,5 +1,5 @@
-import { CancelOutlined, CheckRounded, SaveRounded, UploadFileRounded } from "@mui/icons-material";
-import { LoadingButton } from "@mui/lab";
+import { CancelOutlined, CheckRounded, SaveRounded, UploadFileRounded } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import {
     Checkbox,
     CircularProgress,
@@ -11,34 +11,35 @@ import {
     Stack,
     TextField,
     Typography,
-} from "@mui/material";
-import shortUUID from "short-uuid";
-import { blue } from "@mui/material/colors";
-import { DatePicker, LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { GoogleMap, Marker, Polygon } from "@react-google-maps/api";
-import CemeteryInput from "src/components/khadamat/ekram/CemeteryInput";
-import DaysInput from "src/components/khadamat/ekram/DaysInput";
-import GenderInput from "src/components/khadamat/ekram/GenderInput";
-import MonthsInput from "src/components/khadamat/ekram/MonthsInput";
-import NationalityInput from "src/components/khadamat/ekram/NationalityInput";
-import Center from "src/components/khadamat/general/Center";
-import InputField from "src/components/khadamat/general/InputField";
+    Button,
+} from '@mui/material';
+import shortUUID from 'short-uuid';
+import { blue } from '@mui/material/colors';
+import { DatePicker, LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { GoogleMap, Marker, Polygon } from '@react-google-maps/api';
+import CemeteryInput from 'src/components/khadamat/ekram/CemeteryInput';
+import DaysInput from 'src/components/khadamat/ekram/DaysInput';
+import GenderInput from 'src/components/khadamat/ekram/GenderInput';
+import MonthsInput from 'src/components/khadamat/ekram/MonthsInput';
+import NationalityInput from 'src/components/khadamat/ekram/NationalityInput';
+import Center from 'src/components/khadamat/general/Center';
+import InputField from 'src/components/khadamat/general/InputField';
 
-import deadService from "src/config/axios/deadServices";
-import filesService from "src/config/axios/filesService";
-import dayjs from "dayjs";
-import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { resetDeadFilters, setDeadPageNo } from "src/redux/slices/deadSlice";
+import deadService from 'src/config/axios/deadServices';
+import filesService from 'src/config/axios/filesService';
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { resetDeadFilters, setDeadPageNo } from 'src/redux/slices/deadSlice';
 
 const EditDead = () => {
     const { id } = useParams();
-    const page = useLocation().search.split("page=")[1];
+    const page = useLocation().search.split('page=')[1];
     const [loadingData, setLoadingData] = useState(true);
     const [uploaded, setUploaded] = useState(false);
     const [saving, setSaving] = useState(false);
@@ -46,7 +47,7 @@ const EditDead = () => {
     const [center, setCenter] = useState({ lat: 24.774265, lng: 46.738586 });
     const [paths, setPaths] = useState([]);
     const [markerCoords, setMarkerCoords] = useState(null);
-    const [graveError, setGraveError] = useState("");
+    const [graveError, setGraveError] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -62,12 +63,12 @@ const EditDead = () => {
         clearErrors,
         getValues,
     } = useForm({
-        mode: "onTouched",
+        mode: 'onTouched',
     });
 
-    const watchedGender = watch("gender");
+    const watchedGender = watch('gender');
     const child =
-        watchedGender?.StringValue === "طفل- بنت" || watchedGender?.StringValue === "طفل -ولد";
+        watchedGender?.StringValue === 'طفل- بنت' || watchedGender?.StringValue === 'طفل -ولد';
 
     useEffect(() => {
         (async () => {
@@ -78,7 +79,7 @@ const EditDead = () => {
                 const defaults = searchResults.PagedList[0];
                 reset({
                     ...defaults,
-                    DeathTime: dayjs(defaults.DeathTime, "HH:mm:ss"),
+                    DeathTime: dayjs(defaults.DeathTime, 'HH:mm:ss'),
                     months: { label: `${defaults.AgeMonths}`, value: defaults.AgeMonths },
                     days: { label: `${defaults.AgeDays}`, value: defaults.AgeDays },
                     gender: {
@@ -108,7 +109,7 @@ const EditDead = () => {
 
     const handleGoBack = () => {
         dispatch(setDeadPageNo(Number(page)));
-        navigate("/dead/management");
+        navigate('/dead/management');
     };
 
     const handleFileChange = (e) => {
@@ -124,7 +125,7 @@ const EditDead = () => {
 
     const handlePolyClick = (e) => {
         setMarkerCoords({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-        setGraveError("");
+        setGraveError('');
     };
 
     const handleEditDead = async (data) => {
@@ -134,10 +135,10 @@ const EditDead = () => {
                 const fileName = shortUUID.generate();
                 if (file?.length) {
                     const formData = new FormData();
-                    formData.append("files", file[0], `${fileName}.pdf`);
+                    formData.append('files', file[0], `${fileName}.pdf`);
                     const { data: fileData } = await filesService.upload({
                         files: [...formData.values()],
-                        Module: "HDs",
+                        Module: 'HDs',
                         Folder: id,
                     });
 
@@ -151,7 +152,7 @@ const EditDead = () => {
                         ageMonths: data.months.value,
                         ageYears: data.AgeYears,
                         dateOfDeath: new Date(data.DateOfDeath).toISOString(),
-                        deathTime: dayjs(data.DeathTime).format("HH:mm:ss"),
+                        deathTime: dayjs(data.DeathTime).format('HH:mm:ss'),
                         registrationNumber: data.RegistrationNumber,
                         columnNumber: data.ColumnNumber,
                         rowNumber: data.RowNumber,
@@ -168,16 +169,16 @@ const EditDead = () => {
 
                     handleGoBack();
 
-                    toast.info(t("common.success.edit"));
+                    toast.info(t('common.success.edit'));
                 }
             } catch (err) {
                 console.log({ err });
-                toast.error(err.response?.data?.Message ?? t("common.error.unknown"));
+                toast.error(err.response?.data?.Message ?? t('common.error.unknown'));
                 setSaving(false);
             }
             setSaving(false);
         } else {
-            setGraveError(t("ekram.dead.graveError"));
+            setGraveError(t('ekram.dead.graveError'));
         }
     };
 
@@ -185,8 +186,8 @@ const EditDead = () => {
         <Container
             elevation={10}
             component={Paper}
-            maxWidth={"xl"}
-            sx={{ py: 5, mb: 5, mx: "auto", borderRadius: 5 }}
+            maxWidth={'xl'}
+            sx={{ py: 5, mb: 5, mx: 'auto', borderRadius: 5 }}
         >
             {loadingData ? (
                 <Center my={10}>
@@ -201,22 +202,22 @@ const EditDead = () => {
                 >
                     <Grid item xs={12}>
                         <Typography variant="h2" align="center" gutterBottom>
-                            {t("ekram.dead.edit")}
+                            {t('ekram.dead.edit')}
                         </Typography>
                     </Grid>
 
                     <Grid item xs={12}>
                         <Typography variant="h3" gutterBottom>
-                            {t("common.personalData")}
+                            {t('common.personalData')}
                         </Typography>
                     </Grid>
 
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("NameFl")}
+                            {...register('NameFl')}
                             type="text"
-                            label={`${t("common.arName")} *`}
+                            label={`${t('common.arName')} *`}
                             error={!!errors.NameFl}
                             helperText={errors.NameFl?.message}
                         />
@@ -225,9 +226,9 @@ const EditDead = () => {
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("NameSl")}
+                            {...register('NameSl')}
                             type="text"
-                            label={`${t("common.enName")} *`}
+                            label={`${t('common.enName')} *`}
                             error={!!errors.NameSl}
                             helperText={errors.NameSl?.message}
                         />
@@ -249,23 +250,23 @@ const EditDead = () => {
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("NationalNumber", {
+                            {...register('NationalNumber', {
                                 pattern: {
-                                    message: t("ekram.dead.idPattern"),
+                                    message: t('ekram.dead.idPattern'),
                                     value: /^1|2\d*/,
                                 },
                                 maxLength: {
-                                    message: t("ekram.dead.idLen"),
+                                    message: t('ekram.dead.idLen'),
                                     value: 10,
                                 },
                                 minLength: {
-                                    message: t("ekram.dead.idLen"),
+                                    message: t('ekram.dead.idLen'),
                                     value: 10,
                                 },
                                 required: true,
                             })}
                             type="number"
-                            label={t("common.id")}
+                            label={t('common.id')}
                             error={!!errors.NationalNumber}
                             helperText={errors.NationalNumber?.message}
                         />
@@ -274,8 +275,8 @@ const EditDead = () => {
                     <Grid item xs={6} sm={4} md={3} lg={2} xl={1.5}>
                         <FormControlLabel
                             label={
-                                <Typography variant={"h5"} display="inline">
-                                    {t("common.citizen")}
+                                <Typography variant={'h5'} display="inline">
+                                    {t('common.citizen')}
                                 </Typography>
                             }
                             control={
@@ -293,42 +294,42 @@ const EditDead = () => {
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("RegistrationNumber")}
+                            {...register('RegistrationNumber')}
                             type="string"
-                            label={t("ekram.dead.regNo")}
+                            label={t('ekram.dead.regNo')}
                         />
                     </Grid>
 
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("DeathReason", {
+                            {...register('DeathReason', {
                                 required: true,
                             })}
                             type="text"
-                            label={t("ekram.dead.deathReason")}
+                            label={t('ekram.dead.deathReason')}
                         />
                     </Grid>
 
                     <Grid item xs={12} md={6}>
                         <Controller
                             render={({ field, fieldState: { error } }) => (
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DatePicker
-                                        {...field}
-                                        disableFuture
-                                        views={["year", "month", "day"]}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                fullWidth
-                                                {...params}
-                                                label={t("ekram.dead.deathDate")}
-                                                error={!!error}
-                                                helperText={error?.message}
-                                            />
-                                        )}
-                                    />
-                                </LocalizationProvider>
+                                // <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker
+                                    {...field}
+                                    disableFuture
+                                    views={['year', 'month', 'day']}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            fullWidth
+                                            {...params}
+                                            label={t('ekram.dead.deathDate')}
+                                            error={!!error}
+                                            helperText={error?.message}
+                                        />
+                                    )}
+                                />
+                                // </LocalizationProvider>
                             )}
                             control={control}
                             name="DateOfDeath"
@@ -339,25 +340,25 @@ const EditDead = () => {
                     <Grid item xs={12} md={6}>
                         <Controller
                             render={({ field, fieldState: { error } }) => (
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <TimePicker
-                                        {...field}
-                                        ampm
-                                        inputFormat="HH:mm:ss"
-                                        mask="__:__:__"
-                                        openTo="hours"
-                                        views={["hours", "minutes", "seconds"]}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                fullWidth
-                                                {...params}
-                                                label={t("ekram.dead.deathTime")}
-                                                error={!!error}
-                                                helperText={error?.message}
-                                            />
-                                        )}
-                                    />
-                                </LocalizationProvider>
+                                // <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <TimePicker
+                                    {...field}
+                                    ampm
+                                    inputFormat="HH:mm:ss"
+                                    mask="__:__:__"
+                                    openTo="hours"
+                                    views={['hours', 'minutes', 'seconds']}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            fullWidth
+                                            {...params}
+                                            label={t('ekram.dead.deathTime')}
+                                            error={!!error}
+                                            helperText={error?.message}
+                                        />
+                                    )}
+                                />
+                                // </LocalizationProvider>
                             )}
                             control={control}
                             name="DeathTime"
@@ -369,12 +370,12 @@ const EditDead = () => {
                         <Button
                             startIcon={uploaded ? <CheckRounded /> : <UploadFileRounded />}
                             variant="contained"
-                            color={uploaded ? "success" : "secondary"}
+                            color={uploaded ? 'success' : 'secondary'}
                             component="label"
                             size="large"
                             sx={{ fontSize: 20 }}
                         >
-                            {uploaded ? t("common.fileReady") : t("ekram.dead.deathCert")}
+                            {uploaded ? t('common.fileReady') : t('ekram.dead.deathCert')}
                             <input onChange={handleFileChange} hidden type="file" />
                         </Button>
                     </Grid>
@@ -384,32 +385,32 @@ const EditDead = () => {
                             <Typography variant="h5">{file[0].name}</Typography>
                         </Grid>
                     ) : (
-                        ""
+                        ''
                     )}
 
                     <Grid item xs={12}>
-                        <Divider sx={{ background: "black" }} />
+                        <Divider />
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Typography variant="h5">{t("common.age")}</Typography>
+                        <Typography variant="h5">{t('common.age')}</Typography>
                     </Grid>
 
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("AgeYears", {
+                            {...register('AgeYears', {
                                 required: true,
                                 validate: (value) => {
                                     if (child) {
-                                        return value < 16 || t("common.childAgeErr");
+                                        return value < 16 || t('common.childAgeErr');
                                     } else {
-                                        return value > 15 || t("common.adultAgeErr");
+                                        return value > 15 || t('common.adultAgeErr');
                                     }
                                 },
                             })}
                             type="number"
-                            label={t("common.years")}
+                            label={t('common.years')}
                             error={!!errors.AgeYears}
                             helperText={errors.AgeYears?.message}
                         />
@@ -426,16 +427,16 @@ const EditDead = () => {
                             </Grid>
                         </>
                     ) : (
-                        ""
+                        ''
                     )}
 
                     <Grid item xs={12}>
-                        <Divider sx={{ background: "black" }} />
+                        <Divider />
                     </Grid>
 
                     <Grid item xs={12}>
                         <Typography variant="h3" gutterBottom>
-                            {t("ekram.dead.cemDetails")}
+                            {t('ekram.dead.cemDetails')}
                         </Typography>
                     </Grid>
 
@@ -453,39 +454,39 @@ const EditDead = () => {
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("SquareNumber")}
+                            {...register('SquareNumber')}
                             type="number"
-                            label={t("ekram.dead.square")}
+                            label={t('ekram.dead.square')}
                         />
                     </Grid>
 
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("ColumnNumber")}
+                            {...register('ColumnNumber')}
                             type="number"
-                            label={t("ekram.dead.column")}
+                            label={t('ekram.dead.column')}
                         />
                     </Grid>
 
                     <Grid item xs={12} md={6}>
                         <InputField
                             fullWidth
-                            {...register("RowNumber")}
+                            {...register('RowNumber')}
                             type="number"
-                            label={t("ekram.dead.row")}
+                            label={t('ekram.dead.row')}
                         />
                     </Grid>
 
                     {center ? (
                         <Grid item xs={12}>
                             <Typography gutterBottom align="center">
-                                {t("ekram.dead.graveLocation")}
+                                {t('ekram.dead.graveLocation')}
                             </Typography>
                             <GoogleMap
                                 center={center}
                                 zoom={12}
-                                mapContainerStyle={{ width: "100%", height: 500 }}
+                                mapContainerStyle={{ width: '100%', height: 500 }}
                             >
                                 {paths.length ? (
                                     <Polygon
@@ -498,13 +499,13 @@ const EditDead = () => {
                                         onMouseUp={handlePolyClick}
                                     />
                                 ) : (
-                                    ""
+                                    ''
                                 )}
-                                {markerCoords ? <Marker position={markerCoords} /> : ""}
+                                {markerCoords ? <Marker position={markerCoords} /> : ''}
                             </GoogleMap>
                         </Grid>
                     ) : (
-                        ""
+                        ''
                     )}
 
                     {graveError ? (
@@ -514,11 +515,11 @@ const EditDead = () => {
                             </Typography>
                         </Grid>
                     ) : (
-                        ""
+                        ''
                     )}
 
                     <Grid item xs={12}>
-                        <Divider sx={{ background: "black" }} />
+                        <Divider />
                     </Grid>
 
                     <Grid item xs={12}>
@@ -533,7 +534,7 @@ const EditDead = () => {
                                 sx={{ fontSize: 18 }}
                                 disabled={!isValid || !markerCoords}
                             >
-                                {t("common.save")}
+                                {t('common.save')}
                             </LoadingButton>
 
                             <Button
@@ -544,7 +545,7 @@ const EditDead = () => {
                                 startIcon={<CancelOutlined />}
                                 onClick={handleGoBack}
                             >
-                                {t("common.cancel")}
+                                {t('common.cancel')}
                             </Button>
                         </Stack>
                     </Grid>

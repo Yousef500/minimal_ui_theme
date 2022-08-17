@@ -16,7 +16,11 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router';
 import ProtectedRoute from 'src/components/khadamat/general/ProtectedRoute';
+import DashboardLayout from 'src/layouts/dashboard';
+import Login from 'src/pages/auth/Login';
 import DeadDashboard from 'src/pages/ekram/DeadDashboard';
+import SecurityGuardsDashboard from 'src/pages/securityGuards/SecurityGuardsDashboard';
+import UsersDashboard from 'src/pages/users/UsersDashboard';
 import AddCemetery from '../pages/ekram/AddCemetery';
 import AddDead from '../pages/ekram/AddDead';
 import CemeteriesManagement from '../pages/ekram/CemeteriesManagement';
@@ -54,180 +58,183 @@ import UsersPermissions from '../pages/users/UsersPermissions';
 // };
 
 export default function Router() {
-  const { userInfo } = useSelector((state) => state.currentUser);
-  return (
-    <Routes>
-      <Route element={<ProtectedRoute allowed={!!userInfo?.Token} />}>
-        {/* <Route path="/" element={<SidenavToggle />}> */}
-        {/* {getRoutes(routes)} */}
-        <Route path="/dead/management" element={<DeadManagement />} />
-        <Route path="/dead" element={<DeadDashboard />} />
-        <Route path="/dead/cemeteries" element={<CemeteriesManagement />} />
-        <Route path="/dead/cemeteries/:id" element={<CemeteryDetails />} />
-        <Route path="/dead/cemeteries/edit/:id" element={<EditCemetery />} />
-        <Route path="/dead/cemeteries/add" element={<AddCemetery />} />
+    const { userInfo } = useSelector((state) => state.currentUser);
 
-        <Route path="/dead/:id" element={<DeadDetails />} />
-        <Route path="/dead/edit/:id" element={<EditDead />} />
-        <Route path="/dead/add" element={<AddDead />} />
-        <Route path="/users/management" element={<UsersManagement />} />
-        <Route path="/users/:id" element={<UserDetails />} />
-        <Route path="/users/permissions" element={<UsersPermissions />} />
-        <Route path="/users/nationalities" element={<Nationalities />} />
-        <Route path="/users/nationalities/add" element={<AddNationality />} />
-        <Route path="/users/nationalities/edit/:id" element={<EditNationality />} />
-        <Route path="/users/create" element={<CreateUser />} />
-        <Route path="/users/edit/:id" element={<EditUser />} />
-        <Route path="/securityGuards/locations" element={<LocationsManagement />} />
-        <Route path="/securityGuards/locations/add" element={<AddLocation />} />
-        <Route path="/securityGuards/locations/:id" element={<LocationDetails />} />
-        <Route path="/securityGuards/locations/edit/:id" element={<EditLocation />} />
-        <Route path="/securityGuards/shifts" element={<ShiftsManagement />} />
-        <Route path="/securityGuards/shifts/add" element={<AddLocationShift />} />
-        <Route path="*" element={<Navigate to="/dead" />} />
-        {/* </Route> */}
-      </Route>
-      {/* <Route path="/sign-in" element={<SignIn />} /> */}
-    </Routes>
-  );
-  // useRoutes([
-  //   {
-  //     path: 'auth',
-  //     children: [
-  //       {
-  //         path: 'login',
-  //         element: (
-  //           <GuestGuard>
-  //             <Login />
-  //           </GuestGuard>
-  //         ),
-  //       },
-  //       {
-  //         path: 'register',
-  //         element: (
-  //           <GuestGuard>
-  //             <Register />
-  //           </GuestGuard>
-  //         ),
-  //       },
-  //       { path: 'login-unprotected', element: <Login /> },
-  //       { path: 'register-unprotected', element: <Register /> },
-  //       { path: 'reset-password', element: <ResetPassword /> },
-  //       { path: 'new-password', element: <NewPassword /> },
-  //       { path: 'verify', element: <VerifyCode /> },
-  //     ],
-  //   },
+    return (
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route element={<ProtectedRoute allowed={!!userInfo?.Token} />}>
+                <Route path="/" element={<DashboardLayout />}>
+                    <Route path="dead" element={<DeadDashboard />} />
+                    <Route path="dead/management" element={<DeadManagement />} />
+                    <Route path="dead/cemeteries" element={<CemeteriesManagement />} />
+                    <Route path="dead/cemeteries/:id" element={<CemeteryDetails />} />
+                    <Route path="dead/cemeteries/edit/:id" element={<EditCemetery />} />
+                    <Route path="dead/cemeteries/add" element={<AddCemetery />} />
 
-  //   // Dashboard Routes
-  //   {
-  //     path: 'dashboard',
-  //     element: (
-  //       <AuthGuard>
-  //         <DashboardLayout />
-  //       </AuthGuard>
-  //     ),
-  //     children: [
-  //       { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
-  //       { path: 'app', element: <GeneralApp /> },
-  //       { path: 'ecommerce', element: <GeneralEcommerce /> },
-  //       { path: 'analytics', element: <GeneralAnalytics /> },
-  //       { path: 'banking', element: <GeneralBanking /> },
-  //       { path: 'booking', element: <GeneralBooking /> },
+                    <Route path="dead/:id" element={<DeadDetails />} />
+                    <Route path="dead/edit/:id" element={<EditDead />} />
+                    <Route path="dead/add" element={<AddDead />} />
+                    <Route path="users" element={<UsersDashboard />} />
+                    <Route path="users/management" element={<UsersManagement />} />
+                    <Route path="users/:id" element={<UserDetails />} />
+                    <Route path="users/permissions" element={<UsersPermissions />} />
+                    <Route path="users/nationalities" element={<Nationalities />} />
+                    <Route path="users/nationalities/add" element={<AddNationality />} />
+                    <Route path="users/nationalities/edit/:id" element={<EditNationality />} />
+                    <Route path="users/create" element={<CreateUser />} />
+                    <Route path="users/edit/:id" element={<EditUser />} />
+                    <Route path="securityGuards" element={<SecurityGuardsDashboard />} />
+                    <Route path="securityGuards/locations" element={<LocationsManagement />} />
+                    <Route path="securityGuards/locations/add" element={<AddLocation />} />
+                    <Route path="securityGuards/locations/:id" element={<LocationDetails />} />
+                    <Route path="securityGuards/locations/edit/:id" element={<EditLocation />} />
+                    <Route path="securityGuards/shifts" element={<ShiftsManagement />} />
+                    <Route path="securityGuards/shifts/add" element={<AddLocationShift />} />
+                    <Route path="*" element={<Navigate to="/dead" />} />
+                </Route>
+            </Route>
+            {/* <Route path="/sign-in" element={<SignIn />} /> */}
+        </Routes>
+    );
+    // useRoutes([
+    //   {
+    //     path: 'auth',
+    //     children: [
+    //       {
+    //         path: 'login',
+    //         element: (
+    //           <GuestGuard>
+    //             <Login />
+    //           </GuestGuard>
+    //         ),
+    //       },
+    //       {
+    //         path: 'register',
+    //         element: (
+    //           <GuestGuard>
+    //             <Register />
+    //           </GuestGuard>
+    //         ),
+    //       },
+    //       { path: 'login-unprotected', element: <Login /> },
+    //       { path: 'register-unprotected', element: <Register /> },
+    //       { path: 'reset-password', element: <ResetPassword /> },
+    //       { path: 'new-password', element: <NewPassword /> },
+    //       { path: 'verify', element: <VerifyCode /> },
+    //     ],
+    //   },
 
-  //       {
-  //         path: 'e-commerce',
-  //         children: [
-  //           { element: <Navigate to="/dashboard/e-commerce/shop" replace />, index: true },
-  //           { path: 'shop', element: <EcommerceShop /> },
-  //           { path: 'product/:name', element: <EcommerceProductDetails /> },
-  //           { path: 'list', element: <EcommerceProductList /> },
-  //           { path: 'product/new', element: <EcommerceProductCreate /> },
-  //           { path: 'product/:name/edit', element: <EcommerceProductEdit /> },
-  //           { path: 'checkout', element: <EcommerceCheckout /> },
-  //         ],
-  //       },
-  //       {
-  //         path: 'user',
-  //         children: [
-  //           { element: <Navigate to="/dashboard/user/profile" replace />, index: true },
-  //           { path: 'profile', element: <UserProfile /> },
-  //           { path: 'cards', element: <UserCards /> },
-  //           { path: 'list', element: <UserList /> },
-  //           { path: 'new', element: <UserCreate /> },
-  //           { path: ':name/edit', element: <UserCreate /> },
-  //           { path: 'account', element: <UserAccount /> },
-  //         ],
-  //       },
-  //       {
-  //         path: 'invoice',
-  //         children: [
-  //           { element: <Navigate to="/dashboard/invoice/list" replace />, index: true },
-  //           { path: 'list', element: <InvoiceList /> },
-  //           { path: ':id', element: <InvoiceDetails /> },
-  //           { path: ':id/edit', element: <InvoiceEdit /> },
-  //           { path: 'new', element: <InvoiceCreate /> },
-  //         ],
-  //       },
-  //       {
-  //         path: 'blog',
-  //         children: [
-  //           { element: <Navigate to="/dashboard/blog/posts" replace />, index: true },
-  //           { path: 'posts', element: <BlogPosts /> },
-  //           { path: 'post/:title', element: <BlogPost /> },
-  //           { path: 'new', element: <BlogNewPost /> },
-  //         ],
-  //       },
-  //       {
-  //         path: 'mail',
-  //         children: [
-  //           { element: <Navigate to="/dashboard/mail/all" replace />, index: true },
-  //           { path: 'label/:customLabel', element: <Mail /> },
-  //           { path: 'label/:customLabel/:mailId', element: <Mail /> },
-  //           { path: ':systemLabel', element: <Mail /> },
-  //           { path: ':systemLabel/:mailId', element: <Mail /> },
-  //         ],
-  //       },
-  //       {
-  //         path: 'chat',
-  //         children: [
-  //           { element: <Chat />, index: true },
-  //           { path: 'new', element: <Chat /> },
-  //           { path: ':conversationKey', element: <Chat /> },
-  //         ],
-  //       },
-  //       { path: 'calendar', element: <Calendar /> },
-  //       { path: 'kanban', element: <Kanban /> },
-  //       { path: 'permission-denied', element: <PermissionDenied /> },
-  //     ],
-  //   },
+    //   // Dashboard Routes
+    //   {
+    //     path: 'dashboard',
+    //     element: (
+    //       <AuthGuard>
+    //         <DashboardLayout />
+    //       </AuthGuard>
+    //     ),
+    //     children: [
+    //       { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
+    //       { path: 'app', element: <GeneralApp /> },
+    //       { path: 'ecommerce', element: <GeneralEcommerce /> },
+    //       { path: 'analytics', element: <GeneralAnalytics /> },
+    //       { path: 'banking', element: <GeneralBanking /> },
+    //       { path: 'booking', element: <GeneralBooking /> },
 
-  //   // Main Routes
-  //   {
-  //     path: '*',
-  //     element: <LogoOnlyLayout />,
-  //     children: [
-  //       { path: 'coming-soon', element: <ComingSoon /> },
-  //       { path: 'maintenance', element: <Maintenance /> },
-  //       { path: 'pricing', element: <Pricing /> },
-  //       { path: 'payment', element: <Payment /> },
-  //       { path: '500', element: <Page500 /> },
-  //       { path: '404', element: <Page404 /> },
-  //       { path: '403', element: <Page403 /> },
-  //       { path: '*', element: <Navigate to="/404" replace /> },
-  //     ],
-  //   },
-  //   {
-  //     path: '/',
-  //     element: <MainLayout />,
-  //     children: [
-  //       { element: <HomePage />, index: true },
-  //       { path: 'about-us', element: <About /> },
-  //       { path: 'contact-us', element: <Contact /> },
-  //       { path: 'faqs', element: <Faqs /> },
-  //     ],
-  //   },
-  //   { path: '*', element: <Navigate to="/404" replace /> },
-  // ]);
+    //       {
+    //         path: 'e-commerce',
+    //         children: [
+    //           { element: <Navigate to="/dashboard/e-commerce/shop" replace />, index: true },
+    //           { path: 'shop', element: <EcommerceShop /> },
+    //           { path: 'product/:name', element: <EcommerceProductDetails /> },
+    //           { path: 'list', element: <EcommerceProductList /> },
+    //           { path: 'product/new', element: <EcommerceProductCreate /> },
+    //           { path: 'product/:name/edit', element: <EcommerceProductEdit /> },
+    //           { path: 'checkout', element: <EcommerceCheckout /> },
+    //         ],
+    //       },
+    //       {
+    //         path: 'user',
+    //         children: [
+    //           { element: <Navigate to="/dashboard/user/profile" replace />, index: true },
+    //           { path: 'profile', element: <UserProfile /> },
+    //           { path: 'cards', element: <UserCards /> },
+    //           { path: 'list', element: <UserList /> },
+    //           { path: 'new', element: <UserCreate /> },
+    //           { path: ':name/edit', element: <UserCreate /> },
+    //           { path: 'account', element: <UserAccount /> },
+    //         ],
+    //       },
+    //       {
+    //         path: 'invoice',
+    //         children: [
+    //           { element: <Navigate to="/dashboard/invoice/list" replace />, index: true },
+    //           { path: 'list', element: <InvoiceList /> },
+    //           { path: ':id', element: <InvoiceDetails /> },
+    //           { path: ':id/edit', element: <InvoiceEdit /> },
+    //           { path: 'new', element: <InvoiceCreate /> },
+    //         ],
+    //       },
+    //       {
+    //         path: 'blog',
+    //         children: [
+    //           { element: <Navigate to="/dashboard/blog/posts" replace />, index: true },
+    //           { path: 'posts', element: <BlogPosts /> },
+    //           { path: 'post/:title', element: <BlogPost /> },
+    //           { path: 'new', element: <BlogNewPost /> },
+    //         ],
+    //       },
+    //       {
+    //         path: 'mail',
+    //         children: [
+    //           { element: <Navigate to="/dashboard/mail/all" replace />, index: true },
+    //           { path: 'label/:customLabel', element: <Mail /> },
+    //           { path: 'label/:customLabel/:mailId', element: <Mail /> },
+    //           { path: ':systemLabel', element: <Mail /> },
+    //           { path: ':systemLabel/:mailId', element: <Mail /> },
+    //         ],
+    //       },
+    //       {
+    //         path: 'chat',
+    //         children: [
+    //           { element: <Chat />, index: true },
+    //           { path: 'new', element: <Chat /> },
+    //           { path: ':conversationKey', element: <Chat /> },
+    //         ],
+    //       },
+    //       { path: 'calendar', element: <Calendar /> },
+    //       { path: 'kanban', element: <Kanban /> },
+    //       { path: 'permission-denied', element: <PermissionDenied /> },
+    //     ],
+    //   },
+
+    //   // Main Routes
+    //   {
+    //     path: '*',
+    //     element: <LogoOnlyLayout />,
+    //     children: [
+    //       { path: 'coming-soon', element: <ComingSoon /> },
+    //       { path: 'maintenance', element: <Maintenance /> },
+    //       { path: 'pricing', element: <Pricing /> },
+    //       { path: 'payment', element: <Payment /> },
+    //       { path: '500', element: <Page500 /> },
+    //       { path: '404', element: <Page404 /> },
+    //       { path: '403', element: <Page403 /> },
+    //       { path: '*', element: <Navigate to="/404" replace /> },
+    //     ],
+    //   },
+    //   {
+    //     path: '/',
+    //     element: <MainLayout />,
+    //     children: [
+    //       { element: <HomePage />, index: true },
+    //       { path: 'about-us', element: <About /> },
+    //       { path: 'contact-us', element: <Contact /> },
+    //       { path: 'faqs', element: <Faqs /> },
+    //     ],
+    //   },
+    //   { path: '*', element: <Navigate to="/404" replace /> },
+    // ]);
 }
 
 // // AUTHENTICATION

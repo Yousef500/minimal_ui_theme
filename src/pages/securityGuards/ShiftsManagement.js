@@ -1,12 +1,12 @@
-import { PlaylistAddRounded, SearchOffRounded } from "@mui/icons-material";
-import { CircularProgress, Container, Grid, Stack, Typography } from "@mui/material";
-import Center from "src/components/khadamat/general/Center";
-import ShiftsManagementDay from "src/components/khadamat/securityGuards/ShiftsManagementDay";
-import ShiftsAccordion from "src/components/khadamat/securityGuards/ShiftsAccordion";
+import { PlaylistAddRounded, SearchOffRounded } from '@mui/icons-material';
+import { CircularProgress, Container, Grid, Stack, Typography, Button } from '@mui/material';
+import Center from 'src/components/khadamat/general/Center';
+import ShiftsManagementDay from 'src/components/khadamat/securityGuards/ShiftsManagementDay';
+import ShiftsAccordion from 'src/components/khadamat/securityGuards/ShiftsAccordion';
 
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ShiftsManagement = () => {
     const { t } = useTranslation();
@@ -16,12 +16,12 @@ const ShiftsManagement = () => {
             <Grid container spacing={3} alignItems="center" justifyContent="center">
                 <Grid item xs={12}>
                     <Stack
-                        direction={{ xs: "column", sm: "row" }}
-                        justifyContent={"space-between"}
+                        direction={{ xs: 'column', sm: 'row' }}
+                        justifyContent={'space-between'}
                         alignItems="center"
                     >
                         <Typography variant="h2" gutterBottom>
-                            {t("securityGuards.shifts.title")}
+                            {t('securityGuards.shifts.title')}
                         </Typography>
                         <Button
                             component={Link}
@@ -32,7 +32,7 @@ const ShiftsManagement = () => {
                             startIcon={<PlaylistAddRounded />}
                             sx={{ fontSize: 22 }}
                         >
-                            {t("securityGuards.shifts.add")}
+                            {t('securityGuards.shifts.add')}
                         </Button>
                     </Stack>
                 </Grid>
@@ -60,7 +60,7 @@ const ShiftsManagement = () => {
                             alignItems="center"
                         >
                             <SearchOffRounded />
-                            <Typography variant="h3">{t("common.notFound")}</Typography>
+                            <Typography variant="h3">{t('common.notFound')}</Typography>
                         </Stack>
                     </Grid>
                 )}

@@ -70,25 +70,25 @@ const ArrowStyle = styled('span')(({ arrow, theme }) => {
 
 // ----------------------------------------------------------------------
 
-MenuPopover.propTypes = {
-  sx: PropTypes.object,
-  children: PropTypes.node,
-  disabledArrow: PropTypes.bool,
-  arrow: PropTypes.oneOf([
-    'top-left',
-    'top-center',
-    'top-right',
-    'bottom-left',
-    'bottom-center',
-    'bottom-right',
-    'left-top',
-    'left-center',
-    'left-bottom',
-    'right-top',
-    'right-center',
-    'right-bottom',
-  ]),
-};
+// MenuPopover.propTypes = {
+//   sx: PropTypes.object,
+//   children: PropTypes.node,
+//   disabledArrow: PropTypes.bool,
+//   arrow: PropTypes.oneOf([
+//     'top-left',
+//     'top-center',
+//     'top-right',
+//     'bottom-left',
+//     'bottom-center',
+//     'bottom-right',
+//     'left-top',
+//     'left-center',
+//     'left-bottom',
+//     'right-top',
+//     'right-center',
+//     'right-bottom',
+//   ]),
+// };
 export default function MenuPopover({ children, arrow = 'top-right', disabledArrow, sx, ...other }) {
   return (
     <Popover

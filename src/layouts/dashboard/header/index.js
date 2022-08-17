@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar } from '@mui/material';
 // hooks
+import { HEADER, NAVBAR } from 'src/config';
 import useOffSetTop from '../../../hooks/useOffSetTop';
 import useResponsive from '../../../hooks/useResponsive';
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // config
-import { HEADER, NAVBAR } from 'src/config';
 // components
 import Logo from '../../../components/Logo';
 import Iconify from '../../../components/Iconify';
@@ -51,11 +51,11 @@ const RootStyle = styled(AppBar, {
 
 // ----------------------------------------------------------------------
 
-DashboardHeader.propTypes = {
-  onOpenSidebar: PropTypes.func,
-  isCollapse: PropTypes.bool,
-  verticalLayout: PropTypes.bool,
-};
+// DashboardHeader.propTypes = {
+//   onOpenSidebar: PropTypes.func,
+//   isCollapse: PropTypes.bool,
+//   verticalLayout: PropTypes.bool,
+// };
 
 export default function DashboardHeader({ onOpenSidebar, isCollapse = false, verticalLayout = false }) {
   const isOffset = useOffSetTop(HEADER.DASHBOARD_DESKTOP_HEIGHT) && !verticalLayout;
@@ -78,14 +78,14 @@ export default function DashboardHeader({ onOpenSidebar, isCollapse = false, ver
           </IconButtonAnimate>
         )}
 
-        <Searchbar />
+        {/* <Searchbar /> */}
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
           <LanguagePopover />
           <NotificationsPopover />
-          <ContactsPopover />
-          <AccountPopover />
+          {/* <ContactsPopover /> */}
+          {/* <AccountPopover /> */}
         </Stack>
       </Toolbar>
     </RootStyle>
