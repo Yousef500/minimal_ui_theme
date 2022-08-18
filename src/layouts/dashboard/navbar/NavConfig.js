@@ -121,6 +121,18 @@ const navConfig = [
         ],
     },
 
+    // Signout
+    {
+        subheader: 'accounts.signOut',
+        items: [
+            {
+                title: 'accounts.signOut',
+                path: '/users/logout',
+                icon: <Iconify icon={'cil:account-logout'} />,
+            },
+        ],
+    },
+
     // GENERAL
     // ----------------------------------------------------------------------
     // {

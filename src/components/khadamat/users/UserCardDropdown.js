@@ -68,8 +68,16 @@ const UserCardDropdown = ({ user, loading, setUserLoading }) => {
             <Menu
                 disableScrollLock
                 sx={{
-                    '& .MuiMenu-paper': {
+                    '& .MuiPaper-root': {
                         padding: 2,
+                        backgroundColor: 'success.lighter',
+                        color: 'black',
+                    },
+                    '& .MuiMenuItem-root': {
+                        borderRadius: 1,
+                        '&:hover': {
+                            backgroundColor: 'success.light',
+                        },
                     },
                 }}
                 open={open}

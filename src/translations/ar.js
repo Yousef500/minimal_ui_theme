@@ -90,6 +90,7 @@ const ar = {
                 remainingLen: ' حرف متبقي',
                 noLocationErr: 'الرجاء تحديد الموقع على الخريطة',
                 edit: 'تعديل بيانات موقع',
+                noShifts: 'لا يوجد فترات دوام محددة لهذا الموقع',
             },
             shifts: {
                 title: 'الدوام',
@@ -178,6 +179,7 @@ const ar = {
             stretch: 'إمتداد',
             fullScreen: 'كامل الشاشة',
             exitFullScreen: 'الحجم الطبيعي',
+            noLocation: 'لم يتم تحديد موقع',
         },
     },
 };

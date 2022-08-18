@@ -27,7 +27,7 @@ export default function LoginForm({ t }) {
         formState: { errors, isValid },
         handleSubmit,
     } = useForm({
-        mode: 'onTouched',
+        mode: 'onChange',
     });
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);

@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CemeteryCard from 'src/components/khadamat/ekram/CemeteryCard';
+import CemeterySearch from 'src/components/khadamat/ekram/CemeterySearch';
 import Center from 'src/components/khadamat/general/Center';
 import cemeteriesService from 'src/config/axios/cemeteriesService';
 import {
@@ -60,7 +61,11 @@ const CemeteriesManagement = () => {
         <Container maxWidth={'xl'}>
             <Grid container spacing={3} alignItems="center" justifyContent="center">
                 <Grid item xs={12}>
-                    <Stack direction="row" justifyContent="space-between">
+                    <Stack
+                        direction={{ xs: 'column', sm: 'row' }}
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
                         <Typography gutterBottom variant="h1">
                             {t('ekram.cemeteries.title')}
                         </Typography>
@@ -76,6 +81,9 @@ const CemeteriesManagement = () => {
                             {t('ekram.cemeteries.add')}
                         </Button>
                     </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                    <CemeterySearch t={t} />
                 </Grid>
                 {cemeteriesLoading ? (
                     <Grid item xs={12}>

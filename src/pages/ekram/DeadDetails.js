@@ -28,37 +28,6 @@ import { setDeadPageNo } from 'src/redux/slices/deadSlice';
 import deadService from 'src/config/axios/deadServices';
 import i18n from 'src/locales/i18n';
 
-const cardStyles = {
-    width: '100%',
-    mb: 10,
-    background: `linear-gradient(
-                    30deg,
-                    hsl(160deg 19% 94%) 0%,
-                    hsl(161deg 23% 94%) 13%,
-                    hsl(163deg 26% 94%) 19%,
-                    hsl(164deg 30% 94%) 23%,
-                    hsl(166deg 34% 94%) 27%,
-                    hsl(167deg 38% 94%) 31%,
-                    hsl(168deg 42% 93%) 34%,
-                    hsl(169deg 46% 93%) 38%,
-                    hsl(171deg 49% 93%) 41%,
-                    hsl(172deg 53% 93%) 44%,
-                    hsl(173deg 56% 93%) 47%,
-                    hsl(174deg 60% 93%) 50%,
-                    hsl(175deg 58% 93%) 53%,
-                    hsl(175deg 55% 94%) 56%,
-                    hsl(176deg 52% 94%) 59%,
-                    hsl(176deg 49% 94%) 62%,
-                    hsl(177deg 45% 95%) 66%,
-                    hsl(177deg 41% 95%) 69%,
-                    hsl(178deg 37% 95%) 73%,
-                    hsl(178deg 32% 96%) 77%,
-                    hsl(179deg 26% 96%) 81%,
-                    hsl(179deg 19% 96%) 87%,
-                    hsl(180deg 11% 96%) 100%
-                )`,
-};
-
 const DeadDetails = () => {
     const { id } = useParams();
     const page = useLocation().search.split('page=')[1];
@@ -91,7 +60,7 @@ const DeadDetails = () => {
         </Center>
     ) : (
         <Container maxWidth={'xl'}>
-            <Card elevation={10} sx={cardStyles}>
+            <Card elevation={10} sx={{ backgroundColor: 'info.lighter', color: 'black', p: 2 }}>
                 <CardHeader
                     titleTypographyProps={{
                         variant: 'h1',

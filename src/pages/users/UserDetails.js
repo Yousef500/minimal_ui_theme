@@ -93,7 +93,7 @@ const UserDetails = () => {
                     <CircularProgress size={100} color="info" />
                 </Center>
             ) : (
-                <Card>
+                <Card sx={{ backgroundColor: 'primary.lighter', color: 'black' }}>
                     <CardHeader
                         titleTypographyProps={{
                             align: 'center',
@@ -106,7 +106,7 @@ const UserDetails = () => {
                                 icon={<SpeedDialIcon sx={{ fontSize: 22 }} />}
                                 direction={'down'}
                                 FabProps={{
-                                    color: 'info',
+                                    color: 'primary',
                                 }}
                             >
                                 <SpeedDialAction
@@ -182,7 +182,7 @@ const UserDetails = () => {
                                     ) : (
                                         <Chip
                                             label={t('common.no')}
-                                            color={'default'}
+                                            sx={{ color: 'black' }}
                                             variant={'filled'}
                                         />
                                     )}
@@ -200,14 +200,14 @@ const UserDetails = () => {
                                     {user.IsCompany ? (
                                         <Chip
                                             label={t('common.yes')}
-                                            color={'success'}
-                                            variant={'outlined'}
+                                            color={'info'}
+                                            variant={'filled'}
                                         />
                                     ) : (
                                         <Chip
                                             label={t('common.no')}
-                                            color={'default'}
-                                            variant={'outlined'}
+                                            sx={{ color: 'black' }}
+                                            variant={'filled'}
                                         />
                                     )}
                                 </Stack>

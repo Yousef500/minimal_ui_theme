@@ -1,17 +1,15 @@
-import { CancelOutlined, SaveOutlined } from "@mui/icons-material";
-import { LoadingButton } from "@mui/lab";
-import { Card, CardActions, CardContent, CardHeader, Container, Grid } from "@mui/material";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import LocationInput from "src/components/khadamat/securityGuards/LocationInput";
-import ShiftsInput from "src/components/khadamat/securityGuards/ShiftsInput";
-import WorkingDaysInput from "src/components/khadamat/securityGuards/WorkingDaysInput";
-// import Button from "../../components/Button";
-import shiftsService from "src/config/axios/shiftsService";
-import Button from "../../theme/overrides/Button";
+import { CancelOutlined, SaveOutlined } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
+import { Button, Card, CardActions, CardContent, CardHeader, Container, Grid } from '@mui/material';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import LocationInput from 'src/components/khadamat/securityGuards/LocationInput';
+import ShiftsInput from 'src/components/khadamat/securityGuards/ShiftsInput';
+import WorkingDaysInput from 'src/components/khadamat/securityGuards/WorkingDaysInput';
+import shiftsService from 'src/config/axios/shiftsService';
 
 const AddLocationShift = () => {
     const [loading, setLoading] = useState(false);
@@ -22,11 +20,11 @@ const AddLocationShift = () => {
         formState: { isValid },
         control,
     } = useForm({
-        mode: "onTouched",
+        mode: 'onTouched',
     });
 
     const handleGoBack = () => {
-        navigate("/securityGuards/shifts");
+        navigate('/securityGuards/shifts');
     };
 
     const handleAddLocationShift = async (data) => {
@@ -46,20 +44,20 @@ const AddLocationShift = () => {
             console.log(addRes);
             setLoading(false);
             handleGoBack();
-            toast.success(t("common.success.add"));
+            toast.success(t('common.success.add'));
         } catch (err) {
             console.log({ err });
-            toast.error(err.response?.data?.Message || t("common.error.unknown"));
+            toast.error(err.response?.data?.Message || t('common.error.unknown'));
             setLoading(false);
         }
     };
 
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Card component="form" onSubmit={handleSubmit(handleAddLocationShift)}>
                 <CardHeader
-                    title={t("securityGuards.shifts.add")}
-                    titleTypographyProps={{ align: "center", variant: "h3", gutterBottom: true }}
+                    title={t('securityGuards.shifts.add')}
+                    titleTypographyProps={{ align: 'center', variant: 'h3', gutterBottom: true }}
                 />
                 <CardContent>
                     <Grid container spacing={2}>
@@ -82,11 +80,11 @@ const AddLocationShift = () => {
                         loading={loading}
                         startIcon={<SaveOutlined />}
                         sx={{ fontSize: 18 }}
-                        loadingPosition={"start"}
+                        loadingPosition={'start'}
                         disabled={!isValid}
                         type="submit"
                     >
-                        {t("common.save")}
+                        {t('common.save')}
                     </LoadingButton>
 
                     <Button
@@ -97,7 +95,7 @@ const AddLocationShift = () => {
                         sx={{ fontSize: 18 }}
                         onClick={handleGoBack}
                     >
-                        {t("common.cancel")}
+                        {t('common.cancel')}
                     </Button>
                 </CardActions>
             </Card>

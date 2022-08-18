@@ -3,14 +3,10 @@ import {
     Delete,
     FilterAltOffRounded,
     FilterAltRounded,
-    LocationOnRounded,
     SearchOffRounded,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 import {
     Button,
-    Card,
-    CardContent,
-    CardHeader,
     Chip,
     CircularProgress,
     Container,
@@ -19,29 +15,31 @@ import {
     Pagination,
     Stack,
     Typography,
-} from "@mui/material";
-import Center from "src/components/khadamat/general/Center";
-import LocationsDropdown from "src/components/khadamat/securityGuards/LocationsDropdown";
-import LocationsFilter from "src/components/khadamat/securityGuards/LocationsFilter";
+} from '@mui/material';
+import Center from 'src/components/khadamat/general/Center';
+import LocationsFilter from 'src/components/khadamat/securityGuards/LocationsFilter';
 
-import locationsService from "src/config/axios/locationsService";
-import i18n from "src/locales/i18n";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import LocationCard from 'src/components/khadamat/securityGuards/LocationCard';
+import locationsService from 'src/config/axios/locationsService';
+import useLocales from 'src/hooks/useLocales';
 import {
     deleteLocationFilter,
     resetLocationsFilters,
     setLoadingLocations,
     setLocations,
     setLocationsPageNo,
-} from "src/redux/slices/locationsSlice";
+} from 'src/redux/slices/locationsSlice';
 
 const LocationsManagement = () => {
     const [filterOpen, setFilterOpen] = useState(false);
-    const { t } = useTranslation();
+    const {
+        translate: t,
+        currentLang: { value: lang },
+    } = useLocales();
     const dispatch = useDispatch();
     const { locations, loadingLocations, page, pageCount, filters } = useSelector(
         (state) => state.locations
@@ -55,7 +53,7 @@ const LocationsManagement = () => {
                 dispatch(setLocations(data));
             } catch (err) {
                 console.error({ err });
-                toast.error(t("common.error.unknown"));
+                toast.error(t('common.error.unknown'));
             }
         })();
     }, []);
@@ -75,7 +73,7 @@ const LocationsManagement = () => {
     };
 
     const handleResetFilters = async () => {
-        const filters = document.getElementById("locFilters").children?.length;
+        const filters = document.getElementById('locFilters').children?.length;
         if (filters) {
             try {
                 dispatch(setLoadingLocations(true));
@@ -102,12 +100,16 @@ const LocationsManagement = () => {
     };
 
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Grid container spacing={3} alignItems="center" justifyContent="center">
                 <Grid item xs={12}>
-                    <Stack direction="row" justifyContent={"space-between"}>
+                    <Stack
+                        direction={{ xs: 'column', sm: 'row' }}
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
                         <Typography variant="h2" gutterBottom>
-                            {t("securityGuards.locations.title")}
+                            {t('securityGuards.locations.title')}
                         </Typography>
                         <Button
                             variant="contained"
@@ -115,15 +117,15 @@ const LocationsManagement = () => {
                             size="large"
                             startIcon={<AddLocationAltRounded />}
                             sx={{ fontSize: 22 }}
-                            component={Link}
+                            component={RouterLink}
                             to="/securityGuards/locations/add"
                         >
-                            {t("securityGuards.locations.add")}
+                            {t('securityGuards.locations.add')}
                         </Button>
                     </Stack>
                 </Grid>
                 <Grid item xs={12}>
-                    <Stack direction="row" justifyContent={"space-between"}>
+                    <Stack direction="row" justifyContent={'space-between'}>
                         <Fab
                             variant="extended"
                             color="info"
@@ -132,27 +134,27 @@ const LocationsManagement = () => {
                         >
                             <Stack direction="row" spacing={1} alignItems="center">
                                 <FilterAltRounded />
-                                <Typography variant="inherit">{t("common.filter")}</Typography>
+                                <Typography variant="inherit">{t('common.filter')}</Typography>
                             </Stack>
                         </Fab>
 
                         <Fab
                             variant="extended"
                             color="secondary"
-                            sx={{ fontSize: 22 }}
+                            sx={{ fontSize: 22, height: 60 }}
                             onClick={handleResetFilters}
                         >
                             <Stack direction="row" spacing={1} alignItems="center">
                                 <FilterAltOffRounded />
                                 <Typography variant="inherit">
-                                    {t("common.deleteFilters")}
+                                    {t('common.deleteFilters')}
                                 </Typography>
                             </Stack>
                         </Fab>
                     </Stack>
                 </Grid>
                 <Grid item xs={12}>
-                    <Stack id="locFilters" direction={"row"} spacing={3} sx={{ flexWrap: "wrap" }}>
+                    <Stack id="locFilters" direction={'row'} spacing={3} sx={{ flexWrap: 'wrap' }}>
                         {Object.keys(filters).map((key) =>
                             filters[key] ? (
                                 <Chip
@@ -164,7 +166,7 @@ const LocationsManagement = () => {
                                     deleteIcon={<Delete />}
                                 />
                             ) : (
-                                ""
+                                ''
                             )
                         )}
                     </Stack>
@@ -178,22 +180,7 @@ const LocationsManagement = () => {
                 ) : locations?.length ? (
                     locations.map((loc) => (
                         <Grid item xs={12} md={6} lg={4} key={loc.Id}>
-                            <Card sx={{ height: 250 }}>
-                                <CardHeader
-                                    avatar={<LocationOnRounded />}
-                                    titleTypographyProps={{
-                                        gutterBottom: true,
-                                        variant: "h5",
-                                        component: Link,
-                                        to: `/securityGuards/locations/${loc.Id}`,
-                                    }}
-                                    title={i18n.language === "ar" ? loc.NameFl : loc.NameSl}
-                                    action={<LocationsDropdown t={t} location={loc} />}
-                                />
-                                <CardContent>
-                                    <Typography variant={"subtitle1"}>{loc.Description}</Typography>
-                                </CardContent>
-                            </Card>
+                            <LocationCard t={t} location={loc} lang={lang} />
                         </Grid>
                     ))
                 ) : (
@@ -205,7 +192,7 @@ const LocationsManagement = () => {
                             alignItems="center"
                         >
                             <SearchOffRounded />
-                            <Typography variant="h3">{t("common.notFound")}</Typography>
+                            <Typography variant="h3">{t('common.notFound')}</Typography>
                         </Stack>
                     </Grid>
                 )}
@@ -214,7 +201,7 @@ const LocationsManagement = () => {
                     <Center>
                         <Pagination
                             color="info"
-                            shape={"rounded"}
+                            shape={'rounded'}
                             page={page}
                             count={pageCount}
                             size="large"

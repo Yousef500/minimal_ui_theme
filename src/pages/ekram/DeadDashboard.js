@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const DeadDashboard = () => {
     const { t } = useTranslation();
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Grid container spacing={3} m="auto" alignItems="center" justifyContent={"center"}>
                 <Grid item xs={12}>
                     <Typography variant="h1" gutterBottom align="center">

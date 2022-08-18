@@ -53,7 +53,11 @@ const UsersManagement = () => {
         <Container maxWidth={'xl'} sx={{ mb: 10 }}>
             <Grid container spacing={3} justifyContent="center" alignItems={'center'}>
                 <Grid item xs={12}>
-                    <Stack direction="row" justifyContent="space-between" mb={5}>
+                    <Stack
+                        direction={{ xs: 'column', sm: 'row' }}
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
                         <Typography variant="h2" gutterBottom>
                             {t('accounts.users.title')}
                         </Typography>

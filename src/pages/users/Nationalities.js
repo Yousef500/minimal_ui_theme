@@ -60,7 +60,7 @@ const Nationalities = () => {
     };
 
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Grid container spacing={3} alignItems="center" justifyContent="center">
                 <Grid item xs={12}>
                     <Stack direction="row" justifyContent="space-between" alignItems="center">

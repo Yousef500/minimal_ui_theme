@@ -31,20 +31,8 @@ const DeadCard = ({ person }) => {
             sx={{
                 // height: { xs: 655, md: 580, lg: 605, xl: 550 },
                 overflowY: 'auto',
-                background: `
-                    linear-gradient(
-                        45deg,
-                        hsl(180deg 6% 93%) 0%,
-                        hsl(181deg 11% 93%) 11%,
-                        hsl(182deg 18% 93%) 22%,
-                        hsl(183deg 25% 94%) 33%,
-                        hsl(184deg 33% 94%) 44%,
-                        hsl(185deg 42% 94%) 56%,
-                        hsl(186deg 52% 94%) 67%,
-                        hsl(187deg 63% 95%) 78%,
-                        hsl(187deg 76% 95%) 89%,
-                        hsl(188deg 92% 95%) 100%
-                      )`,
+                backgroundColor: 'info.lighter',
+                color: 'black',
             }}
         >
             <CardHeader
@@ -56,7 +44,7 @@ const DeadCard = ({ person }) => {
                 title={
                     <Link
                         component={RouterLink}
-                        color={person.IsActive ? 'secondary' : 'inherit'}
+                        color={person.IsActive ? 'info.darker' : 'inherit'}
                         to={`/dead/${person.Id}?page=${page}`}
                         underline="hover"
                     >

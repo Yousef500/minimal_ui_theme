@@ -1,7 +1,8 @@
-import { encode } from "@googlemaps/polyline-codec";
-import { CancelRounded, Save } from "@mui/icons-material";
-import { LoadingButton } from "@mui/lab";
+import { encode } from '@googlemaps/polyline-codec';
+import { CancelRounded, Save } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import {
+    Button,
     Card,
     CardActions,
     CardContent,
@@ -11,18 +12,16 @@ import {
     Grid,
     Stack,
     Typography,
-} from "@mui/material";
-import { GoogleMap, Polygon } from "@react-google-maps/api";
-import InputField from "src/components/khadamat/general/InputField";
-// 
-import cemeteriesService from "src/config/axios/cemeteriesService";
-import { useCallback, useMemo, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-
+} from '@mui/material';
+import { GoogleMap, Polygon } from '@react-google-maps/api';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import InputField from 'src/components/khadamat/general/InputField';
+import cemeteriesService from 'src/config/axios/cemeteriesService';
 
 const cardStyle = {
     background: `
@@ -62,7 +61,7 @@ const cardStyle = {
 const AddCemetery = () => {
     const [paths, setPaths] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [mapError, setMapError] = useState("");
+    const [mapError, setMapError] = useState('');
     const polygonRef = useRef(null);
     const listenersRef = useRef([]);
     const navigate = useNavigate();
@@ -74,7 +73,7 @@ const AddCemetery = () => {
         handleSubmit,
         formState: { errors, isValid },
     } = useForm({
-        mode: "onTouched",
+        mode: 'onTouched',
     });
 
     const center = useMemo(() => ({ lat: 24.713552, lng: 46.675297 }), []);
@@ -84,15 +83,15 @@ const AddCemetery = () => {
             setPaths([...paths, { lat: latLng.lat(), lng: latLng.lng() }]);
         }
         if (paths.length === 3) {
-            setMapError("");
+            setMapError('');
         }
     };
 
     const options = {
         draggable: true,
         editable: true,
-        strokeColor: "#55DE7C",
-        fillColor: "#55DE7C",
+        strokeColor: '#55DE7C',
+        fillColor: '#55DE7C',
         fillOpacity: 0.1,
     };
 
@@ -117,16 +116,16 @@ const AddCemetery = () => {
             polygonRef.current = polygon;
             const path = polygon.getPath();
             listenersRef.current.push(
-                path.addListener("set_at", onEdit),
-                path.addListener("insert_at", onEdit),
-                path.addListener("remove_at", onEdit)
+                path.addListener('set_at', onEdit),
+                path.addListener('insert_at', onEdit),
+                path.addListener('remove_at', onEdit)
             );
         },
         [onEdit]
     );
 
     const handleGoBack = () => {
-        navigate("/dead/cemeteries");
+        navigate('/dead/cemeteries');
     };
 
     const handleAddCemetery = async (data) => {
@@ -144,27 +143,27 @@ const AddCemetery = () => {
 
                 console.log({ addRes });
                 setLoading(false);
-                toast.success(t("common.success.add"));
+                toast.success(t('common.success.add'));
                 handleGoBack();
             } catch (err) {
                 console.log({ err });
-                toast.error(err.response?.data?.Message ?? t("common.error.unknown"));
+                toast.error(err.response?.data?.Message ?? t('common.error.unknown'));
                 setLoading(false);
             }
         } else {
-            setMapError(t("ekram.cemeteries.locationErr"));
+            setMapError(t('ekram.cemeteries.locationErr'));
         }
     };
 
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Card sx={cardStyle} component="form" onSubmit={handleSubmit(handleAddCemetery)}>
                 <CardHeader
-                    title={t("ekram.cemeteries.add")}
+                    title={t('ekram.cemeteries.add')}
                     titleTypographyProps={{
                         gutterBottom: true,
-                        variant: "h1",
-                        align: "center",
+                        variant: 'h1',
+                        align: 'center',
                     }}
                 />
                 <CardContent>
@@ -172,9 +171,9 @@ const AddCemetery = () => {
                         <Grid item xs={12} md={6}>
                             <InputField
                                 fullWidth
-                                label={t("common.arName")}
+                                label={t('common.arName')}
                                 type="text"
-                                {...register("NameFl", {
+                                {...register('NameFl', {
                                     required: true,
                                 })}
                                 error={!!errors.NameFl}
@@ -185,9 +184,9 @@ const AddCemetery = () => {
                         <Grid item xs={12} md={6}>
                             <InputField
                                 fullWidth
-                                label={t("common.enName")}
+                                label={t('common.enName')}
                                 type="text"
-                                {...register("NameSl", {
+                                {...register('NameSl', {
                                     required: true,
                                 })}
                                 error={!!errors.NameSl}
@@ -198,9 +197,9 @@ const AddCemetery = () => {
                         <Grid item xs={12} md={6}>
                             <InputField
                                 fullWidth
-                                label={t("ekram.cemeteries.address")}
+                                label={t('ekram.cemeteries.address')}
                                 type="text"
-                                {...register("Address", {
+                                {...register('Address', {
                                     required: true,
                                 })}
                                 error={!!errors.Address}
@@ -222,12 +221,12 @@ const AddCemetery = () => {
                 </CardContent>
                 <CardMedia component="div">
                     <Typography variant="h5" align="center" gutterBottom>
-                        {t("ekram.cemeteries.location")}
+                        {t('ekram.cemeteries.location')}
                     </Typography>
 
                     <GoogleMap
                         mapContainerStyle={{
-                            width: "100%",
+                            width: '100%',
                             height: 450,
                             borderRadius: 20,
                         }}
@@ -246,7 +245,7 @@ const AddCemetery = () => {
                                 onRightClick={() => setPaths([])}
                             />
                         ) : (
-                            ""
+                            ''
                         )}
                     </GoogleMap>
                 </CardMedia>
@@ -255,14 +254,14 @@ const AddCemetery = () => {
                         {mapError}
                     </Typography>
                 ) : (
-                    ""
+                    ''
                 )}
                 <CardActions>
                     <Stack
                         direction="row"
                         spacing={5}
                         justifyContent="space-between"
-                        width={"100%"}
+                        width={'100%'}
                         my={2}
                     >
                         <LoadingButton
@@ -275,7 +274,7 @@ const AddCemetery = () => {
                             loading={loading}
                             disabled={!isValid || paths?.length < 4}
                         >
-                            {t("common.save")}
+                            {t('common.save')}
                         </LoadingButton>
 
                         <Button
@@ -286,7 +285,7 @@ const AddCemetery = () => {
                             sx={{ fontSize: 20 }}
                             onClick={handleGoBack}
                         >
-                            {t("common.cancel")}
+                            {t('common.cancel')}
                         </Button>
                     </Stack>
                 </CardActions>

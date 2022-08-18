@@ -9,7 +9,7 @@ import { Box } from '@mui/material';
 const Page = forwardRef(({ children, title = '', meta, ...other }, ref) => (
   <>
     <Helmet>
-      <title>{`${title} | Minimal-UI`}</title>
+      <title>{title}</title>
       {meta}
     </Helmet>
 
@@ -19,10 +19,10 @@ const Page = forwardRef(({ children, title = '', meta, ...other }, ref) => (
   </>
 ));
 
-Page.propTypes = {
-  children: PropTypes.node.isRequired,
-  title: PropTypes.string,
-  meta: PropTypes.node,
-};
+// Page.propTypes = {
+//   children: PropTypes.node.isRequired,
+//   title: PropTypes.string,
+//   meta: PropTypes.node,
+// };
 
 export default Page;

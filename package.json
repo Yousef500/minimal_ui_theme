@@ -1,8 +1,8 @@
 {
-  "name": "@minimal/minimal-kit-react",
-  "author": "minimals.cc",
-  "version": "3.5.0",
-  "description": "Javascript Version",
+  "name": "e-khadmat",
+  "author": "e-khadmat",
+  "version": "2.0.0",
+  "description": "E-Khadmat app",
   "private": true,
   "scripts": {
     "start": "react-app-rewired start",

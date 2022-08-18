@@ -12,7 +12,7 @@ const ShiftsManagement = () => {
     const { t } = useTranslation();
     const { shifts, loadingShifts } = useSelector((state) => state.shifts);
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Grid container spacing={3} alignItems="center" justifyContent="center">
                 <Grid item xs={12}>
                     <Stack

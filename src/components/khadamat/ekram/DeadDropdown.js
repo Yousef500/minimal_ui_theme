@@ -21,48 +21,6 @@ import DeleteDialog from '../general/DeleteDialog';
 import DropdownItem from '../general/DropdownItem';
 import MapsDialog from './MapsDialog';
 
-const DeadPopOverMenu = styled(Menu)(() => ({
-    '& .MuiMenu-paper': {
-        padding: 10,
-        borderRadius: 5,
-        backgroundImage: `
-        linear-gradient(
-            45deg,
-            hsl(208deg 84% 59%) 0%,
-            hsl(208deg 85% 58%) 5%,
-            hsl(208deg 85% 58%) 10%,
-            hsl(208deg 86% 58%) 14%,
-            hsl(208deg 86% 58%) 19%,
-            hsl(208deg 87% 58%) 24%,
-            hsl(208deg 88% 58%) 29%,
-            hsl(208deg 88% 58%) 33%,
-            hsl(208deg 89% 57%) 38%,
-            hsl(208deg 89% 57%) 43%,
-            hsl(208deg 90% 57%) 48%,
-            hsl(208deg 90% 57%) 52%,
-            hsl(208deg 91% 57%) 57%,
-            hsl(208deg 91% 57%) 62%,
-            hsl(208deg 92% 56%) 67%,
-            hsl(208deg 93% 56%) 71%,
-            hsl(208deg 93% 56%) 76%,
-            hsl(208deg 94% 56%) 81%,
-            hsl(208deg 94% 56%) 86%,
-            hsl(208deg 95% 56%) 90%,
-            hsl(208deg 95% 55%) 95%,
-            hsl(208deg 96% 55%) 100%
-        )
-`,
-    },
-    '& .MuiMenuItem-root': {
-        '&:hover': {
-            background: '#E1F3F8',
-            color: 'black',
-        },
-        color: '#ECF8F5',
-        borderRadius: 5,
-    },
-}));
-
 const DeadDropdown = ({ lat, lng, person, page }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [mapsOpen, setMapsOpen] = useState(false);
@@ -106,7 +64,7 @@ const DeadDropdown = ({ lat, lng, person, page }) => {
             <IconButton onClick={handleMenuOpen}>
                 <MoreVert />
             </IconButton>
-            <DeadPopOverMenu
+            <Menu
                 disableScrollLock
                 open={menuOpen}
                 anchorEl={anchorEl}
@@ -120,6 +78,20 @@ const DeadDropdown = ({ lat, lng, person, page }) => {
                     horizontal: 'left',
                 }}
                 TransitionComponent={Fade}
+                sx={{
+                    '& .MuiPaper-root': {
+                        padding: 2,
+                        borderRadius: 1,
+                        backgroundColor: 'info.light',
+                    },
+                    '& .MuiMenuItem-root': {
+                        color: 'black',
+                        '&:hover': {
+                            background: '#E1F3F8',
+                        },
+                        borderRadius: 1,
+                    },
+                }}
             >
                 <DropdownItem
                     label={t('common.location')}
@@ -127,12 +99,14 @@ const DeadDropdown = ({ lat, lng, person, page }) => {
                     onClick={handleMapsDialogOpen}
                 />
                 <DropdownItem
+                    onClick={handleMenuClose}
                     component={Link}
                     to={`/dead/${person.Id}?page=${page}`}
                     label={t('common.details')}
                     icon={<ContentPasteRounded />}
                 />
                 <DropdownItem
+                    onClick={handleMenuClose}
                     component={Link}
                     to={`/dead/edit/${person.Id}?page=${page}`}
                     label={t('common.edit')}
@@ -160,7 +134,7 @@ const DeadDropdown = ({ lat, lng, person, page }) => {
                         onClick={() => handleRecordStatus(true)}
                     />
                 )}
-            </DeadPopOverMenu>
+            </Menu>
             {mapsOpen ? (
                 <MapsDialog
                     open={mapsOpen}

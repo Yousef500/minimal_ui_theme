@@ -33,12 +33,19 @@ import {
     setDeadLoading,
     setDeadPageNo,
 } from 'src/redux/slices/deadSlice';
+import { useForm } from 'react-hook-form';
 
 const DeadManagement = () => {
     const [filterOpen, setFilterOpen] = useState(false);
     const dispatch = useDispatch();
     const { dead, deadLoading, pageCount, page } = useSelector((state) => state.dead);
     const { t } = useTranslation();
+    const { register, handleSubmit, control, reset, resetField } = useForm({
+        defaultValues: {
+            orderby: 0,
+            ...null
+        },
+    });
 
     useEffect(() => {
         (async () => {
@@ -73,6 +80,7 @@ const DeadManagement = () => {
         const activeFilters = document.getElementById('active-filters').children.length;
         if (activeFilters !== 0) {
             try {
+                reset();
                 dispatch(setDeadLoading(true));
                 dispatch(resetDeadFilters());
                 const { data: deadData } = await deadService.searchDead();
@@ -116,7 +124,11 @@ const DeadManagement = () => {
             <Container maxWidth={'xl'}>
                 <Grid container spacing={3} justifyContent="center" alignItems="center" mb={5}>
                     <Grid item xs={12}>
-                        <Stack direction="row" justifyContent="space-between">
+                        <Stack
+                            direction={{ xs: 'column', sm: 'row' }}
+                            justifyContent="space-between"
+                            alignItems="center"
+                        >
                             <Typography gutterBottom variant="h1">
                                 {t('ekram.dead.title')}
                             </Typography>
@@ -152,7 +164,13 @@ const DeadManagement = () => {
                         <Tooltip title={t('common.deleteFilters')}>
                             <Fab
                                 variant="extended"
-                                sx={{ fontSize: 22, position: 'absolute', right: 16, top: 3 }}
+                                sx={{
+                                    fontSize: 22,
+                                    position: 'absolute',
+                                    right: 16,
+                                    top: 3,
+                                    height: 60,
+                                }}
                                 color="secondary"
                                 onClick={handleFiltersReset}
                             >
@@ -163,7 +181,7 @@ const DeadManagement = () => {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <DeadActiveFilters handleFiltersReset={handleFiltersReset} />
+                        <DeadActiveFilters handleFiltersReset={handleFiltersReset} reset={reset} resetField={resetField} />
                     </Grid>
 
                     <Grid item xs={12}>
@@ -212,11 +230,18 @@ const DeadManagement = () => {
                     </Grid>
                 </Grid>
             </Container>
-            {filterOpen && (
-                <Grid item xs={12}>
-                    <DeadFilterDialog open={filterOpen} onClose={() => setFilterOpen(false)} />
-                </Grid>
-            )}
+            {/* {filterOpen && ( */}
+            <Grid item xs={12}>
+                <DeadFilterDialog
+                    open={filterOpen}
+                    onClose={() => setFilterOpen(false)}
+                    register={register}
+                    handleSubmit={handleSubmit}
+                    control={control}
+                    reset={reset}
+                />
+            </Grid>
+            {/* )} */}
         </>
     );
 };

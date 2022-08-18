@@ -78,7 +78,7 @@ export const defaultSettings = {
 
 export const allLangs = [
   {
-    label: 'Arabic',
+    label: 'العربية',
     value: 'ar',
     systemValue: arEG,
     icon: '/assets/icons/flags/ic_flag_sa.svg',

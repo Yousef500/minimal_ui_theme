@@ -13,37 +13,41 @@
 // // components
 // import LoadingScreen from '../components/LoadingScreen';
 
+import { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router';
-import ProtectedRoute from 'src/components/khadamat/general/ProtectedRoute';
-import DashboardLayout from 'src/layouts/dashboard';
-import Login from 'src/pages/auth/Login';
-import DeadDashboard from 'src/pages/ekram/DeadDashboard';
-import SecurityGuardsDashboard from 'src/pages/securityGuards/SecurityGuardsDashboard';
-import UsersDashboard from 'src/pages/users/UsersDashboard';
-import AddCemetery from '../pages/ekram/AddCemetery';
-import AddDead from '../pages/ekram/AddDead';
-import CemeteriesManagement from '../pages/ekram/CemeteriesManagement';
-import CemeteryDetails from '../pages/ekram/CemeteryDetails';
-import DeadDetails from '../pages/ekram/DeadDetails';
-import DeadManagement from '../pages/ekram/DeadManagement';
-import EditCemetery from '../pages/ekram/EditCemetery';
-import EditDead from '../pages/ekram/EditDead';
-import AddLocation from '../pages/securityGuards/AddLocation';
-import AddLocationShift from '../pages/securityGuards/AddLocationShift';
-import EditLocation from '../pages/securityGuards/EditLocation';
-import LocationDetails from '../pages/securityGuards/LocationDetails';
-import LocationsManagement from '../pages/securityGuards/LocationsManagement';
-import ShiftsManagement from '../pages/securityGuards/ShiftsManagement';
-import AddNationality from '../pages/users/AddNationality';
-import CreateUser from '../pages/users/CreateUser';
-import EditNationality from '../pages/users/EditNationality';
-import EditUser from '../pages/users/EditUser';
-import Nationalities from '../pages/users/Nationalities';
-import UserDetails from '../pages/users/UserDetails';
-import UsersManagement from '../pages/users/UsersManagement';
-import UsersPermissions from '../pages/users/UsersPermissions';
 
+const ProtectedRoute = lazy(() => import('src/components/khadamat/general/ProtectedRoute'));
+const Login = lazy(() => import('src/pages/auth/Login'));
+const SignOut = lazy(() => import('src/components/khadamat/general/SignOut'));
+const DashboardLayout = lazy(() => import('src/layouts/dashboard'));
+const DeadDashboard = lazy(() => import('src/pages/ekram/DeadDashboard'));
+const SecurityGuardsDashboard = lazy(() =>
+    import('src/pages/securityGuards/SecurityGuardsDashboard')
+);
+const UsersDashboard = lazy(() => import('src/pages/users/UsersDashboard'));
+const AddCemetery = lazy(() => import('../pages/ekram/AddCemetery'));
+const AddDead = lazy(() => import('../pages/ekram/AddDead'));
+const CemeteriesManagement = lazy(() => import('../pages/ekram/CemeteriesManagement'));
+const CemeteryDetails = lazy(() => import('../pages/ekram/CemeteryDetails'));
+const DeadDetails = lazy(() => import('../pages/ekram/DeadDetails'));
+const DeadManagement = lazy(() => import('../pages/ekram/DeadManagement'));
+const EditCemetery = lazy(() => import('../pages/ekram/EditCemetery'));
+const EditDead = lazy(() => import('../pages/ekram/EditDead'));
+const AddLocation = lazy(() => import('../pages/securityGuards/AddLocation'));
+const AddLocationShift = lazy(() => import('../pages/securityGuards/AddLocationShift'));
+const EditLocation = lazy(() => import('../pages/securityGuards/EditLocation'));
+const LocationDetails = lazy(() => import('../pages/securityGuards/LocationDetails'));
+const LocationsManagement = lazy(() => import('../pages/securityGuards/LocationsManagement'));
+const ShiftsManagement = lazy(() => import('../pages/securityGuards/ShiftsManagement'));
+const AddNationality = lazy(() => import('../pages/users/AddNationality'));
+const CreateUser = lazy(() => import('../pages/users/CreateUser'));
+const EditNationality = lazy(() => import('../pages/users/EditNationality'));
+const EditUser = lazy(() => import('../pages/users/EditUser'));
+const Nationalities = lazy(() => import('../pages/users/Nationalities'));
+const UserDetails = lazy(() => import('../pages/users/UserDetails'));
+const UsersManagement = lazy(() => import('../pages/users/UsersManagement'));
+const UsersPermissions = lazy(() => import('../pages/users/UsersPermissions'));
 // ----------------------------------------------------------------------
 
 // const Loadable = (Component) => (props) => {
@@ -91,10 +95,11 @@ export default function Router() {
                     <Route path="securityGuards/locations/edit/:id" element={<EditLocation />} />
                     <Route path="securityGuards/shifts" element={<ShiftsManagement />} />
                     <Route path="securityGuards/shifts/add" element={<AddLocationShift />} />
+                    <Route path="users/logout" element={<SignOut />} />
                     <Route path="*" element={<Navigate to="/dead" />} />
                 </Route>
             </Route>
-            {/* <Route path="/sign-in" element={<SignIn />} /> */}
+            <Route path="/sign-in" element={<Login />} />
         </Routes>
     );
     // useRoutes([

@@ -50,7 +50,7 @@ const AddNationality = () => {
     };
 
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Card component="form" sx={{ borderRadius: 0 }} onSubmit={handleSubmit(handleAddNat)}>
                 <CardHeader
                     title={t('accounts.nationalities.add')}

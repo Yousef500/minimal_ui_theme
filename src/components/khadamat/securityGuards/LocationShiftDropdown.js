@@ -1,20 +1,14 @@
-import {
-    Delete, Edit,
-    MoreHorizRounded
-} from "@mui/icons-material";
-import {
-    Fade, IconButton,
-    Menu
-} from "@mui/material";
-import shiftsService from "src/config/axios/shiftsService";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { setShifts } from "src/redux/slices/shiftsSlice";
-import DeleteDialog from "../general/DeleteDialog";
-import DropdownItem from "../general/DropdownItem";
-import EditLocationShift from "./EditLocationShift";
+import { Delete, Edit, MoreHorizRounded } from '@mui/icons-material';
+import { Fade, IconButton, Menu } from '@mui/material';
+import shiftsService from 'src/config/axios/shiftsService';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { setShifts } from 'src/redux/slices/shiftsSlice';
+import DeleteDialog from '../general/DeleteDialog';
+import DropdownItem from '../general/DropdownItem';
+import EditLocationShift from './EditLocationShift';
 
 const LocationShiftDropdown = ({ shift, site }) => {
     const [deleting, setDeleting] = useState(false);
@@ -51,11 +45,11 @@ const LocationShiftDropdown = ({ shift, site }) => {
             dispatch(setShifts(newShifts));
             setDeleting(false);
             handleDialogClose();
-            toast.success(t("common.success.delete"));
+            toast.success(t('common.success.delete'));
         } catch (err) {
             console.log({ err });
             setDeleting(false);
-            toast.error(t("common.error.unknown"));
+            toast.error(t('common.error.unknown'));
         }
     };
 
@@ -63,26 +57,39 @@ const LocationShiftDropdown = ({ shift, site }) => {
         <>
             <IconButton
                 onClick={(e) => setAnchorEl(e.currentTarget)}
-                size={"large"}
-                color={"inherit"}
+                size={'large'}
+                color={'inherit'}
             >
-                <MoreHorizRounded fontSize={"inherit"} />
+                <MoreHorizRounded fontSize={'inherit'} />
             </IconButton>
             <Menu
+                disableScrollLock
                 open={open}
                 anchorEl={anchorEl}
                 onClose={() => setAnchorEl(null)}
                 TransitionProps={{ unmountOnExit: true }}
                 TransitionComponent={Fade}
-                disableScrollLock
+                sx={{
+                    '& .MuiPaper-root': {
+                        padding: 1,
+                        backgroundColor: 'secondary.lighter',
+                    },
+                    '& .MuiMenuItem-root': {
+                        color: 'black',
+                        borderRadius: 1,
+                        '&:hover': {
+                            backgroundColor: 'info.light',
+                        },
+                    },
+                }}
             >
                 <DropdownItem
-                    label={t("common.edit")}
+                    label={t('common.edit')}
                     icon={<Edit />}
                     onClick={handleEditDialogOpen}
                 />
                 <DropdownItem
-                    label={t("common.delete")}
+                    label={t('common.delete')}
                     icon={<Delete />}
                     onClick={handleDeleteDialogOpen}
                 />
@@ -93,7 +100,7 @@ const LocationShiftDropdown = ({ shift, site }) => {
                     t={t}
                     open={deleteDialogOpen}
                     onClose={handleDialogClose}
-                    title={t("securityGuards.shifts.deleteConfirm", {
+                    title={t('securityGuards.shifts.deleteConfirm', {
                         shift: shift.ShiftTitle,
                         location: site.name,
                     })}
@@ -101,7 +108,7 @@ const LocationShiftDropdown = ({ shift, site }) => {
                     deleting={deleting}
                 />
             ) : (
-                ""
+                ''
             )}
 
             {editDialogOpen ? (
@@ -113,7 +120,7 @@ const LocationShiftDropdown = ({ shift, site }) => {
                     shift={shift}
                 />
             ) : (
-                ""
+                ''
             )}
         </>
     );

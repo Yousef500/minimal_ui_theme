@@ -66,8 +66,8 @@ const UserCard = ({ user }) => {
             sx={{
                 height: 'max-content',
                 overflowY: 'auto',
-                background:
-                    'linear-gradient(157deg, rgba(255,245,178,1) 0%, rgba(255,255,255,1) 100%);',
+                backgroundColor: 'primary.lighter',
+                color: 'black',
                 pb: 2,
             }}
         >
@@ -82,7 +82,7 @@ const UserCard = ({ user }) => {
                         component={RouterLink}
                         to={`/users/${user.Id}?page=${page}`}
                         underline="hover"
-                        color={user.IsActive ? 'green' : 'inherit'}
+                        color={user.IsActive ? 'primary.darker' : 'inherit'}
                     >
                         {i18n.language === 'ar' ? user.NameFl : user.NameSl}
                     </Link>
@@ -132,7 +132,7 @@ const UserCard = ({ user }) => {
                         {t('common.extract')}
                     </LoadingButton>
                     <Button
-                        component={Link}
+                        component={RouterLink}
                         to={`/users/edit/${user.Id}`}
                         variant="contained"
                         sx={{ fontSize: 18 }}

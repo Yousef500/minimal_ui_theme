@@ -78,7 +78,7 @@ const AddLocation = () => {
     };
 
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Card component="form" onSubmit={handleSubmit(handleAddLocation)}>
                 <CardHeader
                     title={t("securityGuards.locations.add")}

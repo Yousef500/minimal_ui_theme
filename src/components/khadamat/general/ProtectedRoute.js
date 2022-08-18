@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = ({ allowed, redirectPath = "/sign-in", children }) => {
+const ProtectedRoute = ({ allowed, redirectPath = "/login", children }) => {
     if (allowed) {
         return children ? children : <Outlet />;
     } else {

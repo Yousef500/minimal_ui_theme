@@ -135,7 +135,7 @@ const UsersPermissions = () => {
     };
 
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Grid
                 container
                 spacing={3}

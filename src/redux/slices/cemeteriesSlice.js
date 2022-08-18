@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const cemeteriesSlice = createSlice({
-    name: "cemeteries",
+    name: 'cemeteries',
     initialState: {
         allCemeteries: [],
         cemeteries: [],
@@ -10,6 +10,7 @@ const cemeteriesSlice = createSlice({
         page: 1,
         pageSize: 10,
         pageCount: 1,
+        filterBy: '',
     },
     reducers: {
         setAllCemeteries: (state, action) => {
@@ -27,9 +28,18 @@ const cemeteriesSlice = createSlice({
         setCemeteriesLoading: (state, action) => {
             state.cemeteriesLoading = action.payload;
         },
+        setCemeteriesFilterBy: (state, action) => {
+            state.filterBy = action.payload;
+        },
     },
 });
 
-export const { setAllCemeteries, setCemeteries, setCemeteriesPageNo, setCemeteriesLoading } = cemeteriesSlice.actions;
+export const {
+    setAllCemeteries,
+    setCemeteries,
+    setCemeteriesPageNo,
+    setCemeteriesLoading,
+    setCemeteriesFilterBy,
+} = cemeteriesSlice.actions;
 
 export default cemeteriesSlice.reducer;

@@ -70,7 +70,7 @@ export default function Login() {
     const mdUp = useResponsive('up', 'md');
 
     return (
-        <Page title="Login">
+        <Page title="E-Khadmat">
             <RootStyle>
                 <HeaderStyle>
                     <Logo />

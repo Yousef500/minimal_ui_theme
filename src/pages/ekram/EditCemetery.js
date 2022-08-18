@@ -168,7 +168,7 @@ const EditCemetery = () => {
     };
 
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             {loadingDefaults ? (
                 <Center my={10}>
                     <CircularProgress size={100} color="success" />

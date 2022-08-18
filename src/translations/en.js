@@ -90,6 +90,7 @@ const en = {
                 remainingLen: ' Letters remaining',
                 noLocationErr: 'Please specify a location on the map.',
                 edit: 'Edit location',
+                noShifts: 'No shifts assigned to this locations',
             },
             shifts: {
                 title: 'Shifts',
@@ -179,6 +180,7 @@ const en = {
             stretch: 'Stretch',
             fullScreen: 'Full Screen',
             exitFullScreen: 'Exit Full Screen',
+            noLocation: 'No location specified',
         },
     },
 };

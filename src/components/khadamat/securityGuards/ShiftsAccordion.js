@@ -1,34 +1,25 @@
-import { ExpandMoreRounded, LocationOnOutlined, ScheduleRounded } from "@mui/icons-material";
+import { ExpandMoreRounded, LocationOnOutlined, ScheduleRounded } from '@mui/icons-material';
 import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
     Card,
     CardHeader,
+    Fade,
+    Grow,
+    Slide,
     Stack,
     Typography,
-} from "@mui/material";
-import dayjs from "dayjs";
-import LocationShiftDropdown from "./LocationShiftDropdown";
+} from '@mui/material';
+import dayjs from 'dayjs';
+import LocationShiftDropdown from './LocationShiftDropdown';
 
 const ShiftsAccordion = ({ site, t }) => {
-    const formatTime = (timeString) => {
-        let hours = 0;
-        let ampm = "am";
-
-        if (+timeString.split(":")[0] >= 12) {
-            hours = +timeString.split(":")[0] - 12;
-            ampm = "pm";
-        } else {
-            hours = +timeString.split(":")[0];
-            ampm = "am";
-        }
-
-        return `${hours}:${timeString.split(":")[1]} ${ampm}`;
-    };
-
     return (
-        <Accordion TransitionProps={{ unmountOnExit: true }}>
+        <Accordion
+            TransitionProps={{ unmountOnExit: true }}
+            sx={{ backgroundColor: 'cornsilk', color: 'black' }}
+        >
             <AccordionSummary expandIcon={<ExpandMoreRounded />}>
                 <Stack direction="row" spacing={1} alignItems="center">
                     <LocationOnOutlined />
@@ -40,21 +31,26 @@ const ShiftsAccordion = ({ site, t }) => {
             <AccordionDetails>
                 <Stack direction="column" spacing={2}>
                     {site.WorkShiftsList?.map((ws) => (
-                        <Card key={ws.Id} sx={{ backgroundColor: "#0D91CA", color: "#E8F8FF" }}>
+                        <Card
+                            key={ws.Id}
+                            sx={{ backgroundColor: '#0D91CA', color: '#E8F8FF', pt: 0 }}
+                        >
                             <CardHeader
+                                sx={{ p: 2 }}
                                 avatar={<ScheduleRounded />}
                                 titleTypographyProps={{
-                                    variant: "h5",
-                                    color: "inherit",
+                                    variant: 'h5',
+                                    color: 'inherit',
+                                    gutterBottom: true,
                                 }}
                                 title={ws.ShiftTitle}
                                 subheaderTypographyProps={{
-                                    align: "left",
-                                    color: "inherit",
+                                    color: 'inherit',
+                                    gutterBottom: true,
                                 }}
-                                subheader={t("securityGuards.shifts.shiftTime", {
-                                    from: dayjs(`2019-01-25 ${ws.ShiftTimeFrom}`).format("hh:mm a"),
-                                    to: dayjs(`2019-01-25 ${ws.ShiftTimeTo}`).format("hh:mm a"),
+                                subheader={t('securityGuards.shifts.shiftTime', {
+                                    from: dayjs(`2019-01-25 ${ws.ShiftTimeFrom}`).format('hh:mm a'),
+                                    to: dayjs(`2019-01-25 ${ws.ShiftTimeTo}`).format('hh:mm a'),
                                 })}
                                 action={
                                     <LocationShiftDropdown
