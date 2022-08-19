@@ -189,7 +189,6 @@ const DeadFilterDialog = ({ open, onClose, register, handleSubmit, control }) =>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
                             <Controller
                                 render={({ field }) => (
                                     <DatePicker
@@ -206,11 +205,9 @@ const DeadFilterDialog = ({ open, onClose, register, handleSubmit, control }) =>
                                 name="dateOfDeath"
                                 control={control}
                             />
-                            {/* </LocalizationProvider> */}
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
                             <Controller
                                 render={({ field }) => (
                                     <DatePicker
@@ -227,11 +224,9 @@ const DeadFilterDialog = ({ open, onClose, register, handleSubmit, control }) =>
                                 name="dateOfDeathFrom"
                                 control={control}
                             />
-                            {/* </LocalizationProvider> */}
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
                             <Controller
                                 render={({ field }) => (
                                     <DatePicker
@@ -248,7 +243,6 @@ const DeadFilterDialog = ({ open, onClose, register, handleSubmit, control }) =>
                                 name="dateOfDeathTO"
                                 control={control}
                             />
-                            {/* </LocalizationProvider> */}
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -331,8 +325,6 @@ const DeadFilterDialog = ({ open, onClose, register, handleSubmit, control }) =>
                     </Stack>
                 </Box>
             </DialogContent>
-            {/* <DialogActions> */}
-            {/* </DialogActions> */}
         </Dialog>
     );
 };
