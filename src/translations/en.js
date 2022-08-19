@@ -96,14 +96,17 @@ const en = {
                 title: 'Shifts',
                 day: 'Choose a Day',
                 add: 'Add Location Work Shift',
-                deleteConfirm:
-                    'Are you sure you want to delete the shift "{{data}}" from "{{location}}" ?',
+                deleteConfirm: 'Are you sure you want to delete the shift "{{data}}" from "{{location}}" ?',
                 edit: 'Edit shift in "{{data}}"',
                 shiftTime: 'From {{from}} - to {{to}}',
             },
-            shifTimes: {
+            shiftTimes: {
                 title: 'Shift Times',
                 add: 'Add Shift Time',
+                from: 'Shift time from',
+                to: 'Shift time to',
+                timeErr: 'The shift end time must be after the start time',
+                edit: 'Edit Shift Time',
             },
         },
         common: {

@@ -31,6 +31,10 @@ const shiftTimesService = {
     getAll: () => shiftTimes.get('/WorkShifts/GetLookUpWorkShifts'),
     getWorkingDays: () => shiftTimes.get('/WorkShifts/GetWorkingDays'),
     searchShiftTimes: (data) => shiftTimes.post('/WorkShifts/Search', data),
+    addShiftTime: (data) => shiftTimes.post('/WorkShifts/Add', data),
+    deleteShiftTime: (id) => shiftTimes.post(`/WorkShifts/Delete?id=${id}`),
+    getShiftTime: (id) => shiftTimes.get(`/WorkShifts/Get?id=${id}`),
+    editShiftTime: (data) => shiftTimes.post('/WorkShifts/Edit', data),
 };
 
 export default shiftTimesService;

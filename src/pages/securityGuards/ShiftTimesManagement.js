@@ -1,10 +1,14 @@
 import { MoreTimeRounded } from '@mui/icons-material';
-import { Button, Card, CardHeader, Container, Grid, Stack, Typography } from '@mui/material';
+import { Button, Container, Grid, Pagination, Stack, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Center from 'src/components/khadamat/general/Center';
+import ShiftTimeCard from 'src/components/khadamat/securityGuards/ShiftTimeCard';
 import shiftTimesService from 'src/config/axios/shiftTimesService';
 import useLocales from 'src/hooks/useLocales';
-import { setShiftTimes } from 'src/redux/slices/shiftTimesSlice';
+import { setLoadingShiftTimes, setShiftTimes, setShiftTimesPageNo } from 'src/redux/slices/shiftTimesSlice';
 
 const ShiftTimesManagement = () => {
     const {
@@ -13,7 +17,7 @@ const ShiftTimesManagement = () => {
     } = useLocales();
     const dispatch = useDispatch();
 
-    const { page, shiftTimes } = useSelector((state) => state.shiftTimes);
+    const { page, shiftTimes, pageCount } = useSelector((state) => state.shiftTimes);
 
     useEffect(() => {
         (async () => {
@@ -28,15 +32,26 @@ const ShiftTimesManagement = () => {
         })();
     }, []);
 
+    const handlePageChange = async (e, newPage) => {
+        if (newPage !== page) {
+            try {
+                dispatch(setLoadingShiftTimes(true));
+                dispatch(setShiftTimesPageNo(newPage));
+                const { data } = await shiftTimesService.searchShiftTimes();
+                dispatch(setShiftTimes(data));
+            } catch (err) {
+                console.log({ err });
+                dispatch(setLoadingShiftTimes(false));
+                toast.error(t('common.error.unknown'));
+            }
+        }
+    };
+
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <Grid container spacing={3} justifyContent="center" alignItems="center">
                 <Grid item xs={12}>
-                    <Stack
-                        direction={{ xs: 'column', sm: 'row' }}
-                        justifyContent="space-between"
-                        alignItems="center"
-                    >
+                    <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center">
                         <Typography variant="h2" gutterBottom>
                             {t('securityGuards.shiftTimes.title')}
                         </Typography>
@@ -46,18 +61,31 @@ const ShiftTimesManagement = () => {
                             color="primary"
                             sx={{ fontSize: 20 }}
                             startIcon={<MoreTimeRounded />}
+                            component={Link}
+                            to={'/securityGuards/shiftTimes/add'}
                         >
                             {t('securityGuards.shiftTimes.add')}
                         </Button>
                     </Stack>
                 </Grid>
+                {shiftTimes.length &&
+                    shiftTimes.map((shift) => (
+                        <Grid key={shift.Id} item xs={12} sm={6} md={6} lg={4} xl={3}>
+                            <ShiftTimeCard shift={shift} t={t} />
+                        </Grid>
+                    ))}
+
                 <Grid item xs={12}>
-                    {shiftTimes.length &&
-                        shiftTimes.map((shift) => (
-                            <Card key={shift.Id}>
-                                <CardHeader title={shift.ShiftTitle} />
-                            </Card>
-                        ))}
+                    <Center my={3}>
+                        <Pagination
+                            page={page}
+                            count={pageCount}
+                            size="large"
+                            shape="rounded"
+                            color="info"
+                            onChange={handlePageChange}
+                        />
+                    </Center>
                 </Grid>
             </Grid>
         </Container>

@@ -138,7 +138,7 @@ const EditUser = () => {
             component={Paper}
             elevation={10}
             maxWidth="xl"
-            sx={{ py: 10, mb: 5, mx: 'auto', borderRadius: 10 }}
+            sx={{ py: 10, mb: 5, mx: 'auto', borderRadius: 2 }}
         >
             <Grid
                 container

@@ -22,9 +22,7 @@ const Login = lazy(() => import('src/pages/auth/Login'));
 const SignOut = lazy(() => import('src/components/khadamat/general/SignOut'));
 const DashboardLayout = lazy(() => import('src/layouts/dashboard'));
 const DeadDashboard = lazy(() => import('src/pages/ekram/DeadDashboard'));
-const SecurityGuardsDashboard = lazy(() =>
-    import('src/pages/securityGuards/SecurityGuardsDashboard')
-);
+const SecurityGuardsDashboard = lazy(() => import('src/pages/securityGuards/SecurityGuardsDashboard'));
 const UsersDashboard = lazy(() => import('src/pages/users/UsersDashboard'));
 const AddCemetery = lazy(() => import('../pages/ekram/AddCemetery'));
 const AddDead = lazy(() => import('../pages/ekram/AddDead'));
@@ -49,6 +47,7 @@ const UserDetails = lazy(() => import('../pages/users/UserDetails'));
 const UsersManagement = lazy(() => import('../pages/users/UsersManagement'));
 const UsersPermissions = lazy(() => import('../pages/users/UsersPermissions'));
 const ShiftTimesManagement = lazy(() => import('../pages/securityGuards/ShiftTimesManagement'));
+const AddShiftTime = lazy(() => import('src/pages/securityGuards/AddShiftTime'));
 // ----------------------------------------------------------------------
 
 // const Loadable = (Component) => (props) => {
@@ -97,6 +96,7 @@ export default function Router() {
                     <Route path="securityGuards/shifts" element={<ShiftsManagement />} />
                     <Route path="securityGuards/shifts/add" element={<AddLocationShift />} />
                     <Route path="securityGuards/shiftTimes" element={<ShiftTimesManagement />} />
+                    <Route path="securityGuards/shiftTimes/add" element={<AddShiftTime />} />
                     <Route path="users/logout" element={<SignOut />} />
                     <Route path="*" element={<Navigate to="/dead" />} />
                 </Route>

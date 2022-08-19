@@ -16,10 +16,7 @@ import LocationShiftDropdown from './LocationShiftDropdown';
 
 const ShiftsAccordion = ({ site, t }) => {
     return (
-        <Accordion
-            TransitionProps={{ unmountOnExit: true }}
-            sx={{ backgroundColor: 'cornsilk', color: 'black' }}
-        >
+        <Accordion TransitionProps={{ unmountOnExit: true }} sx={{ backgroundColor: 'cornsilk', color: 'black' }}>
             <AccordionSummary expandIcon={<ExpandMoreRounded />}>
                 <Stack direction="row" spacing={1} alignItems="center">
                     <LocationOnOutlined />
@@ -31,10 +28,7 @@ const ShiftsAccordion = ({ site, t }) => {
             <AccordionDetails>
                 <Stack direction="column" spacing={2}>
                     {site.WorkShiftsList?.map((ws) => (
-                        <Card
-                            key={ws.Id}
-                            sx={{ backgroundColor: '#0D91CA', color: '#E8F8FF', pt: 0 }}
-                        >
+                        <Card key={ws.Id} sx={{ backgroundColor: '#0D91CA', color: '#E8F8FF', pt: 0 }}>
                             <CardHeader
                                 sx={{ p: 2 }}
                                 avatar={<ScheduleRounded />}
