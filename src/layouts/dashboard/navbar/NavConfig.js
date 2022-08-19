@@ -114,6 +114,11 @@ const navConfig = [
                     {
                         title: 'securityGuards.shifts.title',
                         path: '/securityGuards/shifts',
+                        icon: <Iconify icon={'ri:map-pin-time-fill'} />,
+                    },
+                    {
+                        title: 'securityGuards.shiftTimes.title',
+                        path: '/securityGuards/shiftTimes',
                         icon: <Iconify icon={'fluent:shifts-activity-24-filled'} />,
                     },
                 ],

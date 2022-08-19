@@ -24,20 +24,21 @@
 
 // export { store, persistor, dispatch, useSelector, useDispatch };
 
-import { configureStore } from "@reduxjs/toolkit";
-import { persistStore } from "redux-persist";
-import persistCombineReducers from "redux-persist/es/persistCombineReducers";
-import storage from "redux-persist/lib/storage";
-import thunk from "redux-thunk";
-import cemeteriesReducer from "./slices/cemeteriesSlice";
-import currentUserReducer from "./slices/currentUserSlice";
-import deadReducer from "./slices/deadSlice";
-import gendersReducer from "./slices/gendersSlice";
-import locationsReducer from "./slices/locationsSlice";
-import nationalitiesReducer from "./slices/nationalitiesSlice";
-import shiftsReducer from "./slices/shiftsSlice";
-import sidenavReducer from "./slices/sidenavSlice";
-import usersReducer from "./slices/usersSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import { persistStore } from 'redux-persist';
+import persistCombineReducers from 'redux-persist/es/persistCombineReducers';
+import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
+import cemeteriesReducer from './slices/cemeteriesSlice';
+import currentUserReducer from './slices/currentUserSlice';
+import deadReducer from './slices/deadSlice';
+import gendersReducer from './slices/gendersSlice';
+import locationsReducer from './slices/locationsSlice';
+import nationalitiesReducer from './slices/nationalitiesSlice';
+import shiftsReducer from './slices/shiftsSlice';
+import shiftTimesReducer from './slices/shiftTimesSlice';
+import sidenavReducer from './slices/sidenavSlice';
+import usersReducer from './slices/usersSlice';
 
 const reducers = {
     sidenav: sidenavReducer,
@@ -49,12 +50,13 @@ const reducers = {
     cemeteries: cemeteriesReducer,
     locations: locationsReducer,
     shifts: shiftsReducer,
+    shiftTimes: shiftTimesReducer,
 };
 
 const persistConfig = {
-    key: "root",
+    key: 'root',
     storage,
-    whitelist: ["currentUser"],
+    whitelist: ['currentUser'],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, reducers);

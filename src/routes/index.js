@@ -48,6 +48,7 @@ const Nationalities = lazy(() => import('../pages/users/Nationalities'));
 const UserDetails = lazy(() => import('../pages/users/UserDetails'));
 const UsersManagement = lazy(() => import('../pages/users/UsersManagement'));
 const UsersPermissions = lazy(() => import('../pages/users/UsersPermissions'));
+const ShiftTimesManagement = lazy(() => import('../pages/securityGuards/ShiftTimesManagement'));
 // ----------------------------------------------------------------------
 
 // const Loadable = (Component) => (props) => {
@@ -95,6 +96,7 @@ export default function Router() {
                     <Route path="securityGuards/locations/edit/:id" element={<EditLocation />} />
                     <Route path="securityGuards/shifts" element={<ShiftsManagement />} />
                     <Route path="securityGuards/shifts/add" element={<AddLocationShift />} />
+                    <Route path="securityGuards/shiftTimes" element={<ShiftTimesManagement />} />
                     <Route path="users/logout" element={<SignOut />} />
                     <Route path="*" element={<Navigate to="/dead" />} />
                 </Route>

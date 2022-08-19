@@ -101,6 +101,10 @@ const en = {
                 edit: 'Edit shift in "{{data}}"',
                 shiftTime: 'From {{from}} - to {{to}}',
             },
+            shifTimes: {
+                title: 'Shift Times',
+                add: 'Add Shift Time',
+            },
         },
         common: {
             notFound: 'Not found',

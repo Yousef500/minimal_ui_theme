@@ -100,6 +100,10 @@ const ar = {
                 edit: 'تعديل فترة دوام في "{{data}}"',
                 shiftTime: 'من {{from}} - الى {{to}}',
             },
+            shiftTimes: {
+                title: 'فترات الدوام',
+                add: 'إضافة فترة دوام',
+            },
         },
         common: {
             notFound: 'تعذر العثور على البيانات المطلوبة',

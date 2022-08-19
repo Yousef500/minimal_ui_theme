@@ -1,8 +1,8 @@
-import { PlaylistAddRounded, SearchOffRounded } from '@mui/icons-material';
-import { CircularProgress, Container, Grid, Stack, Typography, Button } from '@mui/material';
+import { DomainAddRounded, SearchOffRounded } from '@mui/icons-material';
+import { Button, CircularProgress, Container, Grid, Stack, Typography } from '@mui/material';
 import Center from 'src/components/khadamat/general/Center';
-import ShiftsManagementDay from 'src/components/khadamat/securityGuards/ShiftsManagementDay';
 import ShiftsAccordion from 'src/components/khadamat/securityGuards/ShiftsAccordion';
+import ShiftsManagementDay from 'src/components/khadamat/securityGuards/ShiftsManagementDay';
 
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -29,7 +29,7 @@ const ShiftsManagement = () => {
                             variant="contained"
                             color="info"
                             size="large"
-                            startIcon={<PlaylistAddRounded />}
+                            startIcon={<DomainAddRounded />}
                             sx={{ fontSize: 22 }}
                         >
                             {t('securityGuards.shifts.add')}

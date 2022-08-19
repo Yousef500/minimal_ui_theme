@@ -1,9 +1,9 @@
-import axios from "axios";
-import i18n from "src/locales/i18n";
-import { store } from "src/redux/store";
+import axios from 'axios';
+import i18n from 'src/locales/i18n';
+import { store } from 'src/redux/store';
 
 const shiftTimes = axios.create({
-    baseURL: "http://iscope.asyadcapital.com:2101/api",
+    baseURL: 'http://iscope.asyadcapital.com:2101/api',
 });
 
 shiftTimes.interceptors.request.use(
@@ -11,15 +11,15 @@ shiftTimes.interceptors.request.use(
         const state = store.getState();
         const authToken = state.currentUser.userInfo.Token;
         config.headers.Authorization = `bearer ${authToken}`;
-        config.headers["Accept-Language"] = i18n.language;
-        if (config.url.includes("Search")) {
+        config.headers['Accept-Language'] = i18n.language;
+        if (config.url.includes('Search')) {
             const { page, pageSize } = state.shiftTimes;
             const data = {
                 ...config.data,
                 page,
                 pageSize,
             };
-            console.log("config.data", data);
+            console.log('config.data', data);
             config.data = data;
         }
         return config;
@@ -28,8 +28,9 @@ shiftTimes.interceptors.request.use(
 );
 
 const shiftTimesService = {
-    getAll: () => shiftTimes.get("/WorkShifts/GetLookUpWorkShifts"),
-    getWorkingDays: () => shiftTimes.get("/WorkShifts/GetWorkingDays"),
+    getAll: () => shiftTimes.get('/WorkShifts/GetLookUpWorkShifts'),
+    getWorkingDays: () => shiftTimes.get('/WorkShifts/GetWorkingDays'),
+    searchShiftTimes: (data) => shiftTimes.post('/WorkShifts/Search', data),
 };
 
 export default shiftTimesService;
