@@ -29,7 +29,13 @@ import SvgIconStyle from '../../../components/SvgIconStyle';
 // };
 
 const navConfig = [
-    // Accounts / Users
+    // Home
+    {
+        subheader: 'title',
+        items: [{ title: 'title', path: '/', icon: <Iconify icon={'fa-solid:home'} /> }],
+    },
+
+    // Accounts - Users
     {
         subheader: 'accounts.title',
         items: [

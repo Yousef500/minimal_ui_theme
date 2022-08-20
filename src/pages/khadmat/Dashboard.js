@@ -1,7 +1,8 @@
-import { Box, Container, Grid, Typography, useTheme } from '@mui/material';
+import { KeyboardArrowLeftRounded, KeyboardArrowRightRounded } from '@mui/icons-material';
+import { Card, CardMedia, Container, Grid, Typography, useTheme } from '@mui/material';
 import { useRef, useState } from 'react';
-import Slider from 'react-slick';
-import { CarouselArrows, CarouselDots } from 'src/components/carousel';
+import Carousel from 'react-material-ui-carousel';
+import { CarouselDots } from 'src/components/carousel';
 import useLocales from 'src/hooks/useLocales';
 
 const list = [
@@ -33,7 +34,7 @@ const Dashboard = () => {
         beforeChange: (current, next) => setCurrentIndex(next),
         ...CarouselDots({
             zIndex: 9,
-            bottom: -50,
+            bottom: 0,
             left: 24,
             position: 'absolute',
         }),
@@ -60,30 +61,25 @@ const Dashboard = () => {
                         {t('introduction')}
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
-                    <Slider ref={carouselRef} {...settings} variableWidth={true}>
-                        {list.map((i) => (
-                            <img key={i} src={i} alt="testImage" height={500} width={'20px'} />
+                <Grid item xs={10}>
+                    <Carousel
+                        navButtonsAlwaysVisible
+                        stopAutoPlayOnHover
+                        duration={800}
+                        NextIcon={lang === 'ar' ? <KeyboardArrowLeftRounded /> : <KeyboardArrowRightRounded />}
+                        PrevIcon={lang === 'ar' ? <KeyboardArrowRightRounded /> : <KeyboardArrowLeftRounded />}
+                    >
+                        {list.map((src, i) => (
+                            <Card key={i}>
+                                <CardMedia
+                                    component={'img'}
+                                    image={src}
+                                    height={600}
+                                    sx={{ objectFit: 'contain' }}
+                                />
+                            </Card>
                         ))}
-                        {/* <CarouselArrows
-                        onNext={handleNext}
-                        onPrevious={handlePrevious}
-                        spacing={0}
-                        sx={{
-                          top: 16,
-                          right: 16,
-                          position: 'absolute',
-                          '& .arrow': {
-                            p: 0,
-                            width: 32,
-                            height: 32,
-                            opacity: 0.48,
-                            color: 'common.white',
-                            '&:hover': { color: 'common.white', opacity: 1 },
-                          },
-                        }}
-                      /> */}
-                    </Slider>
+                    </Carousel>
                 </Grid>
             </Grid>
         </Container>

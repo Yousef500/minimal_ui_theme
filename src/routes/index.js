@@ -70,6 +70,7 @@ export default function Router() {
             <Route path="/login" element={<Login />} />
             <Route element={<ProtectedRoute allowed={!!userInfo?.Token} />}>
                 <Route path="/" element={<DashboardLayout />}>
+                    <Route path="/" element={<Dashboard />} />
                     <Route path="dead" element={<DeadDashboard />} />
                     <Route path="dead/management" element={<DeadManagement />} />
                     <Route path="dead/cemeteries" element={<CemeteriesManagement />} />
@@ -99,9 +100,8 @@ export default function Router() {
                     <Route path="securityGuards/shiftTimes" element={<ShiftTimesManagement />} />
                     <Route path="securityGuards/shiftTimes/add" element={<AddShiftTime />} />
                     <Route path="users/logout" element={<SignOut />} />
-                    <Route path="dashboard" element={<Dashboard />} />
 
-                    <Route path="*" element={<Navigate to="/dashboard" />} />
+                    <Route path="*" element={<Navigate to="/" />} />
                 </Route>
             </Route>
             <Route path="/sign-in" element={<Login />} />
