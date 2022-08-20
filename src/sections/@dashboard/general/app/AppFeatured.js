@@ -24,9 +24,9 @@ const OverlayStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-AppFeatured.propTypes = {
-  list: PropTypes.array.isRequired,
-};
+// AppFeatured.propTypes = {
+//   list: PropTypes.array.isRequired,
+// };
 
 export default function AppFeatured({ list, ...other }) {
   const theme = useTheme();
@@ -92,14 +92,14 @@ export default function AppFeatured({ list, ...other }) {
 
 // ----------------------------------------------------------------------
 
-CarouselItem.propTypes = {
-  isActive: PropTypes.bool,
-  item: PropTypes.shape({
-    description: PropTypes.string,
-    image: PropTypes.string,
-    title: PropTypes.string,
-  }),
-};
+// CarouselItem.propTypes = {
+//   isActive: PropTypes.bool,
+//   item: PropTypes.shape({
+//     description: PropTypes.string,
+//     image: PropTypes.string,
+//     title: PropTypes.string,
+//   }),
+// };
 
 function CarouselItem({ item, isActive }) {
   const { image, title, description } = item;

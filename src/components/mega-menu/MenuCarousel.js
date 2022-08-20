@@ -12,11 +12,11 @@ import { CarouselDots, CarouselArrows } from '../carousel';
 
 // ----------------------------------------------------------------------
 
-MenuCarousel.propTypes = {
-  numberShow: PropTypes.number,
-  products: PropTypes.array,
-  sx: PropTypes.object,
-};
+// MenuCarousel.propTypes = {
+//   numberShow: PropTypes.number,
+//   products: PropTypes.array,
+//   sx: PropTypes.object,
+// };
 
 export default function MenuCarousel({ products, numberShow, sx }) {
   const theme = useTheme();

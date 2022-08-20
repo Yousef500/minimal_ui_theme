@@ -1,5 +1,5 @@
-import { MoreTimeRounded } from '@mui/icons-material';
-import { Button, Container, Grid, Pagination, Stack, Typography } from '@mui/material';
+import { MoreTimeRounded, SearchOffRounded } from '@mui/icons-material';
+import { Button, CircularProgress, Container, Grid, Pagination, Stack, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ const ShiftTimesManagement = () => {
     } = useLocales();
     const dispatch = useDispatch();
 
-    const { page, shiftTimes, pageCount } = useSelector((state) => state.shiftTimes);
+    const { page, shiftTimes, pageCount, loadingShiftTimes } = useSelector((state) => state.shiftTimes);
 
     useEffect(() => {
         (async () => {
@@ -41,7 +41,7 @@ const ShiftTimesManagement = () => {
                 dispatch(setShiftTimes(data));
             } catch (err) {
                 console.log({ err });
-                dispatch(setLoadingShiftTimes(false));
+                dispatch(setShiftTimes([]));
                 toast.error(t('common.error.unknown'));
             }
         }
@@ -68,12 +68,26 @@ const ShiftTimesManagement = () => {
                         </Button>
                     </Stack>
                 </Grid>
-                {shiftTimes.length &&
+                {loadingShiftTimes ? (
+                    <Center>
+                        <CircularProgress size={100} color="info" />
+                    </Center>
+                ) : shiftTimes.length ? (
                     shiftTimes.map((shift) => (
                         <Grid key={shift.Id} item xs={12} sm={6} md={6} lg={4} xl={3}>
                             <ShiftTimeCard shift={shift} t={t} />
                         </Grid>
-                    ))}
+                    ))
+                ) : (
+                    <Grid item xs={12}>
+                        <Center>
+                            <Stack direction="row" spacing={3}>
+                                <SearchOffRounded />
+                                <Typography variant="h4">{t('common.notFound')} </Typography>
+                            </Stack>
+                        </Center>
+                    </Grid>
+                )}
 
                 <Grid item xs={12}>
                     <Center my={3}>

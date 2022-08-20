@@ -1,5 +1,8 @@
 const en = {
     translation: {
+        title: 'E-Khadmat Application',
+        introduction: `This application works to help its users in searching for the data of the deceased and the place of burial. It also assists system administrators in several tasks as follows:
+        With regard to honoring the dead, they can add, display, search the data of the deceased, as well as add, display the data of a cemetery. As for the security guards, they can view, modify and add working hours, guards and guard sites`,
         ekram: {
             dead: {
                 title: 'Ekram',
@@ -105,7 +108,7 @@ const en = {
                 add: 'Add Shift Time',
                 from: 'Shift time from',
                 to: 'Shift time to',
-                timeErr: 'The shift end time must be after the start time',
+                timeErr: 'The shift period must be more than 0',
                 edit: 'Edit Shift Time',
             },
         },

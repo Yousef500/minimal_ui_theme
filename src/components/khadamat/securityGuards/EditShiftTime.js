@@ -61,15 +61,15 @@ const EditShiftTime = ({ t, open, onClose, id }) => {
     const handleEditShift = async (data) => {
         console.log({
             ...data,
-            shiftTimeFrom: dayjs(data.shiftTimeFrom).format('hh:mm:ss'),
-            shiftTimeTo: dayjs(data.shiftTimeTo).format('hh:mm:ss'),
+            shiftTimeFrom: dayjs(data.shiftTimeFrom).format('HH:mm:ss'),
+            shiftTimeTo: dayjs(data.shiftTimeTo).format('HH:mm:ss'),
         });
         try {
             setSaving(true);
             await shiftTimesService.editShiftTime({
                 ...data,
-                shiftTimeFrom: dayjs(data.shiftTimeFrom).format('hh:mm:ss'),
-                shiftTimeTo: dayjs(data.shiftTimeTo).format('hh:mm:ss'),
+                shiftTimeFrom: dayjs(data.shiftTimeFrom).format('HH:mm:ss'),
+                shiftTimeTo: dayjs(data.shiftTimeTo).format('HH:mm:ss'),
             });
             const { data: newShifts } = await shiftTimesService.searchShiftTimes();
             dispatch(setShiftTimes(newShifts));

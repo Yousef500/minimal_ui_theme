@@ -1,6 +1,16 @@
 import { CancelRounded, SaveRounded } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
-import { Button, Card, CardActions, CardContent, CardHeader, Container, Grid, TextField } from '@mui/material';
+import {
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    Container,
+    Grid,
+    InputAdornment,
+    TextField,
+} from '@mui/material';
 import { TimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { useState } from 'react';
@@ -30,8 +40,8 @@ const AddShiftTime = () => {
             setSaving(true);
             await shiftTimesService.addShiftTime({
                 ...data,
-                shiftTimeFrom: dayjs(data.shiftTimeFrom).format('hh:mm:ss'),
-                shiftTimeTo: dayjs(data.shiftTimeTo).format('hh:mm:ss'),
+                shiftTimeFrom: dayjs(data.shiftTimeFrom).format('HH:mm:ss'),
+                shiftTimeTo: dayjs(data.shiftTimeTo).format('HH:mm:ss'),
             });
             setSaving(false);
             toast.success(t('common.success.add'));
@@ -73,13 +83,21 @@ const AddShiftTime = () => {
                                         {...field}
                                         value={field.value || null}
                                         renderInput={(params) => (
-                                            <TextField
+                                            <InputField
                                                 {...params}
                                                 fullWidth
                                                 required
                                                 label={t('securityGuards.shiftTimes.from')}
                                                 error={!!error}
                                                 helperText={error?.message}
+                                                InputProps={{
+                                                    ...params.InputProps,
+                                                    endAdornment: (
+                                                        <InputAdornment position="start">
+                                                            {params.InputProps.endAdornment}
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
                                             />
                                         )}
                                     />
@@ -93,21 +111,27 @@ const AddShiftTime = () => {
                                 name="shiftTimeTo"
                                 rules={{
                                     required: true,
-                                    validate: (val) =>
-                                        val > getValues('shiftTimeFrom') || t('securityGuards.shiftTimes.timeErr'),
                                 }}
                                 render={({ field, fieldState: { error } }) => (
                                     <TimePicker
                                         {...field}
                                         value={field.value || null}
                                         renderInput={(params) => (
-                                            <TextField
+                                            <InputField
                                                 {...params}
                                                 fullWidth
                                                 required
                                                 label={t('securityGuards.shiftTimes.to')}
                                                 error={!!error}
                                                 helperText={error?.message}
+                                                InputProps={{
+                                                    ...params.InputProps,
+                                                    endAdornment: (
+                                                        <InputAdornment position="start">
+                                                            {params.InputProps.endAdornment}
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
                                             />
                                         )}
                                     />

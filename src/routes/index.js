@@ -48,6 +48,7 @@ const UsersManagement = lazy(() => import('../pages/users/UsersManagement'));
 const UsersPermissions = lazy(() => import('../pages/users/UsersPermissions'));
 const ShiftTimesManagement = lazy(() => import('../pages/securityGuards/ShiftTimesManagement'));
 const AddShiftTime = lazy(() => import('src/pages/securityGuards/AddShiftTime'));
+const Dashboard = lazy(() => import('src/pages/khadmat/Dashboard'));
 // ----------------------------------------------------------------------
 
 // const Loadable = (Component) => (props) => {
@@ -98,7 +99,9 @@ export default function Router() {
                     <Route path="securityGuards/shiftTimes" element={<ShiftTimesManagement />} />
                     <Route path="securityGuards/shiftTimes/add" element={<AddShiftTime />} />
                     <Route path="users/logout" element={<SignOut />} />
-                    <Route path="*" element={<Navigate to="/dead" />} />
+                    <Route path="dashboard" element={<Dashboard />} />
+
+                    <Route path="*" element={<Navigate to="/dashboard" />} />
                 </Route>
             </Route>
             <Route path="/sign-in" element={<Login />} />
